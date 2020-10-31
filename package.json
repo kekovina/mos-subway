@@ -30,6 +30,7 @@
     "react-native-svg": "12.1.0",
     "react-native-svg-uri": "^1.2.3",
     "react-native-web": "~0.13.12",
+    "rn-sliding-up-panel": "^2.4.3",
     "undefined": "@dudigital/react-native-zoomable-view/src/ReactNativeZoomableView"
   },
   "devDependencies": {

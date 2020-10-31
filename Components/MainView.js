@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import Map from './Map'
+import PinchableScreen from './PinchableScreen'
+import Menu from './Menu'
 
 class MainView extends Component {
   constructor(props) {
@@ -10,7 +12,14 @@ class MainView extends Component {
 
  
   render() {
-    return <Map/>
+     return ( 
+       <View>
+     <PinchableScreen>
+      <Map/>
+    </PinchableScreen> 
+    <Menu/>
+    </View>
+     )
         
       
    

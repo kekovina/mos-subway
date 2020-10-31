@@ -32,12 +32,19 @@ const Stack = createStackNavigator();
   }
 
   render(){
-    return <View>
+    return <View style={style.wrap}>
       {this.state.splashScreen?<SplashScreen/>:<MainView/>}
     </View>
   }
 }
 
+const style = StyleSheet.create({
+  wrap: {
+    flex: 1,
+    flexDirection: "column",
+    alignItems: "stretch"
+  }
+})
 export default App;
 
 
