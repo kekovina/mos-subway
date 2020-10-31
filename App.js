@@ -1,15 +1,11 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 import { StyleSheet, Text, View } from "react-native";
-
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+import { observer } from 'mobx-react';
+import MainView from './Components/MainView';
+import SplashScreen from './Components/SplashScreen'  
 
 const styles = StyleSheet.create({
   container: {
@@ -19,3 +15,29 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 });
+
+const Stack = createStackNavigator();
+
+ class App extends React.Component {
+
+  constructor(props){
+    super(props)
+    this.state = {splashScreen: true}
+  }
+
+  componentDidMount(){
+    setTimeout(() => {
+      this.setState({splashScreen: false})
+    }, 4000);
+  }
+
+  render(){
+    return <View>
+      {this.state.splashScreen?<SplashScreen/>:<MainView/>}
+    </View>
+  }
+}
+
+export default App;
+
+
