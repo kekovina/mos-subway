@@ -29,7 +29,9 @@
     "react-native-screens": "~2.10.1",
     "react-native-svg": "12.1.0",
     "react-native-svg-uri": "^1.2.3",
+    "react-native-swipe-gestures": "^1.0.5",
     "react-native-web": "~0.13.12",
+    "reanimated-bottom-sheet": "^1.0.0-alpha.22",
     "rn-sliding-up-panel": "^2.4.3",
     "undefined": "@dudigital/react-native-zoomable-view/src/ReactNativeZoomableView"
   },
