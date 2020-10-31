@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet,TextInput, Dimensions, Image, Animated} from 'react-native';
+import { View, Text, StyleSheet,TextInput, Dimensions, Image, Animated,TouchableWithoutFeedback,Keyboard} from 'react-native';
 import Svg, { Rect, Path } from "react-native-svg";
 import {
     PanGestureHandler,
@@ -8,6 +8,7 @@ import {
     State,
   } from 'react-native-gesture-handler';
   import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
+  
 
 const screen = Dimensions.get('window')
 const styles = StyleSheet.create({
@@ -58,7 +59,7 @@ class Menu extends Component {
 
 
   _onPanEvent = (e)=>{
-    
+    Keyboard.dismiss()
   }
   onFocusInput = (e)=>{
     this.setState({focused: true, id: e.nativeEvent.target})
@@ -66,8 +67,9 @@ class Menu extends Component {
         this.translateY,
         {
           toValue: -screen.height*0.85,
-          duration: 500
-        }
+          duration: 500,
+          useNativeDriver: true
+        },
       ).start(({finished})=>{
         if(finished){
             this.translateY.setValue(-screen.height*0.85);
@@ -82,7 +84,8 @@ class Menu extends Component {
         this.translateY,
         {
           toValue: 2020,
-          duration: 500
+          duration: 500,
+          useNativeDriver: true
         }
       ).start(({finished})=>{
         if(finished){
@@ -90,22 +93,24 @@ class Menu extends Component {
             this.translateY.setValue(0);
         }
       });
-      console.log("дААААААААААА!")
-      console.log(e)
+      setTimeout(()=>{
+        Keyboard.dismiss()
+      },400)
   }
 
 
   render() {
-    return (<GestureRecognizer
+    return (
+    <GestureRecognizer
         onSwipeDown={(state) => this.swipedDown(state)}
         config = {{
             velocityThreshold: 0.3,
-            directionalOffsetThreshold: 10
+            directionalOffsetThreshold: 70
           }}
         >
             <View>
     <PanGestureHandler
-
+            onGestureEvent = {this._onPanEvent}
             onHandlerStateChange = {this.handlerPan}
         >
       <Animated.View style = {[styles.wrap,{
@@ -114,6 +119,7 @@ class Menu extends Component {
           ]
       }]}>
             <View style={styles.inputs}>
+        
                 <View style = {{flex:3}}>
                     <TextInput name = "from" onFocus={this.onFocusInput} style = {styles.input} placeholder = "Откуда"/>
                 </View>
