@@ -377,4 +377,6 @@ const pathfinder = (start, need) => {
   return result;
 };
 
+console.log(pathfinder(45, 90));
+
 module.exports = { pathfinder, getStation };

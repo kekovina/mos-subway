@@ -1,14 +1,27 @@
-import React, { Component } from 'react';
-import { View, Text, StyleSheet,TextInput, Dimensions, Image, Animated,TouchableWithoutFeedback,Keyboard} from 'react-native';
-import Svg, { Rect, Path } from "react-native-svg";
+import React, { Component } from "react";
 import {
-    PanGestureHandler,
-    PinchGestureHandler,
-    RotationGestureHandler,
-    State,
-  } from 'react-native-gesture-handler';
-  import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
-  
+  View,
+  Text,
+  StyleSheet,
+  TextInput,
+  Dimensions,
+  Image,
+  Animated,
+  TouchableWithoutFeedback,
+  Keyboard,
+} from "react-native";
+import Svg, { Rect, Path } from "react-native-svg";
+import ListPath from "./ListPath";
+import { getStation } from "../utils/functions";
+import {
+  PanGestureHandler,
+  PinchGestureHandler,
+  RotationGestureHandler,
+  State,
+} from "react-native-gesture-handler";
+import GestureRecognizer, {
+  swipeDirections,
+} from "react-native-swipe-gestures";
 
 const screen = Dimensions.get("window");
 const styles = StyleSheet.create({
@@ -49,7 +62,7 @@ const styles = StyleSheet.create({
 class Menu extends Component {
   constructor(props) {
     super(props);
-    this.state = { focused: false, id: "", from: "", to: "", path: "" };
+    this.state = { focused: false, id: "", from: "", to: "" };
     this.translateY = new Animated.Value(0);
   }
 
@@ -66,64 +79,39 @@ class Menu extends Component {
     });
   };
 
-  componentDidUpdate() {
-    if (this.state.from != "" && this.state.to != "") {
-      const result = pathfinder(this.state.from.z, this.state.to.z);
-      if (typeof this.state.path != "object") {
-        this.setState({ path: result });
+  componentDidUpdate() {}
+  _onPanEvent = (e) => {
+    Keyboard.dismiss();
+  };
+  onFocusInput = (e) => {
+    this.setState({ focused: true, id: e.nativeEvent.target });
+    Animated.timing(this.translateY, {
+      toValue: -screen.height * 0.85,
+      duration: 500,
+      useNativeDriver: true,
+    }).start(({ finished }) => {
+      if (finished) {
+        this.translateY.setValue(-screen.height * 0.85);
       }
-    }
-  _onPanEvent = (e)=>{
-    Keyboard.dismiss()
-  }
-  onFocusInput = (e)=>{
-    this.setState({focused: true, id: e.nativeEvent.target})
-    Animated.timing(
-        this.translateY,
-        {
-          toValue: -screen.height*0.85,
-          duration: 500,
-          useNativeDriver: true
-        },
-      ).start(({finished})=>{
-        if(finished){
-            this.translateY.setValue(-screen.height*0.85);
-        }
-      });
-      
-      
-  }
-
-  swipedDown = (e)=>{
-    Animated.timing(
-        this.translateY,
-        {
-          toValue: 2020,
-          duration: 500,
-          useNativeDriver: true
-        }
-      ).start(({finished})=>{
-        if(finished){
-            console.log('А Я ФСЕ!')
-            this.translateY.setValue(0);
-        }
-      });
-      setTimeout(()=>{
-        Keyboard.dismiss()
-      },400)
-  }
+    });
+  };
+  _onPanEvent = (e) => {
+    Keyboard.dismiss();
+  };
   swipedDown = (e) => {
     Animated.timing(this.translateY, {
       toValue: 2020,
       duration: 500,
+      useNativeDriver: true,
     }).start(({ finished }) => {
       if (finished) {
         console.log("А Я ФСЕ!");
         this.translateY.setValue(0);
       }
     });
-    console.log("дААААААААААА!");
-    console.log(e);
+    setTimeout(() => {
+      Keyboard.dismiss();
+    }, 400);
   };
 
   inputTextChangedFrom = (value) => {
@@ -144,11 +132,14 @@ class Menu extends Component {
         onSwipeDown={(state) => this.swipedDown(state)}
         config={{
           velocityThreshold: 0.3,
-          directionalOffsetThreshold: 10,
+          directionalOffsetThreshold: 80,
         }}
       >
         <View>
-          <PanGestureHandler onHandlerStateChange={this.handlerPan}>
+          <PanGestureHandler
+            onHandlerStateChange={this.handlerPan}
+            onGestureEvent={this._onPanEvent}
+          >
             <Animated.View
               style={[
                 styles.wrap,
@@ -200,11 +191,7 @@ class Menu extends Component {
                   marginBottom: 20,
                 }}
               >
-                <ListPath
-                  from={this.state.from}
-                  to={this.state.to}
-                  path={this.state.path}
-                />
+                <ListPath from={this.state.from} to={this.state.to} />
               </Animated.View>
             </Animated.View>
           </PanGestureHandler>
