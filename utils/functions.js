@@ -275,6 +275,23 @@ var layout = {
   272: [266, 262],
 };
 
+const colors = {
+  "Арбатско-Покровская линия": "#0572b9",
+  "Замоскворецкая линия": "#4baf4f",
+  "Большая кольцевая линия": "#67c7c3",
+  "Калининская линия": "#ffcd1e",
+  "Калужско-Рижская линия": "#ef7e24",
+  "Кольцевая линия": "#925233",
+  "Люблинско-Дмитровская линия": "#bed12e",
+  "Московское центральное кольцо": "#e42518",
+  "Некрасовская линия": "#d68ab1",
+  "Серпуховско-Тимирязевская линия": "#adacac",
+  "Сокольническая линия": "#e42518",
+  "Солнцевская линия": "#ffcd1e",
+  "Таганско-Краснопресненская линия": "#943f90",
+  "Филёвская линия": "#24bcef",
+};
+
 function solve(graph, s) {
   var solutions = {};
   solutions[s] = [];
@@ -321,6 +338,19 @@ function solve(graph, s) {
 //create graph
 var graph = {};
 
+const getStation = (name) => {
+  const a = data.filter(
+    (item) => item.n.toLowerCase() == name.toLowerCase()
+  )[0];
+  if (a) {
+    const response = {
+      color: colors[a.b],
+      ...a,
+    };
+    return response;
+  }
+  return false;
+};
 const pathfinder = (start, need) => {
   for (var id in layout) {
     if (!graph[id]) graph[id] = {};
@@ -332,19 +362,19 @@ const pathfinder = (start, need) => {
   }
   var solutions = solve(graph, start);
 
-  prev = data[start];
-  const result = [];
+  var prev = data[start];
+  const result = [data[start]];
   solutions[need].map((item) => {
     if (prev.b != data[item].b) {
       result.push({
         t: "change",
-        desc: `Смена ветки с ${current_branch} на ${data[item].b}`,
-        d: prev.change.filter((item) => item.t_name == data[item].n).d,
+        d: prev.change.filter((item_t) => item_t.t_name == data[item].n).d,
       });
     }
     result.push(data[item]);
     prev = data[item];
   });
+  return result;
 };
 
-module.exports = { pathfinder };
+module.exports = { pathfinder, getStation };
