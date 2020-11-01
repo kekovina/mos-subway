@@ -10,7 +10,7 @@ import Svg, {
   Ellipse,
   Text
 } from "react-native-svg";
-import { StyleSheet, View, Animated, Dimensions } from "react-native";
+import { StyleSheet, View, Animated, Dimensions, TouchableWithoutFeedback } from "react-native";
 import * as GestureHandler from 'react-native-gesture-handler'
 
 
@@ -31,21 +31,183 @@ const styles = StyleSheet.create({
   });
 
 
+var colors = {}
 
 class Map extends React.Component {
 
     constructor(props){
         super(props)
         this.state = {greenBranch:"#4baf4f"}
+        this.state.limeBranch = "#bed12e"
+        this.state.limeBranch = "#bed12e"
+        this.state.Branch7 = "#943f90"
+        this.state.Branch15 = "#d68ab1"
+        this.state.Branch1 = "#e42518"
+        this.state.Branch3 = "#0572b9"
+        this.state.Branch4 = "#24bcef"
+        this.state.Branch5 = "#925233"
+        this.state.Branch6 = "#ef7e24"
+        this.state.Branch8 = "#ffcd1e"
+        this.state.Branch9 = "#adacac"
+        this.state.Branch11 = "#67c7c3"
+        this.state.Branch12 = "#bac8e8"
+        this.state.d1 = "#f7a600"
+        this.state.d2 = "#f42a7c"
+        colors = this.state
     }
+    lastTap = null;
+
+    handleDoubleTap = () => {
+        const now = Date.now();
+        const DOUBLE_PRESS_DELAY = 300;
+        if (this.lastTap && (now - this.lastTap) < DOUBLE_PRESS_DELAY) {
+          this.setState(colors)
+        } else {
+          this.lastTap = now;
+        }
+      }
+
+    initialState = this.state
 
     greenHandler=()=>{
-        this.setState({greenBranch: "white"})
-    }
-  
-  render(){  return <Svg
         
-      style = {{scale:0.2}}
+        this.chooseBranch('greenBranch')
+    }
+
+    limeHandler=()=>{
+        this.chooseBranch('limeBranch')
+    }
+    Handler7=()=>{
+        this.chooseBranch('Branch7')
+    }
+    Handler15=()=>{
+        this.chooseBranch('Branch15')
+    }
+    Handler1=()=>{
+        this.chooseBranch('Branch1')
+    }
+    Handler3=()=>{
+        this.chooseBranch('Branch3')
+    }
+    Handler4=()=>{
+        this.chooseBranch('Branch4')
+    }
+    Handler5=()=>{
+        this.chooseBranch('Branch5')
+    }
+    Handler6=()=>{
+        this.chooseBranch('Branch6')
+    }
+    Handler8=()=>{
+        this.chooseBranch('Branch8')
+    }
+    Handler9=()=>{
+        this.chooseBranch('Branch9')
+    }
+    Handler11 = ()=>{
+        this.chooseBranch('Branch11')
+    }
+    Handler12 = ()=>{
+        this.chooseBranch('Branch12')
+    }
+    Handler_d1 = ()=>{
+        this.chooseBranch('d1')
+    }
+    Handler_d1 = ()=>{
+        this.chooseBranch('d2')
+    }
+
+    chooseBranch = (name)=>{
+        let newState = {}
+        if(name != 'greenBranch'){
+            newState.greenBranch = '#d6d6d6'
+        } else {
+            newState.greenBranch = colors[name]
+        }
+        if(name != 'limeBranch'){
+            newState.limeBranch = '#d6d6d6'
+        }else {
+            newState.limeBranch = colors[name]
+        }
+        if(name != 'Branch7'){
+            newState.Branch7 = '#d6d6d6'
+        }else {
+            newState.Branch7 = colors[name]
+        }
+        if(name != 'Branch15'){
+            newState.Branch15 = '#d6d6d6'
+        }else {
+            newState.Branch15 = colors[name]
+        }
+        if(name != 'Branch1'){
+            newState.Branch1 = '#d6d6d6'
+        }else {
+            newState.Branch1 = colors[name]
+        }
+        if(name != 'd1'){
+            newState.d1 = '#d6d6d6'
+        }else {
+            newState.d1 = colors[name]
+        }
+        if(name != 'd2'){
+            newState.d2 = '#d6d6d6'
+        }else {
+            newState.d2 = colors[name]
+        }
+        if(name != 'Branch3'){
+            newState.Branch3 = '#d6d6d6'
+        }else {
+            newState.Branch3 = colors[name]
+        }
+        if(name != 'Branch4'){
+            newState.Branch4 = '#d6d6d6'
+        }else {
+            newState.Branch4 = colors[name]
+        }
+        if(name != 'Branch5'){
+            newState.Branch5 = '#d6d6d6'
+        }else {
+            newState.Branch5 = colors[name]
+        }
+        if(name != 'Branch6'){
+            newState.Branch6 = '#d6d6d6'
+        }else {
+            newState.Branch6 = colors[name]
+        }
+        if(name != 'Branch8'){
+            newState.Branch8 = '#d6d6d6'
+        }else {
+            newState.Branch8 = colors[name]
+        }
+        if(name != 'Branch9'){
+            newState.Branch9 = '#d6d6d6'
+        }else {
+            newState.Branch9 = colors[name]
+        }
+        if(name != 'Branch11'){
+            newState.Branch11 = '#d6d6d6'
+        }else {
+            newState.Branch11 = colors[name]
+        }
+        if(name != 'Branch12'){
+            newState.Branch12 = '#d6d6d6'
+        }else {
+            newState.Branch12 = colors[name]
+        }
+        this.setState(newState)
+    }
+
+    updateColors(){
+        this.setState(colors)
+    }
+
+  
+  render(){  return <TouchableWithoutFeedback onPress={this.handleDoubleTap}>
+  <View>
+    <View>
+    <Svg
+        
+      style = {{scale:0.22}}
       width="100%"
       height="100%"
       xmlSpace="preserve"
@@ -1359,7 +1521,7 @@ class Map extends React.Component {
       />
       <Path
         d="M1010.25 51.343c-9.946-10.4-11.635-12.071-26.179-12.471l-.094-7.73h.094-.094c15.858 0 19.987 3.4 30.871 15l2.714 2.87-5.694 4.144zm-41.949-20.2v7.729h15.77l-.094-7.73z"
-        fill="#f7a600"
+        fill = {this.state.d1} onPress = {this.Handler_d1}
         fillOpacity={1}
         strokeWidth={0.96866733}
       />
@@ -1602,7 +1764,7 @@ class Map extends React.Component {
       />
       <Path
         d="M690.338 1096.573l68.536-61.753 6.974 6.424-68.346 59.874z"
-        fill="#f7a600"
+        fill = {this.state.d1} onPress = {this.Handler_d1}
         fillOpacity={1}
         strokeWidth={1.21400297}
       />
@@ -1634,7 +1796,7 @@ class Map extends React.Component {
       />
       <Path
         d="M557.987 374.439l26.177.162c8.11.026 12.743 4.425 12.743 14.225l7.707.025c0-13.1-6.198-22.168-20.24-22.125-16.24.008-26.387-.005-26.387-.005z"
-        fill="#f42a7c"
+        fill = {this.state.d2} onPress = {this.Handler_d2}
         fillOpacity={1}
       />
       <Path
@@ -1833,7 +1995,7 @@ class Map extends React.Component {
       />
       <Path
         d="M875.1 801.015l-4.44 5.28 2.629 7.234 6.59-7.32c9.526-11.326 15.939-15.926 30.595-21.092l96.041-23.896-1.405-5.963-95.887 23.047c-16.42 5.372-23.76 10.389-34.122 22.71z"
-        fill="#67c7c3"
+        fill = {this.state.Branch11} onPress = {this.Handler11}
       />
       <Path
         d="M1055.3594 847.177H1216.7593900000002V890.177H1055.3594z"
@@ -1877,7 +2039,7 @@ class Map extends React.Component {
       />
       <Path
         d="M1302.908 2025.305s-10.147.02-26.386.01c-14.042-.043-20.24 9.025-20.24 22.125v11.07h.03l.37 44.523 7.673-.04-.369-44.483h.024l-.022-11.096c0-9.8 4.632-14.198 12.742-14.224l26.178-.163z"
-        fill="#f42a7c"
+        fill = {this.state.d2} onPress = {this.Handler_d2}
         fillOpacity={1}
       />
       <Path
@@ -1887,7 +2049,7 @@ class Map extends React.Component {
       />
       <Path
         d="M477.11978 366.64682H556.079421V374.3760099H477.11978z"
-        fill="#f42a7c"
+        fill = {this.state.d2} onPress = {this.Handler_d2}
         fillOpacity={1}
         strokeWidth={0.72471315}
       />
@@ -2106,7 +2268,7 @@ class Map extends React.Component {
       />
       <Path d="M852.35931 1165.177H885.35931V1230.177H852.35931z" fill="#fff" />
       <Path
-        fill="#FFF"
+        fill="#fff"
         d="M852.19843 1068.8396H1010.8268V1110.411175H852.19843z"
       />
       <Path d="M798.35931 934.177H957.35931V969.177H798.35931z" fill="#fff" />
@@ -2298,15 +2460,15 @@ class Map extends React.Component {
       />
       <Path
         d="M518.76 1408.177c-6 0-11 4.9-11 11 0 6 4.9 11 11 11 6 0 11-4.9 11-11 0-6.2-4.8-11-11-11zm0 16.1c-2.5 0-4.9-2.2-4.9-4.9 0-2.5 2.2-4.9 4.9-4.9s4.9 2.2 4.9 4.9c-.1 2.8-2.2 4.9-4.9 4.9z"
-        fill="#ffcd1e"
+        fill = {this.state.Branch8} onPress = {this.Handler8}
       />
       <Path
         d="M640.624 1055.587l.153.128c1.345 2.292.693 5.262-1.458 6.594-2.01 1.32-5.25.833-6.594-1.458l-.077-.064-5.108 3.163c3.15 4.968 9.745 6.426 14.763 3.057 4.967-3.15 6.426-9.744 3.121-14.84z"
-        fill="#67c7c3"
+        fill = {this.state.Branch11} onPress = {this.Handler11}
       />
       <Path
         d="M632.712 1060.71l-.154-.128c-1.345-2.292-.692-5.262 1.459-6.594 2.01-1.32 5.249-.833 6.594 1.458l.077.064 5.108-3.163c-3.151-4.968-9.745-6.426-14.764-3.057-4.967 3.15-6.425 9.744-3.12 14.84z"
-        fill="#ffcd1e"
+        fill = {this.state.Branch8} onPress = {this.Handler8}
       />
       <Path
         d="M639.024 1062.194c-2.304 1.204-5.134.539-6.543-1.676-1.344-2.292-.538-5.134 1.676-6.543 2.305-1.204 5.135-.539 6.543 1.676 1.627 2.266.629 5.339-1.676 6.543z"
@@ -2314,11 +2476,11 @@ class Map extends React.Component {
       />
       <Path
         d="M640.624 1055.587l.153.128c1.345 2.292.693 5.262-1.458 6.594-2.01 1.32-5.25.833-6.594-1.458l-.077-.064-5.108 3.163c3.15 4.968 9.745 6.426 14.763 3.057 4.967-3.15 6.426-9.744 3.121-14.84z"
-        fill="#67c7c3"
+        fill = {this.state.Branch11} onPress = {this.Handler11}
       />
       <Path
         d="M632.712 1060.71l-.154-.128c-1.345-2.292-.692-5.262 1.459-6.594 2.01-1.32 5.249-.833 6.594 1.458l.077.064 5.108-3.163c-3.151-4.968-9.745-6.426-14.764-3.057-4.967 3.15-6.425 9.744-3.12 14.84z"
-        fill="#ffcd1e"
+        fill = {this.state.Branch8} onPress = {this.Handler8}
       />
       <Path
         d="M639.024 1062.194c-2.304 1.204-5.134.539-6.543-1.676-1.344-2.292-.538-5.134 1.676-6.543 2.305-1.204 5.135-.539 6.543 1.676 1.627 2.266.629 5.339-1.676 6.543z"
@@ -2326,11 +2488,11 @@ class Map extends React.Component {
       />
       <Path
         d="M722.16 986.577c.1 0 .1.1.2.1 2.1 1.8 2.4 4.8.8 6.8-1.5 2-4.7 2.4-6.8.8l-.1-.1-3.7 4.7c4.6 3.6 11.3 2.9 15-1.8 3.6-4.6 2.9-11.3-1.7-15z"
-        fill="#67c7c3"
+        fill = {this.state.Branch11} onPress = {this.Handler11}
       />
       <Path
         d="M716.16 994.077c-.1 0-.1-.1-.2-.1-2.1-1.8-2.4-4.8-.8-6.8 1.5-2 4.7-2.4 6.8-.8l.1.1 3.7-4.7c-4.6-3.6-11.3-2.9-15 1.8-3.6 4.6-2.9 11.3 1.8 15z"
-        fill="#ffcd1e"
+        fill = {this.state.Branch8} onPress = {this.Handler8}
       />
       <Path
         d="M722.76 993.277c-1.8 2-4.7 2.2-6.8.4-2.1-1.8-2.2-4.7-.4-6.8 1.8-2 4.7-2.2 6.8-.4 1.8 1.8 2.1 5 .4 6.8z"
@@ -2338,33 +2500,33 @@ class Map extends React.Component {
       />
       <Path
         d="M722.16 986.577c.1 0 .1.1.2.1 2.1 1.8 2.4 4.8.8 6.8-1.5 2-4.7 2.4-6.8.8l-.1-.1-3.7 4.7c4.6 3.6 11.3 2.9 15-1.8 3.6-4.6 2.9-11.3-1.7-15z"
-        fill="#67c7c3"
+        fill = {this.state.Branch11} onPress = {this.Handler11}
       />
       <Path
         d="M716.16 994.077c-.1 0-.1-.1-.2-.1-2.1-1.8-2.4-4.8-.8-6.8 1.5-2 4.7-2.4 6.8-.8l.1.1 3.7-4.7c-4.6-3.6-11.3-2.9-15 1.8-3.6 4.6-2.9 11.3 1.8 15z"
-        fill="#ffcd1e"
+        fill = {this.state.Branch8} onPress = {this.Handler8}
       />
       <Path
         d="M722.76 993.277c-1.8 2-4.7 2.2-6.8.4-2.1-1.8-2.2-4.7-.4-6.8 1.8-2 4.7-2.2 6.8-.4 1.8 1.8 2.1 5 .4 6.8z"
         fill="#fff"
       />
-      <Path d="M803.459 888.977l10.5 8.4-4.6 6-10.7-9.3z" fill="#67c7c3" />
-      <Path d="M791.359 880.277l10.4 8.1-4.5 5.5-10.9-8.1z" fill="#ffcd1e" />
+      <Path d="M803.459 888.977l10.5 8.4-4.6 6-10.7-9.3z" fill = {this.state.Branch11} onPress = {this.Handler11} />
+      <Path d="M791.359 880.277l10.4 8.1-4.5 5.5-10.9-8.1z" fill = {this.state.Branch8} onPress = {this.Handler8} />
       <Path
         d="M868.06 809.677c.1 0 .1.1.2.1 2.1 1.8 2.5 4.7.8 6.8-1.5 2-4.6 2.6-6.8.8l-.1-.1-3.6 4.7c4.7 3.5 11.3 2.7 15-2 3.6-4.6 2.7-11.3-2-15z"
-        fill="#67c7c3"
+        fill = {this.state.Branch11} onPress = {this.Handler11}
       />
       <Path
         d="M862.36 817.377c-.1 0-.1-.1-.2-.1-2.1-1.8-2.5-4.7-.9-6.7 1.5-2 4.6-2.6 6.7-.9l.1.1 3.6-4.7c-4.7-3.5-11.3-2.7-15 2-3.5 4.7-2.7 11.3 2 15z"
-        fill="#ffcd1e"
+        fill = {this.state.Branch8} onPress = {this.Handler8}
       />
       <Path
         d="M678.76 1185.177c-6.1.3-10.5 5.1-10.5 10.9.3 5.9 5.1 10.5 10.9 10.5 6.1-.3 10.5-5.1 10.5-10.9-.1-6.2-4.9-10.7-10.9-10.5zm.2 15.4c-2.4.3-4.8-2.1-4.8-4.8-.3-2.4 2.1-4.8 4.8-4.8 2.4-.3 4.8 2.1 4.8 4.8 0 2.5-2.1 4.8-4.8 4.8z"
-        fill="#67c7c3"
+        fill = {this.state.Branch11} onPress = {this.Handler11}
       />
       <Path
         d="M482.882 1327.207l197.257-218.567 7.51 5.79-193.683 212.976z"
-        fill="#f7a600"
+        fill = {this.state.d1} onPress = {this.Handler_d1}
         fillOpacity={1}
         strokeWidth={1.21400297}
       />
@@ -2376,19 +2538,19 @@ class Map extends React.Component {
       />
       <Path
         d="M1210.1241 602.06982H1225.1241V610.06982H1210.1241z"
-        fill="#bed12e"
+        fill = {this.state.limeBranch} onPress = {this.limeHandler}
       />
       <Path
         d="M1192.26 540.277c-4.3-4.3-11.2-4.3-15.5 0-4.3 4.3-4.3 11.2 0 15.5 4.3 4.3 11.2 4.3 15.5 0 4.3-4.3 4.2-11.3 0-15.5zm-4.3 11.3c-1.9 1.9-4.9 1.9-6.9 0-1.9-1.9-1.9-4.9 0-6.9s4.9-1.9 6.9 0c2.1 1.9 2.1 5 0 6.9zM1118.859 477.877c-4.3-4.3-11.2-4.3-15.5 0-4.3 4.3-4.3 11.2 0 15.5 4.3 4.3 11.2 4.3 15.5 0 4.4-4.2 4.4-11.4 0-15.5zm-4.1 11.3c-1.9 1.9-4.9 1.9-6.9 0-1.9-1.9-1.9-4.9 0-6.9 1.9-1.9 4.9-1.9 6.9 0 1.9 1.9 1.8 4.8 0 6.9z"
-        fill="#bed12e"
+        fill = {this.state.limeBranch} onPress = {this.limeHandler}
       />
       <Path
         d="M684.35931 1917.177H699.35931V1925.177H684.35931z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
       />
       <Path
         d="M684.35931 1873.177H699.35931V1881.177H684.35931z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
       />
       <Path
         d="M1343.3594 1692.177H1358.3594V1699.177H1343.3594z"
@@ -2399,238 +2561,238 @@ class Map extends React.Component {
       />
       <Path
         d="M684.35931 1813.177H699.35931V1820.177H684.35931z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
       />
       <Path
         d="M1366.86 1889.277c-6 0-11 4.9-11 11 0 6 4.9 11 11 11 6.2 0 11-4.9 11-11 .1-6-5-11-11-11zm0 16.1c-2.5 0-4.9-2.2-4.9-4.9s2.2-4.9 4.9-4.9 4.9 2.2 4.9 4.9-2.1 4.9-4.9 4.9z"
-        fill="#67c7c3"
+        fill = {this.state.Branch11} onPress = {this.Handler11}
         fillOpacity={1}
       />
       <Path
         d="M1018.36 1422.677c-4.3-4.3-11.2-4.3-15.5 0-4.3 4.3-4.3 11.2 0 15.5 4.3 4.3 11.2 4.3 15.5 0 4.3-4.3 4.3-11.3 0-15.5zm-4.1 11.2c-1.9 1.9-4.9 1.9-6.9 0s-1.9-4.9 0-6.9c1.9-1.9 4.9-1.9 6.9 0 1.8 1.9 1.8 5 0 6.9zM1138.36 1476.777c-6 0-11 4.9-11 11s4.9 11 11 11c6 0 11-4.9 11-11 0-6.2-4.8-11-11-11zm0 16c-2.5 0-4.9-2.2-4.9-4.9 0-2.5 2.2-4.9 4.9-4.9 2.5 0 4.9 2.2 4.9 4.9 0 2.5-2.2 4.9-4.9 4.9zM1373.56 1459.577c-1.3-6-6.9-9.8-12.8-8.7-6 1.3-9.8 6.9-8.7 12.8 1.1 6 6.9 9.8 12.8 8.7 6.1-1.2 9.9-7.1 8.7-12.8zm-9.8 6.8c-2.5.5-5.5-1.3-6-3.8s1.3-5.5 3.8-6 5.5 1.3 6 3.8c.5 2.9-1.2 5.4-3.8 6zM1537.06 1282.777c-4.4-4.1-11.4-3.9-15.5.5-4.3 4.6-3.9 11.4.5 15.5s11.4 3.9 15.5-.5c4.1-4.3 3.8-11.4-.5-15.5zm-4 11.5c-1.9 2.1-4.9 2.1-7 .3-2.1-1.8-2.1-4.9-.3-7 1.9-1.9 4.9-2.1 7-.3 2 1.8 2.3 5 .3 7zM1532.975 1039.107c-6 .3-10.8 5.2-10.8 11.2.3 6.2 5.2 10.8 11.2 10.8 6-.3 10.8-5.2 10.8-11.2-.2-6-5.1-10.9-11.2-10.8zm.3 16.1c-2.5.3-4.9-2.1-4.9-4.9-.3-2.5 2.1-4.9 4.9-4.9 2.5-.3 4.9 2.1 4.9 4.9 0 2.5-2.3 4.8-4.9 4.9zM1491.16 921.977c-4.3-4.3-11.2-4.3-15.5 0-4.3 4.3-4.3 11.2 0 15.5 4.3 4.3 11.2 4.3 15.5 0 4.3-4.3 4.2-11.1 0-15.5zm-4.4 11.4c-1.9 1.9-4.9 1.9-6.9 0s-1.9-4.9 0-6.9c1.9-1.9 4.9-1.9 6.9 0 2 1.6 2 5.1 0 6.9zM1354.26 818.877c-4.3-4.3-11.2-4.3-15.5 0-4.3 4.3-4.3 11.2 0 15.5 4.3 4.3 11.2 4.3 15.5 0 4.4-4.3 4.4-11.3 0-15.5zm-4.3 11.4c-1.9 1.9-4.9 1.9-6.9 0s-1.9-4.9 0-6.9 4.9-1.9 6.9 0c1.9 1.6 1.9 4.8 0 6.9zM1101.16 813.777c-4.3-4.3-11.2-4.3-15.5 0-4.3 4.3-4.3 11.2 0 15.5 4.3 4.3 11.2 4.3 15.5 0 4.3-4.3 4.3-11.1 0-15.5zm-4.2 11.2c-1.9 1.9-4.9 1.9-6.9 0-1.9-1.9-1.9-4.9 0-6.9 1.9-1.9 4.9-1.9 6.9 0 2 2 1.8 5 0 6.9zM934.26 941.077c-4.3-4.3-11.2-4.3-15.5 0-4.3 4.3-4.3 11.2 0 15.5 4.3 4.3 11.2 4.3 15.5 0 4.1-4.2 4.1-11.4 0-15.5zm-4.3 11.3c-1.9 1.9-4.9 1.9-6.9 0-1.9-1.9-1.9-4.9 0-6.9 1.9-1.9 4.9-1.9 6.9 0 2 1.8 2 4.8 0 6.9zM870.76 1068.077c-6 0-11 4.9-11 11 0 6 4.9 11 11 11 6 0 11-4.9 11-11s-4.9-11-11-11zm0 15.7c-2.5 0-4.9-2.2-4.9-4.9 0-2.5 2.2-4.9 4.9-4.9 2.5 0 4.9 2.2 4.9 4.9.1 2.9-2.1 4.9-4.9 4.9zM868.06 1185.077c-6 0-11 4.9-11 11 0 6 4.9 11 11 11 6 0 11-4.9 11-11 0-6-4.8-11-11-11zm0 16c-2.5 0-4.9-2.2-4.9-4.9 0-2.5 2.2-4.9 4.9-4.9 2.5 0 4.9 2.2 4.9 4.9.2 2.6-2.2 4.9-4.9 4.9zM924.26 1332.177c-6 0-11 4.9-11 11 0 6 4.9 11 11 11 6 0 11-4.9 11-11 0-5.8-4.8-11-11-11zm0 16.1c-2.5 0-4.9-2.2-4.9-4.9 0-2.5 2.2-4.9 4.9-4.9 2.5 0 4.9 2.2 4.9 4.9s-2 4.9-4.9 4.9z"
-        fill="#925233"
+        fill = {this.state.Branch5} onPress = {this.Handler5}
       />
       <Path
         d="M1974.366 883.592a12.782 12.782 0 00-18.142 0 12.797 12.797 0 000 18.15 12.782 12.782 0 0018.142 0c5.15-4.8 5.15-12.88 0-18.15zm-4.916 13.35c-2.224 2.224-5.735 2.224-8.076 0-2.224-2.225-2.224-5.738 0-8.08 2.224-2.225 5.735-2.225 8.076 0 2.107 2.108 2.107 5.855 0 8.08zM1916.755 970.601l.068-7.353 14.707.135v7.284zM1916.57 1030.961l.069-7.354 14.707.136v7.283z"
-        fill="#ffcd1e"
+        fill = {this.state.Branch8} onPress = {this.Handler8}
         fillOpacity={1}
       />
       <Path
         d="M1852.679 1062.078c-4.3-4.3-11.2-4.3-15.5 0-4.3 4.3-4.3 11.2 0 15.5 4.3 4.3 11.2 4.3 15.5 0 4.4-4.1 4.4-11 0-15.5zm-4.2 11.4c-1.9 1.9-4.9 1.9-6.9 0-1.9-1.9-1.9-4.9 0-6.9 1.9-1.9 4.9-1.9 6.9 0 1.8 1.8 1.8 5 0 6.9zM1678.86 1186.177c-4.3-4.3-11.2-4.3-15.5 0-4.3 4.3-4.3 11.2 0 15.5 4.3 4.3 11.2 4.3 15.5 0 4.3-4.2 4.3-11.1 0-15.5zm-4.4 11.3c-1.9 1.9-4.9 1.9-6.9 0-2.1-1.9-1.9-4.9 0-6.9s4.9-1.9 6.9 0c2.1 1.9 2.1 5.2 0 6.9zM1568.86 1295.877c-4.4-4.1-11.2-3.9-15.5.5-4.1 4.4-3.9 11.2.5 15.5 4.4 4.1 11.2 3.9 15.5-.5 3.9-4.3 3.8-11.4-.5-15.5zm-4 11.4c-1.9 2.1-4.9 2.1-6.9.3-2.1-1.9-2.1-4.9-.3-6.9 1.9-1.9 4.9-2.1 6.9-.3 1.9 1.7 2.1 5.1.3 6.9zM518.46 1407.577c-6 0-11 4.9-11 11 0 6 4.9 11 11 11 6 0 11-4.9 11-11 0-6.2-4.8-11-11-11zm0 16.1c-2.5 0-4.9-2.2-4.9-4.9 0-2.5 2.2-4.9 4.9-4.9s4.9 2.2 4.9 4.9c-.1 2.8-2.2 4.9-4.9 4.9z"
-        fill="#ffcd1e"
+        fill = {this.state.Branch8} onPress = {this.Handler8}
       />
       <Path
         d="M1244.3594 1929.177H1252.3594V1943.177H1244.3594z"
-        fill="#67c7c3"
+        fill = {this.state.Branch11} onPress = {this.Handler11}
         fillOpacity={1}
       />
       <Path
         d="M1099.86 1928.777c-6 0-11 4.9-11 11 0 6 4.9 11 11 11 6.2 0 11-4.9 11-11 .1-6.1-4.8-11-11-11zm0 15.9c-2.5 0-4.9-2.2-4.9-4.9s2.2-4.9 4.9-4.9c2.5 0 4.9 2.2 4.9 4.9s-2.1 4.9-4.9 4.9z"
-        fill="#67c7c3"
+        fill = {this.state.Branch11} onPress = {this.Handler11}
         fillOpacity={1}
       />
       <Path
         d="M677.35931 2235.177H684.35931V2257.177H677.35931z"
-        fill="#bac8e8"
+        fill = {this.state.Branch12} onPress = {this.Handler12}
       />
       <Path
         d="M794.35931 2242.177H801.35931V2257.177H794.35931z"
-        fill="#bac8e8"
+        fill = {this.state.Branch12} onPress = {this.Handler12}
       />
       <Path
         d="M911.35931 2242.177H918.35931V2257.177H911.35931z"
-        fill="#bac8e8"
+        fill = {this.state.Branch12} onPress = {this.Handler12}
       />
       <Path
         d="M1020.3594 2242.177H1027.3594V2257.177H1020.3594z"
-        fill="#bac8e8"
+        fill = {this.state.Branch12} onPress = {this.Handler12}
       />
       <Path
         d="M1099.76 2192.877c-4.3-4.3-11.2-4.3-15.5 0-4.3 4.3-4.3 11.2 0 15.5 4.3 4.3 11.2 4.3 15.5 0 4.1-4.2 4.1-11.2 0-15.5zm-4.3 11.3c-1.9 1.9-4.9 1.9-6.9 0-1.9-1.9-1.9-4.9 0-6.9s4.9-1.9 6.9 0c2 2 2 5.1 0 6.9z"
-        fill="#bac8e8"
+        fill = {this.state.Branch12} onPress = {this.Handler12}
       />
       <Path
         d="M1006.3594 2134.177H1014.3594V2149.177H1006.3594z"
-        fill="#bac8e8"
+        fill = {this.state.Branch12} onPress = {this.Handler12}
       />
       <Path
         d="M920.76 2128.677c-4.3-4.3-11.2-4.3-15.5 0-4.3 4.3-4.3 11.2 0 15.5 4.3 4.3 11.2 4.3 15.5 0 4.2-4.2 4.1-11.2 0-15.5zm-4.5 11.3c-1.9 1.9-4.9 1.9-6.9 0-1.9-1.9-1.9-4.9 0-6.9 1.9-1.9 4.9-1.9 6.9 0 1.8 1.9 1.8 4.9 0 6.9z"
-        fill="#bac8e8"
+        fill = {this.state.Branch12} onPress = {this.Handler12}
       />
       <Path
         d="M1617.66 2157.177c-6 0-11 4.9-11 11 0 6 4.9 11 11 11 6.2 0 11-4.9 11-11 0-6.2-4.9-11-11-11zm0 16c-2.5 0-4.9-2.2-4.9-4.9s2.2-4.9 4.9-4.9c2.5 0 4.9 2.2 4.9 4.9.1 2.4-1.9 4.9-4.9 4.9z"
-        fill="#bed12e"
+        fill = {this.state.limeBranch} onPress = {this.limeHandler}
       />
       <Path
         d="M1614.3594 2099.177H1628.3594V2106.177H1614.3594z"
-        fill="#bed12e"
+        fill = {this.state.limeBranch} onPress = {this.limeHandler}
       />
       <Path
         d="M1614.3594 2038.177H1628.3594V2046.177H1614.3594z"
-        fill="#bed12e"
+        fill = {this.state.limeBranch} onPress = {this.limeHandler}
       />
       <Path
         d="M1614.3594 1977.177H1628.3594V1985.177H1614.3594z"
-        fill="#bed12e"
+        fill = {this.state.limeBranch} onPress = {this.limeHandler}
       />
       <Path
         d="M1614.3594 1918.177H1628.3594V1925.177H1614.3594z"
-        fill="#bed12e"
+        fill = {this.state.limeBranch} onPress = {this.limeHandler}
       />
       <Path
         d="M1614.3594 1857.177H1628.3594V1865.177H1614.3594z"
-        fill="#bed12e"
+        fill = {this.state.limeBranch} onPress = {this.limeHandler}
       />
       <Path
         d="M1614.3594 1797.177H1628.3594V1804.177H1614.3594z"
-        fill="#bed12e"
+        fill = {this.state.limeBranch} onPress = {this.limeHandler}
       />
       <Path
         d="M1628.137 1563.592c-2.3-5.7-8.8-8.2-14.5-6-5.7 2.3-8.2 8.8-6 14.5 2.2 5.7 8.8 8.2 14.5 6 5.7-2.5 8.3-8.9 6-14.5zm-8.2 8.7c-2.5 1-5.5-.3-6.5-2.5-1-2.5.3-5.5 2.5-6.5 2.5-1 5.5.3 6.5 2.5 1.2 2.7-.1 5.4-2.5 6.5zM1627.86 1481.777c-2.3-5.7-8.8-8.2-14.5-6-5.7 2.3-8.2 8.8-6 14.5 2.2 5.7 8.8 8.2 14.5 6 5.7-2.5 8.3-8.9 6-14.5zm-8.2 8.7c-2.5 1-5.5-.3-6.5-2.5-1-2.5.3-5.5 2.5-6.5 2.5-1 5.5.3 6.5 2.5 1.2 2.7-.1 5.4-2.5 6.5zM1637.06 1373.177c-4.3-4.3-11.2-4.3-15.5 0-4.3 4.3-4.3 11.2 0 15.5 4.3 4.3 11.2 4.3 15.5 0 4.4-4.1 4.4-11.3 0-15.5zm-4.3 11.4c-1.9 1.9-4.9 1.9-6.9 0s-1.9-4.9 0-6.9c1.9-1.9 4.9-1.9 6.9 0 2.1 1.8 2.1 4.9 0 6.9zM1651.46 1186.177c-4.3-4.3-11.2-4.3-15.5 0-4.3 4.3-4.3 11.2 0 15.5 4.3 4.3 11.2 4.3 15.5 0 4.2-4.2 4.2-11.1 0-15.5zm-4.4 11.3c-1.9 1.9-4.9 1.9-6.9 0s-1.9-4.9 0-6.9 4.9-1.9 6.9 0c1.9 2 1.9 5.2 0 6.9zM1517.364 1067.583c-6 .3-10.8 5.2-10.8 11.2.3 6.2 5.2 10.8 11.2 10.8 6.2-.3 10.8-5.2 10.8-11.2 0-5.9-5-10.9-11.2-10.8zm.5 16c-2.5.3-4.9-2.1-4.9-4.9-.3-2.5 2.1-4.9 4.9-4.9 2.5-.3 4.9 2.1 4.9 4.9 0 2.7-2.2 4.9-4.9 4.9zM1371.56 959.177c-6 0-11 4.9-11 11 0 6 4.9 11 11 11s11-4.9 11-11c.1-6.1-4.6-11-11-11zm0 16c-2.5 0-4.9-2.2-4.9-4.9 0-2.5 2.2-4.9 4.9-4.9s4.9 2.2 4.9 4.9c.1 2.7-2 4.9-4.9 4.9zM1218.16 922.877c-5.7-2.3-11.9.3-14.5 6-2.3 5.7.3 11.9 6 14.5 5.7 2.3 11.9-.3 14.5-6 2.4-5.6-.3-12-6-14.5zm.4 12.2c-1 2.5-3.9 3.8-6.5 2.5-2.5-1-3.8-3.9-2.5-6.5 1-2.5 3.9-3.8 6.5-2.5 2.3 1.3 3.5 4.1 2.5 6.5z"
-        fill="#bed12e"
+        fill = {this.state.limeBranch} onPress = {this.limeHandler}
       />
       <Path
         d="M1210.3594 771.177H1225.3594V779.177H1210.3594z"
-        fill="#bed12e"
+        fill = {this.state.limeBranch} onPress = {this.limeHandler}
       />
       <Path
         d="M887.20898 2063.1162H902.20898V2070.1162H887.20898z"
-        fill="#ef7e24"
+        fill = {this.state.Branch6} onPress = {this.Handler6}
       />
       <Path
         d="M887.35931 2018.177H902.35931V2025.177H887.35931z"
-        fill="#ef7e24"
+        fill = {this.state.Branch6} onPress = {this.Handler6}
       />
       <Path
         d="M887.35931 1973.177H902.35931V1980.177H887.35931z"
-        fill="#ef7e24"
+        fill = {this.state.Branch6} onPress = {this.Handler6}
       />
       <Path
         d="M887.35931 1928.177H902.35931V1935.177H887.35931z"
-        fill="#ef7e24"
+        fill = {this.state.Branch6} onPress = {this.Handler6}
       />
       <Path
         d="M887.35931 1808.177H894.35931V1861.175047H887.35931z"
-        fill="#ef7e24"
+        fill = {this.state.Branch6} onPress = {this.Handler6}
       />
       <Path
         d="M887.35931 1864.9032H894.35931V1931.1770649999999H887.35931z"
-        fill="#ef7e24"
+        fill = {this.state.Branch6} onPress = {this.Handler6}
         strokeWidth={1.22728324}
       />
       <Path
         d="M887.35931 1860.6752H902.35931V1867.6752H887.35931z"
-        fill="#ef7e24"
+        fill = {this.state.Branch6} onPress = {this.Handler6}
       />
       <Path
         d="M887.35931 1804.177H902.35931V1811.177H887.35931z"
-        fill="#ef7e24"
+        fill = {this.state.Branch6} onPress = {this.Handler6}
       />
       <Path
         d="M887.35931 1759.177H902.35931V1766.177H887.35931z"
-        fill="#ef7e24"
+        fill = {this.state.Branch6} onPress = {this.Handler6}
       />
       <Path
         d="M887.35931 1671.177H902.35931V1678.177H887.35931z"
-        fill="#ef7e24"
+        fill = {this.state.Branch6} onPress = {this.Handler6}
       />
       <Path
         d="M919.534 1538.914c-6-1.3-11.7 2.5-12.8 8.7-1.3 6 2.5 11.7 8.7 12.8 6 1.3 11.7-2.5 12.8-8.7 1.1-5.9-2.7-11.8-8.7-12.8zm2.7 11.5c-.5 2.5-3.2 4.4-6 3.8-2.5-.5-4.4-3.2-3.8-6 .5-2.5 3.2-4.4 6-3.8 2.6.8 4.3 3.5 3.8 6z"
-        fill="#ef7e24"
+        fill = {this.state.Branch6} onPress = {this.Handler6}
       />
       <Path
         d="M964.093 1517.322l-4.58 5.468-10.804-9.98 4.89-5.398z"
-        fill="#ef7e24"
+        fill = {this.state.Branch6} onPress = {this.Handler6}
         fillOpacity={1}
       />
       <Path
         d="M1018.36 1450.277c-4.3-4.3-11.2-4.3-15.5 0-4.3 4.3-4.3 11.2 0 15.5 4.3 4.3 11.2 4.3 15.5 0 4.3-4.6 4.3-11.3 0-15.5zm-4.1 10.9c-1.9 1.9-4.9 1.9-6.9 0s-1.9-4.9 0-6.9c1.9-1.9 4.9-1.9 6.9 0 1.8 2 1.8 5.3 0 6.9zM1324.26 1331.977c-4.1-4.6-11-4.9-15.5-1-4.6 4.1-4.9 11-1 15.5 4.1 4.6 11 4.9 15.5 1 4.6-4.1 4.9-11 1-15.5zm-5.1 10.9c-2.1 1.9-5.2 1.6-6.9-.3-1.8-2.1-1.6-5.2.3-6.9 1.9-1.8 5.2-1.6 6.9.3 1.8 2.1 1.6 5.4-.3 6.9zM1393.26 1129.777c-4.3-4.3-11.2-4.3-15.5.3-4.3 4.3-4.3 11.2.3 15.5 4.3 4.3 11.2 4.3 15.5-.3 4.2-4.5 4.2-11.2-.3-15.5zm-4 11c-1.9 1.9-4.9 1.9-6.9 0s-1.9-4.9 0-6.9 4.9-1.9 6.9 0c1.7 2 1.9 5.2 0 6.9zM1355.66 986.977c-6 0-11 4.9-11 11 0 6 4.9 11 11 11 6 0 11-4.9 11-11 .1-6.1-5-11-11-11zm0 15.9c-2.5 0-4.9-2.2-4.9-4.9 0-2.5 2.2-4.9 4.9-4.9s4.9 2.2 4.9 4.9-2.2 4.9-4.9 4.9z"
-        fill="#ef7e24"
+        fill = {this.state.Branch6} onPress = {this.Handler6}
       />
       <Path
         d="M1302.3594 894.177H1316.3594V901.177H1302.3594z"
-        fill="#ef7e24"
+        fill = {this.state.Branch6} onPress = {this.Handler6}
       />
       <Path
         d="M1354.26 791.377c-4.3-4.3-11.2-4.3-15.5 0-4.3 4.3-4.3 11.2 0 15.5 4.3 4.3 11.2 4.3 15.5 0 4.4-4.3 4.4-11.3 0-15.5zm-4.3 11.4c-1.9 1.9-4.9 1.9-6.9 0s-1.9-4.9 0-6.9c1.9-1.9 4.9-1.9 6.9 0 1.9 1.7 1.9 5 0 6.9zM1469.631 652.882h-15.2l.036-6.84 15.464-.16zM1467.254 590.916c-4.3-4.3-11.2-4.3-15.5 0-4.3 4.3-4.3 11.2 0 15.5 4.3 4.3 11.2 4.3 15.5 0 3.9-4.3 3.9-11 0-15.5zm-4.5 11.2c-1.9 1.9-4.9 1.9-6.9 0-1.9-1.9-1.9-4.9 0-6.9 1.9-1.9 4.9-1.9 6.9 0s1.9 5.1 0 6.9zM1458.46 399.177c-6 0-11 4.9-11 11 0 6 4.9 11 11 11 6.2 0 11-4.9 11-11-.1-6-5.1-11-11-11zm0 16c-2.5 0-4.9-2.2-4.9-4.9s2.2-4.9 4.9-4.9c2.5 0 4.9 2.2 4.9 4.9s-2.3 4.9-4.9 4.9z"
-        fill="#ef7e24"
+        fill = {this.state.Branch6} onPress = {this.Handler6}
       />
       <Path
         d="M1455.3594 367.177H1469.3594V374.177H1455.3594z"
-        fill="#ef7e24"
+        fill = {this.state.Branch6} onPress = {this.Handler6}
       />
       <Path
         d="M1455.3594 312.177H1469.3594V319.177H1455.3594z"
-        fill="#ef7e24"
+        fill = {this.state.Branch6} onPress = {this.Handler6}
       />
       <Path
         d="M1447.3594 256.177H1469.3594V263.177H1447.3594z"
-        fill="#ef7e24"
+        fill = {this.state.Branch6} onPress = {this.Handler6}
       />
       <Path
         d="M1127.26 2192.277c-4.3-4.3-11.2-4.3-15.5 0-4.3 4.3-4.3 11.2 0 15.5 4.3 4.3 11.2 4.3 15.5 0 4.2-4.1 4.2-11.1 0-15.5zm-4.3 11.4c-1.9 1.9-4.9 1.9-6.9 0-2.1-1.9-1.9-4.9 0-6.9 1.9-1.9 4.9-1.9 6.9 0 2 1.8 2 5.1 0 6.9z"
-        fill="#adacac"
+        fill = {this.state.Branch9} onPress = {this.Handler9}
       />
       <Path
         d="M1115.3594 2162.177H1130.3594V2170.177H1115.3594z"
-        fill="#adacac"
+        fill = {this.state.Branch9} onPress = {this.Handler9}
       />
       <Path
         d="M1115.3594 2111.177H1130.3594V2118.177H1115.3594z"
-        fill="#adacac"
+        fill = {this.state.Branch9} onPress = {this.Handler9}
       />
       <Path
         d="M1115.3594 2075.177H1130.3594V2082.177H1115.3594z"
-        fill="#adacac"
+        fill = {this.state.Branch9} onPress = {this.Handler9}
       />
       <Path
         d="M1115.3594 2039.177H1130.3594V2047.177H1115.3594z"
-        fill="#adacac"
+        fill = {this.state.Branch9} onPress = {this.Handler9}
       />
       <Path
         d="M1115.3594 2003.177H1130.3594V2011.177H1115.3594z"
-        fill="#adacac"
+        fill = {this.state.Branch9} onPress = {this.Handler9}
       />
       <Path
         d="M1119.46 1948.177c-6 0-11 4.9-11 11 0 6 4.9 11 11 11 6 0 11-4.9 11-11-.1-6.1-5-11-11-11zm0 16.1c-2.5 0-4.9-2.2-4.9-4.9 0-2.5 2.2-4.9 4.9-4.9 2.5 0 4.9 2.2 4.9 4.9s-2.3 4.9-4.9 4.9z"
-        fill="#adacac"
+        fill = {this.state.Branch9} onPress = {this.Handler9}
       />
       <Path
         d="M1115.3594 1848.177H1130.3594V1856.177H1115.3594z"
-        fill="#adacac"
+        fill = {this.state.Branch9} onPress = {this.Handler9}
       />
       <Path
         d="M1115.3594 1811.177H1130.3594V1818.177H1115.3594z"
-        fill="#adacac"
+        fill = {this.state.Branch9} onPress = {this.Handler9}
       />
       <Path
         d="M1115.3594 1552.177H1129.3594V1558.177H1115.3594z"
-        fill="#adacac"
+        fill = {this.state.Branch9} onPress = {this.Handler9}
       />
       <Path
         d="M1118.96 1496.077c-6 0-11 4.9-11 11s4.9 11 11 11c6 0 11-4.9 11-11-.1-5.9-4.8-11-11-11zm0 16c-2.5 0-4.9-2.2-4.9-4.9 0-2.5 2.2-4.9 4.9-4.9 2.5 0 4.9 2.2 4.9 4.9s-2.2 4.9-4.9 4.9z"
-        fill="#adacac"
+        fill = {this.state.Branch9} onPress = {this.Handler9}
       />
       <Path
         d="M1115.3594 1429.177H1129.3594V1435.177H1115.3594z"
-        fill="#adacac"
+        fill = {this.state.Branch9} onPress = {this.Handler9}
       />
       <Path
         d="M1058.86 1247.877c-2.2-5.7-8.7-8.5-14.3-6.3-5.7 2.2-8.5 8.7-6.3 14.3 2.2 5.6 8.7 8.5 14.3 6.3 5.8-2.3 8.6-8.8 6.3-14.3zm-8.6 8.7c-2.5 1-5.5-.3-6.5-2.8-1.1-2.5.3-5.5 2.5-6.5 2.5-1 5.5.3 6.5 2.8 1.3 2.5.2 5.5-2.5 6.5zM1124.96 1076.377c-6.2 0-11.2 4.9-11.2 11 0 6 4.9 11 11.2 11 6.2 0 11.2-4.9 11.2-11-.1-6-5.2-11-11.2-11zm0 16c-2.5 0-4.9-2.2-4.9-4.9 0-2.5 2.2-4.9 4.9-4.9s4.9 2.2 4.9 4.9c-.2 2.6-2.1 4.9-4.9 4.9zM1192.86 933.577c-5.7-2.3-11.9.3-14.5 6-2.5 5.7.3 11.9 6 14.5 5.7 2.3 11.9-.3 14.5-6 2.2-5.8-.5-12.2-6-14.5zm.3 12c-1 2.5-3.9 3.8-6.5 2.5-2.5-1-3.8-3.9-2.5-6.5 1-2.5 3.9-3.8 6.5-2.5 2.4.9 3.6 4.1 2.5 6.5zM1101.16 840.277c-4.3-4.3-11.2-4.3-15.5 0-4.3 4.3-4.3 11.2 0 15.5 4.3 4.3 11.2 4.3 15.5 0 4.3-4.2 4.3-11.2 0-15.5zm-4.2 11.3c-1.9 1.9-4.9 1.9-6.9 0-1.9-1.9-1.9-4.9 0-6.9 1.9-1.9 4.9-1.9 6.9 0 2 1.8 1.8 5 0 6.9zM1045.522 593.991c-4.3-4.3-11.2-4.3-15.5 0-4.3 4.3-4.3 11.2 0 15.5 4.3 4.3 11.2 4.3 15.5 0 4.3-4.2 4.3-11.1 0-15.5zm-4.2 11.3c-1.9 1.9-4.9 1.9-6.9 0s-1.9-4.9 0-6.9 4.9-1.9 6.9 0 2 5.1 0 6.9z"
-        fill="#adacac"
+        fill = {this.state.Branch9} onPress = {this.Handler9}
       />
       <Path
         d="M1054.328 575.23l90.613-83.537-4.074-4.557-91.739 83.094c-11.9 12.2-7.748 7.72-15 22.6v2-2h8l-.2 2.3c5.397-10.69 1.6-8.9 12.4-19.9z"
-        fill="#adacac"
+        fill = {this.state.Branch9} onPress = {this.Handler9}
         fillOpacity={1}
       />
       <Path
         d="M1157.146 476.657c-4.3-4.3-11.2-4.3-15.5 0-4.3 4.3-4.3 11.2 0 15.5 4.3 4.3 11.2 4.3 15.5 0 4.4-4.2 4.4-11.3 0-15.5zm-4.1 11.3c-1.9 1.9-4.9 1.9-6.9 0-1.9-1.9-1.9-4.9 0-6.9 1.9-1.9 4.9-1.9 6.9 0 1.8 1.9 1.8 4.9 0 6.9z"
-        fill="#adacac"
+        fill = {this.state.Branch9} onPress = {this.Handler9}
       />
       <Path
         d="M1108.0613 390.49991H1115.0613V478.783861H1108.0613z"
-        fill="#bed12e"
+        fill = {this.state.limeBranch} onPress = {this.limeHandler}
         strokeWidth={1.31603098}
       />
       <Path
@@ -2645,19 +2807,19 @@ class Map extends React.Component {
       />
       <Path
         d="M1253.114 367.086c-6 0-11 4.9-11 11 0 6 4.9 11 11 11 6 0 11-4.9 11-11-.1-6-5.2-11-11-11zm0 16.1c-2.5 0-4.9-2.2-4.9-4.9s2.2-4.9 4.9-4.9c2.5 0 4.9 2.2 4.9 4.9s-2.2 4.9-4.9 4.9z"
-        fill="#adacac"
+        fill = {this.state.Branch9} onPress = {this.Handler9}
       />
       <Path
         d="M1290.2194 291.99023H1304.219488V298.9902243H1290.2194z"
-        fill="#adacac"
+        fill = {this.state.Branch9} onPress = {this.Handler9}
       />
       <Path
         d="M1290.2194 241.99072H1304.219488V248.9907143H1290.2194z"
-        fill="#adacac"
+        fill = {this.state.Branch9} onPress = {this.Handler9}
       />
       <Path
         d="M1283.3254 192.62671H1305.325535V200.6267043H1283.3254z"
-        fill="#adacac"
+        fill = {this.state.Branch9} onPress = {this.Handler9}
       />
       <Path
         d="M1696.3594 2177.177H1703.3594V2199.177H1696.3594z"
@@ -2752,12 +2914,12 @@ class Map extends React.Component {
       />
       <Path
         d="M1711.591 1441.313l-5.953-5.019 10.81-9.972 4.991 5.305z"
-        fill="#943f90"
+        fill = {this.state.Branch7} onPress = {this.Handler7}
         fillOpacity={1}
       />
       <Path
         d="M1731.344 1271.423c-1.423 3.592 5.877-13.808-1.423 3.592-37.228 64.298-50.872 82.54-99.526 134.812-.5.5 2.335.05 3.735 1.35 1.4 1.6 1.208 5.333 1.708 4.633 48.372-53.75 64.048-71.454 102.065-138.25 7.5-17.8 0 0 1.141-4.037.3-.5-2.1-.5-4.1-1-1.7-.3-3.3-1.6-3.6-1.1z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
       />
       <Path
         d="M1737.732 1274.403l-2.788-1.88-6.161 9.94c-37.402 59.877-39.61 67.776-97.092 129.402l2.235 2.496c51.265-55.402 62.596-70.968 97.747-130.502z"
@@ -2765,100 +2927,100 @@ class Map extends React.Component {
       />
       <Path
         d="M1664.56 1373.177c-4.3-4.3-11.2-4.3-15.5 0-4.3 4.3-4.3 11.2 0 15.5 4.3 4.3 11.2 4.3 15.5 0 4.3-4.1 4.3-11.3 0-15.5zm-4.3 11.4c-1.9 1.9-4.9 1.9-6.9 0s-1.9-4.9 0-6.9c1.9-1.9 4.9-1.9 6.9 0 1.9 1.8 1.9 4.9 0 6.9zM1420.86 1129.777c-4.3-4.3-11.2-4.3-15.5.3-4.3 4.3-4.3 11.2.3 15.5 4.3 4.3 11.2 4.3 15.5-.3 4.1-4.5 4.1-11.4-.3-15.5zm-4.1 11c-1.9 1.9-4.9 1.9-6.9 0s-1.9-4.9 0-6.9 4.9-1.9 6.9 0c1.7 2 1.8 5.2 0 6.9zM1289.86 1048.877c-6-1.3-11.7 2.5-12.8 8.7-1.3 6 2.5 11.7 8.7 12.8 6 1.3 11.7-2.5 12.8-8.7 1.1-5.7-2.9-11.5-8.7-12.8zm2.6 11.7c-.5 2.5-3.2 4.4-6 3.8-2.5-.5-4.4-3.2-3.8-6 .5-2.5 3.2-4.4 6-3.8 2.6.8 4.5 3.4 3.8 6zM1108.86 1048.577c-6 0-11 4.9-11 11 0 6 4.9 11 11 11 6 0 11-4.9 11-11 0-5.9-4.8-11-11-11zm0 16c-2.5 0-4.9-2.2-4.9-4.9 0-2.5 2.2-4.9 4.9-4.9 2.5 0 4.9 2.2 4.9 4.9.2 2.5-2.1 4.9-4.9 4.9zM890.36 1048.577c-6 0-11 4.9-11 11 0 6 4.9 11 11 11 6 0 11-4.9 11-11 0-5.9-5.1-11-11-11zm0 16c-2.5 0-4.9-2.2-4.9-4.9 0-2.5 2.2-4.9 4.9-4.9 2.5 0 4.9 2.2 4.9 4.9 0 2.5-2.3 4.9-4.9 4.9z"
-        fill="#943f90"
+        fill = {this.state.Branch7} onPress = {this.Handler7}
       />
       <Path
         d="M808.781 1037.67l4.678 5.207-11.11 10.308-4.517-5.09z"
-        fill="#943f90"
+        fill = {this.state.Branch7} onPress = {this.Handler7}
         fillOpacity={1}
       />
       <Path
         d="M714.26 933.377c-4.3-4.3-11.2-4.3-15.5 0-4.3 4.3-4.3 11.2 0 15.5 4.3 4.3 11.2 4.3 15.5 0 4.3-4.3 4.4-11.3 0-15.5zm-4.2 11.2c-1.9 1.9-4.9 1.9-6.9 0s-1.9-4.9 0-6.9c1.9-1.9 4.9-1.9 6.9 0 2 1.8 2 5 0 6.9zM637.56 654.977c-6 0-11 4.9-11 11 0 6 4.9 11 11 11 6 0 11-4.9 11-11s-4.9-11-11-11zm0 15.9c-2.5 0-4.9-2.2-4.9-4.9s2.2-4.9 4.9-4.9 4.9 2.2 4.9 4.9c.1 2.7-2.1 4.9-4.9 4.9z"
-        fill="#943f90"
+        fill = {this.state.Branch7} onPress = {this.Handler7}
       />
       <Path
         d="M633.35931 424.177H648.35931V432.177H633.35931z"
-        fill="#943f90"
+        fill = {this.state.Branch7} onPress = {this.Handler7}
       />
       <Path
         d="M633.35931 339.177H648.35931V347.177H633.35931z"
-        fill="#943f90"
+        fill = {this.state.Branch7} onPress = {this.Handler7}
       />
       <Path
         d="M626.35931 297.177H648.35931V305.177H626.35931z"
-        fill="#943f90"
+        fill = {this.state.Branch7} onPress = {this.Handler7}
       />
       <Path
         d="M1094.76 1247.877c-2.2-5.7-8.7-8.5-14.3-6.3-5.7 2.2-8.5 8.7-6.3 14.3 2.2 5.6 8.7 8.5 14.3 6.3 5.9-2.3 8.5-8.6 6.3-14.3zm-8.3 8.8c-2.5 1-5.5-.3-6.5-2.8s.3-5.5 2.5-6.5c2.5-1 5.5.3 6.5 2.8 1.3 2.4 0 5.4-2.5 6.5z"
-        fill="#24bcef"
+        fill = {this.state.Branch4} onPress = {this.Handler4}
       />
       <Path
         d="M1022.133 1173.404l5.054 5.033-11.528 9.84-4.302-5.272z"
-        fill="#24bcef"
+        fill = {this.state.Branch4} onPress = {this.Handler4}
         fillOpacity={1}
       />
       <Path
         d="M949.35931 1160.177H956.35931V1175.177H949.35931z"
-        fill="#24bcef"
+        fill = {this.state.Branch4} onPress = {this.Handler4}
       />
       <Path
         d="M825.26 1160.077c-6 0-11 4.9-11 11 0 6 4.9 11 11 11 6 0 11-4.9 11-11 .2-5.9-4.7-11-11-11zm0 16.1c-2.5 0-4.9-2.2-4.9-4.9 0-2.5 2.2-4.9 4.9-4.9 2.5 0 4.9 2.2 4.9 4.9.3 2.7-2 4.9-4.9 4.9z"
-        fill="#24bcef"
+        fill = {this.state.Branch4} onPress = {this.Handler4}
       />
       <Path
         d="M825.26 1160.077c-6 0-11 4.9-11 11 0 6 4.9 11 11 11 6 0 11-4.9 11-11 .2-5.9-4.7-11-11-11zm0 16.1c-2.5 0-4.9-2.2-4.9-4.9 0-2.5 2.2-4.9 4.9-4.9 2.5 0 4.9 2.2 4.9 4.9.3 2.7-2 4.9-4.9 4.9zM691.66 1160.077c-6 .3-10.8 5.2-10.8 11.2.3 6 5.2 10.8 11.2 10.8 6-.3 10.8-5.2 10.8-11.2-.1-5.8-5.2-10.8-11.2-10.8zm.2 16.1c-2.5.3-4.9-2.1-4.9-4.9-.3-2.5 2.1-4.9 4.9-4.9 2.5-.3 4.9 2.1 4.9 4.9 0 2.5-2.2 4.9-4.9 4.9zM592.16 1160.577c-6 0-11 4.9-11 11 0 6 4.9 11 11 11 6 0 11-4.9 11-11 .1-6.1-4.6-11-11-11zm0 15.6c-2.5 0-4.9-2.2-4.9-4.9 0-2.5 2.2-4.9 4.9-4.9s4.9 2.2 4.9 4.9-2 4.9-4.9 4.9z"
-        fill="#24bcef"
+        fill = {this.state.Branch4} onPress = {this.Handler4}
       />
       <Path
         d="M703.727 1275.454l-4.58 5.469-10.795-10.639 4.882-4.74z"
-        fill="#24bcef"
+        fill = {this.state.Branch4} onPress = {this.Handler4}
         fillOpacity={1}
       />
       <Path
         d="M367.924 1165.44l9.387-10.388 5.935 5.364-9.386 10.387zM346.073 1135.837l9.386-10.387 5.936 5.364-9.387 10.387zM308.99 1111.34l9.386-10.386 5.935 5.363-9.386 10.387z"
-        fill="#24bcef"
+        fill = {this.state.Branch4} onPress = {this.Handler4}
       />
       <Path
         d="M281.854 1065.307c-5.299 2.815-7.416 9.488-4.554 14.875 2.815 5.299 9.489 7.415 14.875 4.553 5.476-2.908 7.416-9.488 4.554-14.875-2.727-5.345-9.488-7.415-14.875-4.553zm7.506 14.13c-2.207 1.173-5.359.356-6.626-2.029a4.908 4.908 0 012.029-6.626c2.207-1.173 5.359-.356 6.626 2.028 1.267 2.385.62 5.22-2.029 6.627z"
-        fill="#24bcef"
+        fill = {this.state.Branch4} onPress = {this.Handler4}
         fillOpacity={1}
       />
       <Path
         d="M1856.1305 588.26031H1878.1305V596.26031H1856.1305z"
-        fill="#0572b9"
+        fill = {this.state.Branch3} onPress = {this.Handler3}
       />
       <Path
         d="M1863.1305 644.26031H1878.1305V651.26031H1863.1305z"
-        fill="#0572b9"
+        fill = {this.state.Branch3} onPress = {this.Handler3}
       />
       <Path
         d="M1863.1305 780.26031H1878.1305V787.26031H1863.1305z"
-        fill="#0572b9"
+        fill = {this.state.Branch3} onPress = {this.Handler3}
       />
       <Path
         d="M1832.38 844.667c-4.3-4.3-11.2-4.3-15.5 0-4.3 4.3-4.3 11.2 0 15.5 4.3 4.3 11.2 4.3 15.5 0 4.4-4.2 4.4-11.3 0-15.5zm-4.1 11.3c-1.9 1.9-4.9 1.9-6.9 0s-1.9-4.9 0-6.9c1.9-1.9 4.9-1.9 6.9 0 2 1.8 2 5 0 6.9z"
-        fill="#0572b9"
+        fill = {this.state.Branch3} onPress = {this.Handler3}
       />
       <Path
         transform="scale(-1.00193 -.99806) rotate(45)"
         d="M-1858.0863 521.42371H-1850.6636263V619.102932H-1858.0863z"
-        fill="#0572b9"
+        fill = {this.state.Branch3} onPress = {this.Handler3}
         strokeWidth={1.07747698}
       />
       <Path
         transform="matrix(-.6986 -.7155 .6984 -.7157 0 0)"
         d="M-1865.9222 442.35645H-1857.5057934V547.36194H-1865.9222z"
-        fill="#0572b9"
+        fill = {this.state.Branch3} onPress = {this.Handler3}
         strokeWidth={1.05579174}
       />
-      <Path d="M1743.746 864.635l5.2-5.2 10.4 10.4-5.1 5.2z" fill="#0572b9" />
+      <Path d="M1743.746 864.635l5.2-5.2 10.4 10.4-5.1 5.2z" fill = {this.state.Branch3} onPress = {this.Handler3} />
       <Path
         d="M1675.32 932.933l5.2-5.2 10.4 10.4-5.1 5.2zM1604.242 1015.686l5.1-5 10.3 10.2-5.2 5zM1245.36 1216.777c-2.3-5.7-8.8-8.2-14.5-6-5.7 2.3-8.2 8.8-6 14.5 2.2 5.7 8.8 8.2 14.5 6 5.6-2.5 8.2-8.8 6-14.5zm-10.2 9.3c-2.5 0-4.9-2.2-4.9-4.9 0-2.5 2.2-4.9 4.9-4.9 2.5 0 4.9 2.2 4.9 4.9.1 2.4-2 4.9-4.9 4.9zM1112.86 1216.777c-2.2-5.7-8.7-8.5-14.3-6.3-5.7 2.2-8.5 8.7-6.3 14.3 2.2 5.7 8.7 8.5 14.3 6.3 5.8-2.3 8.7-8.6 6.3-14.3zm-8.5 8.7c-2.5 1-5.5-.3-6.5-2.8-1.1-2.5.3-5.5 2.5-6.5 2.5-1 5.4.3 6.5 2.8 1.4 2.7.1 5.4-2.5 6.5z"
-        fill="#0572b9"
+        fill = {this.state.Branch3} onPress = {this.Handler3}
       />
       <Path
         d="M949.35931 1210.177H956.35931V1224.177H949.35931z"
-        fill="#adacac"
+        fill = {this.state.Branch9} onPress = {this.Handler9}
       />
       <Path
         transform="rotate(-90)"
@@ -2876,69 +3038,69 @@ class Map extends React.Component {
       />
       <Path
         d="M825.26 1209.877c-6 0-11 4.9-11 11 0 6 4.9 11 11 11 6 0 11-4.9 11-11 .2-6.3-4.7-11-11-11zm0 16c-2.5 0-4.9-2.2-4.9-4.9 0-2.5 2.2-4.9 4.9-4.9 2.5 0 4.9 2.2 4.9 4.9.3 2.5-2 4.9-4.9 4.9zM537.86 1388.277c-6 0-11 4.9-11 11 0 6 4.9 11 11 11 6 0 11-4.9 11-11-.1-6.3-4.8-11-11-11zm0 15.9c-2.5 0-4.9-2.2-4.9-4.9s2.2-4.9 4.9-4.9c2.5 0 4.9 2.2 4.9 4.9s-2.2 4.9-4.9 4.9zM324.072 1041.659c-5.298 2.814-7.415 9.487-4.553 14.874 2.815 5.3 9.488 7.416 14.875 4.554 5.475-2.909 7.415-9.488 4.553-14.875-2.726-5.346-9.488-7.415-14.875-4.553zm7.507 14.13c-2.208 1.172-5.36.355-6.626-2.03a4.908 4.908 0 012.028-6.625c2.208-1.173 5.36-.356 6.626 2.028 1.267 2.384.621 5.219-2.028 6.626z"
-        fill="#0572b9"
+        fill = {this.state.Branch3} onPress = {this.Handler3}
       />
       <Path
         d="M324.07236 860.42896H338.07236V867.42896H324.07236z"
-        fill="#0572b9"
+        fill = {this.state.Branch3} onPress = {this.Handler3}
       />
       <Path
         d="M324.07236 808.42896H338.07236V815.42896H324.07236z"
-        fill="#0572b9"
+        fill = {this.state.Branch3} onPress = {this.Handler3}
       />
       <Path
         d="M423.35931 634.177H437.35931V642.177H423.35931z"
-        fill="#0572b9"
+        fill = {this.state.Branch3} onPress = {this.Handler3}
       />
       <Path
         d="M423.35931 583.177H437.35931V590.177H423.35931z"
-        fill="#0572b9"
+        fill = {this.state.Branch3} onPress = {this.Handler3}
       />
       <Path
         d="M423.35931 310.177H437.35931V318.177H423.35931z"
-        fill="#0572b9"
+        fill = {this.state.Branch3} onPress = {this.Handler3}
       />
       <Path
         d="M415.35931 245.177H437.35931V253.177H415.35931z"
-        fill="#0572b9"
+        fill = {this.state.Branch3} onPress = {this.Handler3}
       />
       <Path
         d="M1727.764 539.51c-4.3-4.3-11.2-4.3-15.5 0-4.3 4.3-4.3 11.2 0 15.5 4.3 4.3 11.2 4.3 15.5 0 4.3-4.4 4.3-11.4 0-15.5zm-4.2 11.1c-1.9 1.9-4.9 1.9-6.9 0s-1.9-4.9 0-6.9 4.9-1.9 6.9 0c1.9 1.7 1.9 5 0 6.9zM1701.864 673.01c-4.3-4.3-11.2-4.3-15.5 0-4.3 4.3-4.3 11.2 0 15.5 4.3 4.3 11.2 4.3 15.5 0 4.3-4.2 4.3-11.1 0-15.5zm-4.2 11.3c-1.9 1.9-4.9 1.9-6.9 0s-1.9-4.9 0-6.9c1.9-1.9 4.9-1.9 6.9 0 1.8 1.7 1.8 4.8 0 6.9zM1664.639 706.104l4.9-5 10.7 10.2-5.2 5.2zM1582.957 792.668l4.9-5 10.7 10.2-5.2 5.2zM1529.142 851.516l5.2-5.3 10.3 10.5-5.3 5zM1491.16 894.577c-4.3-4.3-11.2-4.3-15.5 0-4.3 4.3-4.3 11.2 0 15.5 4.3 4.3 11.2 4.3 15.5 0 4.2-4.4 4.2-11 0-15.5zm-4.4 11.3c-1.9 1.9-4.9 1.9-6.9 0s-1.9-4.9 0-6.9c1.9-1.9 4.9-1.9 6.9 0 2 1.8 2 5.1 0 6.9zM1431.084 949.74l5.2-5.2 10.4 10.4-5.2 5.2zM1387.76 986.977c-6.2 0-11.2 4.9-11.2 11 0 6 4.9 11 11.2 11 6.3 0 11.2-4.9 11.2-11-.2-6.1-5.2-11-11.2-11zm0 15.9c-2.5 0-4.9-2.2-4.9-4.9 0-2.5 2.2-4.9 4.9-4.9 2.5 0 4.9 2.2 4.9 4.9-.1 2.8-2.3 4.9-4.9 4.9zM1304.96 1071.777c-6-1.3-11.7 2.5-12.8 8.7-1.3 6 2.5 11.7 8.7 12.8 6 1.1 11.7-2.5 12.8-8.7 1.3-5.8-2.8-11.5-8.7-12.8zm2.8 11.7c-.5 2.5-3.2 4.4-6 3.8-2.5-.5-4.4-3.2-3.8-6 .5-2.5 3.2-4.4 6-3.8 2.6.8 4.3 3.3 3.8 6zM1216.56 1160.077c-6-1.3-11.7 2.5-12.8 8.7-1.3 6 2.5 11.7 8.7 12.8 6 1.3 11.7-2.5 12.8-8.7 1.3-5.5-2.7-11.4-8.7-12.8zm2.8 11.9c-.5 2.5-3.2 4.4-6 3.8-2.5-.5-4.4-3.2-3.8-6 .5-2.5 3.2-4.4 6-3.8 2.6.7 4.3 3.4 3.8 6zM1112.86 1279.177c-2.2-5.7-8.7-8.5-14.3-6.3-5.5 2.2-8.5 8.7-6.3 14.3 2.2 5.7 8.7 8.5 14.3 6.3 5.6-2.3 8.5-8.6 6.3-14.3zm-8.5 8.8c-2.5 1-5.5-.3-6.5-2.8s.3-5.5 2.5-6.5c2.5-1 5.4.3 6.5 2.8 1.2 2.4-.1 5.4-2.5 6.5z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
       />
       <Path
         d="M977.35938 1320.177H984.35938V1335.177H977.35938z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
       />
       <Path
         d="M785.06 1386.877l4.6-4.7 9.5 9.8-4.6 4.7zM759.098 1417.738c-4.3-4.3-11.2-4.3-15.5 0-4.3 4.3-4.3 11.2 0 15.5 4.3 4.3 11.2 4.3 15.5 0 4.1-4.3 4.1-11.2 0-15.5zm-4.4 11.2c-1.9 1.9-4.9 1.9-6.9 0-1.9-1.9-1.9-4.9 0-6.9 1.9-1.9 4.9-1.9 6.9 0 1.9 1.9 1.9 5.1 0 6.9z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
       />
       <Path
         d="M684.35931 1554.177H699.35931V1562.177H684.35931z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
       />
       <Path
         d="M684.35931 1615.177H699.35931V1622.177H684.35931z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
       />
       <Path
         d="M684.35931 1679.6433H692.35931V1756.1769299999999H684.35931z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
         strokeWidth={1.01846504}
       />
       <Path
         d="M684.35931 1619.177H692.35931V1678.018255H684.35931z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
         strokeWidth={1.05565989}
       />
       <Path
         d="M684.35931 1752.177H699.35931V1760.177H684.35931z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
       />
       <Path
         d="M920.76 2101.177c-4.3-4.3-11.2-4.3-15.5 0-4.3 4.3-4.3 11.2 0 15.5 4.3 4.3 11.2 4.3 15.5 0 4.1-4.2 4.1-11.2 0-15.5zm-4.5 11.4c-1.9 1.9-4.9 1.9-6.9 0-1.9-1.9-1.9-4.9 0-6.9 1.9-1.9 4.9-1.9 6.9 0 1.9 1.8 1.8 4.8 0 6.9z"
-        fill="#ef7e24"
+        fill = {this.state.Branch6} onPress = {this.Handler6}
       />
       <Path
         d="M1235.401 2218.855H1263.589478V2233.855H1235.401z"
@@ -2947,77 +3109,77 @@ class Map extends React.Component {
       />
       <Path
         d="M1290.2194 244.99072H1297.2194434V292.990678H1290.2194z"
-        fill="#adacac"
+        fill = {this.state.Branch9} onPress = {this.Handler9}
       />
       <Path
         d="M1290.2194 197.99048H1297.2194434V244.99044899999998H1290.2194z"
-        fill="#adacac"
+        fill = {this.state.Branch9} onPress = {this.Handler9}
       />
       <Path
         d="M515.55933 1424.5769H522.55933V1478.91143H515.55933z"
-        fill="#ffcd1e"
+        fill = {this.state.Branch8} onPress = {this.Handler8}
         strokeWidth={0.89919388}
       />
       <Path
         d="M515.55933 1486.5604H522.55933V1543.976767H515.55933z"
-        fill="#ffcd1e"
+        fill = {this.state.Branch8} onPress = {this.Handler8}
         strokeWidth={1.02924371}
       />
       <Path
         d="M515.55933 1543.7769H522.55933V1615.476897H515.55933z"
-        fill="#ffcd1e"
+        fill = {this.state.Branch8} onPress = {this.Handler8}
       />
       <Path
         transform="rotate(-50.486)"
         className="st134"
         d="M-179.87271 1184.5889H-82.86834600000002V1191.5892147H-179.87271z"
-        fill="#67c7c3"
+        fill = {this.state.Branch11} onPress = {this.Handler11}
       />
       <Path
         transform="rotate(-50.514)"
         d="M-304.1355 1184.4684H-180.43277999999998V1191.468554H-304.1355z"
-        fill="#67c7c3"
+        fill = {this.state.Branch11} onPress = {this.Handler11}
       />
       <Path
         d="M716.36 994.277l5.195 4.674c-33.893 37.617-75.818 60.259-76.38 60.565l-2.857-5.073c.378-.383 40.812-23.356 74.041-60.166zM677.05 1189.952l-55.708-89.241c-7.355-11.559-4.831-20.632 6.98-28.148l8.531-5.232-4.295-6.749-8.53 5.232c-15.187 9.663-18.147 23.638-9.65 38.854l55.87 89.495z"
-        fill="#67c7c3"
+        fill = {this.state.Branch11} onPress = {this.Handler11}
         fillOpacity={1}
       />
       <Path
         transform="rotate(-50.486)"
         className="st7"
         d="M-179.22952 1178.6736H-83.52522V1185.6739147H-179.22952z"
-        fill="#ffcd1e"
+        fill = {this.state.Branch8} onPress = {this.Handler8}
       />
       <Path
         transform="translate(209.06 306.377)"
         d="M586.2 581.9L591.6 586.3 513.5 681.6 508.1 677.1z"
-        fill="#ffcd1e"
+        fill = {this.state.Branch8} onPress = {this.Handler8}
       />
       <Path
         d="M708.604 992.626l5.196 4.675c-33.893 37.616-70.92 56.836-71.482 57.142l-3.548-5.346c.378-.384 36.604-19.66 69.834-56.47z"
-        fill="#ffcd1e"
+        fill = {this.state.Branch8} onPress = {this.Handler8}
       />
       <Path
         d="M540.67 1121.97l90.538-60.32-4.198-6.038-90.948 60.347c-13.89 10-17.534 17.173-20.472 33.51l-.052 261.713 7.954-.192v-260.596c2.45-14.19 4.7-19.492 17.179-28.425z"
-        fill="#ffcd1e"
+        fill = {this.state.Branch8} onPress = {this.Handler8}
         fillOpacity={1}
       />
       <Path
         d="M1106.7593 257.5769H1113.7593V327.5769H1106.7593z"
-        fill="#bed12e"
+        fill = {this.state.limeBranch} onPress = {this.limeHandler}
       />
       <Path
         d="M1106.7593 327.5769H1113.7593V378.55100200000004H1106.7593z"
-        fill="#bed12e"
+        fill = {this.state.limeBranch} onPress = {this.limeHandler}
       />
       <Path
         d="M1106.7593 323.677H1121.7593V330.677H1106.7593z"
-        fill="#bed12e"
+        fill = {this.state.limeBranch} onPress = {this.limeHandler}
       />
       <Path
         d="M1069.73 411.024c-28.6 6.2-54.605 14.058-81.905 24.058-.5.3 3.334 1.095 4.134 3.095.8 1.9-1.451 4.403-.851 4.103 26.8-9.9 52.557-18.084 80.657-24.084.3 0-.55-1.269-.85-3.369-.3-2-.485-4.003-1.185-3.803z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
       />
       <Path
         d="M1074.644 416.438l-1.685-5.404.227 1.422c-31.1 6.5-55.804 13.705-85.104 24.905l1.377 3.27c29.1-11 54.085-18.275 85.185-24.875-.2 0 0 .682 0 .682z"
@@ -3025,7 +3187,7 @@ class Map extends React.Component {
       />
       <Path
         d="M930.41 469.146c17.9-9.1 40.604-19.317 59.304-26.417.3 0-3.355-.452-4.155-2.352-.8-1.9 1.595-4.825 1.095-4.725-18.9 7.1-41.247 16.88-59.347 26.08-.5.3 1.652 1.645 2.652 3.345.9 2-.149 4.369.451 4.069z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
       />
       <Path
         d="M927.775 464.102l2.062 2.79c19.9-10.3 38.622-18.06 59.622-26.26l-1.377-3.27c-21.2 7.9-40.207 16.34-60.307 26.74z"
@@ -3033,7 +3195,7 @@ class Map extends React.Component {
       />
       <Path
         d="M887.46 483.877s-4.316 2.054-14.868 9.55c-.3.3 2.1 1.3 3.4 2.5 1.4 1.6 1.922 3.8 2.222 3.4 5.81-4.301 13.606-8.73 13.606-8.73 11.2-6.6 27.19-15.351 38.59-21.451.5-.3-3.249-.479-4.249-2.379-1-1.8.682-4.659-.018-4.259-11.5 6.4-27.384 14.669-38.684 21.369z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
       />
       <Path
         d="M889.005 485.74c-14.261 8.443-16.79 10.78-16.79 10.78l1.573 3.363s2.88-2.673 16.589-10.71c12.2-7.4 25.867-15.385 38.567-21.585l-2.018-3.211c-12.7 6.2-23.411 12.918-37.921 21.363z"
@@ -3041,7 +3203,7 @@ class Map extends React.Component {
       />
       <Path
         d="M841.764 515.09c-25.48 18.439-46.018 35.962-68.191 58.044-.275.324 2.199 1.125 3.593 2.215 1.525 1.48 1.904 3.656 2.17 3.233 21.8-21.75 42.078-38.75 67.169-57.058 10.624-7.491 7.18-5.26 18.045-12.269.474-.34-.977-2.127-2.128-3.94-1.144-1.712-1.705-3.673-2.37-3.217-10.94 7.317-7.572 5.392-18.288 12.991z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
       />
       <Path
         d="M843.173 516.666c-26.146 18.895-49.546 39.255-72.268 61.983l3.057 2.019c22.44-22.505 44.695-41.574 70.965-60.178 11.556-8.37 12.31-8.557 22.934-16.013l-2.73-3.715c-10.427 7.18-10.103 7.509-21.958 15.904z"
@@ -3049,7 +3211,7 @@ class Map extends React.Component {
       />
       <Path
         d="M735.06 615.277c-14.3 17.4-27.6 35.4-40 53.8-.3.3 2.3.5 4.1 1.6 1.8 1.3 2.5 3.2 2.8 2.8 12.1-18.5 25.1-36.1 39.3-53.1 9.5-11.2 19.3-22.4 29.5-33 .3-.5-1.3-1.6-2.5-3.2-1.4-1.6-3.644-2.276-3.644-2.276-10.1 11.1-19.757 21.676-29.557 33.376z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
       />
       <Path
         d="M737.285 616.518c-14.9 18-29.545 37.426-42.728 58.29l3.153.669c14.595-22.49 27.18-38.637 41.624-56.263 10.3-12.3 21.745-25.465 32.945-36.765l-2.433-2.392c-11.3 11.5-22.161 23.861-32.561 36.461z"
@@ -3057,7 +3219,7 @@ class Map extends React.Component {
       />
       <Path
         d="M685.492 685.238c-.023.007-.033.051-.033.139-11.454 18.551-22.39 38.889-31.943 59.334l-.022.045c1.817.947 4.065 2.09 6.91 3.66 9.589-20.296 20.546-40.56 31.856-58.94.3-.3-2.501-.499-4.301-1.599-1.575-.963-2.308-2.69-2.467-2.639z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
       />
       <Path
         d="M689.527 683.594c-12.186 19.582-23.706 40.172-33.79 61.293 1.26.549 1.959.978 3.035 1.5 9.895-20.777 21.208-41.004 33.285-60.453z"
@@ -3065,7 +3227,7 @@ class Map extends React.Component {
       />
       <Path
         d="M597.96 997.951c0 11.7.64 26.016 1.34 37.616 0 .5 2.626.126 4.826.126 2.1-.3 3.574.074 3.574-.426-.6-11.4-1.34-25.816-1.34-37.516 0-18.9 1-37.6 2.5-55.9 0-.5-2.1.5-4.1.3-2.1-.3-4.1-1.9-4.1-1.3-1.7 18.7-2.7 37.7-2.7 57.1z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
       />
       <Path
         d="M603.283 938.451c-1.9 19.6-2.66 39.828-2.66 59.728 0 12.6.471 26.366 1.471 38.366l3.056-.91c-.8-12-1.3-24.856-1.3-37.456 0-19.6.772-39.514 2.772-58.914z"
@@ -3073,7 +3235,7 @@ class Map extends React.Component {
       />
       <Path
         d="M624.181 1140.036c-8.5-31.7-12.267-57.377-15.167-90.277-.3-.5-2.1.8-4.1 1-2.1.3-4.1-.8-4.1-.3 3 33.5 6.767 59.477 15.467 91.777.3.5 1.9-1.1 3.9-1.6 1.9-.6 4.3-.1 4-.6z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
       />
       <Path
         d="M621.903 1140.69c-9.1-33.5-11.76-55.506-15.783-90.433l-2.543.414c3.113 35.1 5.631 57.405 14.831 91.305z"
@@ -3081,7 +3243,7 @@ class Map extends React.Component {
       />
       <Path
         d="M629.36 1183.177c13.469 40.036 30.797 78.282 52.118 114.348.274.323 1.542-1.68 3.434-2.728 1.701-1.165 4.231-.565 3.857-.897-21.054-35.642-38.545-73.993-51.573-113.29-1.91-6.076-2.95-7.645-8.415-27.179-.258-.523-2 1.14-4.042 1.575-1.935.343-4.261-.651-4.111-.036 6.38 21.331 6.34 21.532 8.731 28.207z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
       />
       <Path
         d="M635.127 1181.584c-7.268-21.467-6.614-19.425-9.034-28.763l-2.919 1.61c3.32 11.182 1.454 6.392 8.781 28.365 13.412 40.734 31.661 79.082 53.24 115.67l2.344-2.244c-21.511-36.182-38.959-74.403-52.412-114.638z"
@@ -3089,7 +3251,7 @@ class Map extends React.Component {
       />
       <Path
         d="M740.456 1384.028l6.086-5.178c-18.7-22.154-35.7-45.362-50.99-69.721-.272-.326-1.156 1.704-2.74 2.566-1.908 1.134-4.425 1.21-4.27 1.726 15.688 24.395 32.86 47.92 51.914 70.607z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
       />
       <Path
         d="M742.992 1383.247l2.203-2.903c-19.236-22.905-37.185-46.808-52.62-71.783l-3.162 1.646c15.69 25.5 34.154 50.017 53.58 73.04z"
@@ -3097,7 +3259,7 @@ class Map extends React.Component {
       />
       <Path
         d="M775.46 1419.577c34.3 33.8 91.145 74.699 131.745 99.399.3.3.3-2.1 1.4-3.9 1-1.8 3.2-3 2.5-3.2-40-24.2-96.546-64.799-130.046-97.999-20.6-20.4-13.386-13.535-22.906-24.695-.3-.3-1 1.8-2.5 2.8-1.8 1.3-4.3 1.6-4.1 2.1 9.276 10.677 14.807 16.496 23.906 25.495z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
       />
       <Path
         d="M776.863 1418.014c17.071 19.666 90.873 74.55 132.555 100.054l2.49-2.353c-58.407-37.566-106.696-73.23-132.29-100.636-11.39-11.13-20.298-19.82-23.424-25.148l-3.574 2.72c8.572 10.089 13.94 15.099 24.243 25.363z"
@@ -3105,7 +3267,7 @@ class Map extends React.Component {
       />
       <Path
         d="M967.96 1548.077c23.4 9.8 48.166 18.17 72.366 24.87.5.3-.667-2.27.033-4.07.5-2.1 2.767-3.63 2.067-3.93-23.9-6.6-48.167-14.97-71.267-24.67-21.7-9.1-24.628-9.69-44.728-20.99-.3-.3-.3 2.1-1.3 3.8-1 1.9-3.2 3.2-2.5 3.4 20.2 11.9 23.428 12.29 45.328 21.59z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
       />
       <Path
         d="M968.573 1546.208c24.2 10.3 45.22 16.953 71.33 24.222l1.855-2.77c-26.579-8.152-47.199-14.505-71.399-24.805-22.684-9.784-27.192-11.113-44.232-21.023l-1.663 3.336c16.314 9.827 21.323 11.597 44.109 21.04z"
@@ -3113,7 +3275,7 @@ class Map extends React.Component {
       />
       <Path
         d="M1194.76 1587.077c-49.8-.8-104.734-9.63-152.334-22.13-.6-.3 2.265 3.193 1.765 5.193-.5 1.9-4.365 2.408-3.765 2.708 48.1 12.7 103.733 21.729 154.333 22.429.6 0-.3-2.1-.3-4.3 0-2.2.7-3.9.3-3.9z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
       />
       <Path
         d="M1197.56 1589.724c-52.4-.5-106.524-9.732-155.802-22.065l-.99 3.069c46.904 11.69 104.091 22.086 156.891 22.586z"
@@ -3121,13 +3283,13 @@ class Map extends React.Component {
       />
       <Path
         d="M1044.26 1566.224a3.956 3.956 0 00-5.615 0 3.96 3.96 0 000 5.617 3.956 3.956 0 005.614 0c1.594-1.485 1.594-3.986 0-5.617zm-1.522 4.132c-.689.688-1.775.688-2.5 0-.688-.689-.688-1.776 0-2.501.689-.689 1.775-.689 2.5 0 .652.652.652 1.812 0 2.5z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
         fillOpacity={1}
         strokeWidth={0.30948851}
       />
       <Path
         d="M1302.526 1579.096c-32 5.2-59.217 8.626-92.012 8.061l-4.673-.08c-.6-.01-.3 2.2-.3 4.4.3 1.9-.1 3.588.6 3.6l4.373.08c33.194.61 60.912-2.961 93.312-8.161.6-.3-1.667-1.819-1.867-4.019-.2-1.8 1.167-4.081.567-3.881z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
       />
       <Path
         d="M1305.26 1584.71l-.8-3.496c-33.2 5.7-52.245 8.373-95.67 8.373h-2.928l-.113 3.34 3.098.17c33.931.696 63.112-2.787 96.412-8.387z"
@@ -3135,12 +3297,12 @@ class Map extends React.Component {
       />
       <Path
         d="M1210.528 1586.082c-2.3-5.7-8.8-8.2-14.5-6-5.7 2.2-8.2 8.8-6 14.5 2.3 5.7 8.8 8.2 14.5 6 5.8-2.5 8.5-9 6-14.5zm-8.2 8.8c-2.5 1-5.5-.3-6.5-2.5-1-2.5.3-5.5 2.5-6.5 2.5-1 5.5.3 6.5 2.5 1.1 2.6 0 5.4-2.5 6.5z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
         fillOpacity={1}
       />
       <Path
         d="M1358.66 1566.977c-16.7 4.4-39.234 9.119-56.134 12.119-.6.3 4.866 1.044 5.066 3.044.3 2-4.566 5.056-3.766 4.856 16.9-3 40.333-7.619 56.933-12.219.5-.3-1.1-1.9-1.6-3.9s-.1-4.2-.5-3.9z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
       />
       <Path
         d="M1361.13 1568.971c-18.5 4.9-37.47 9.143-56.67 12.243l.277 3.48c19.3-3.2 38.98-7.342 57.78-12.542z"
@@ -3148,13 +3310,13 @@ class Map extends React.Component {
       />
       <Path
         d="M1306.78 1580.079a3.956 3.956 0 00-5.614 0 3.96 3.96 0 000 5.617 3.956 3.956 0 005.615 0c1.593-1.485 1.593-3.986 0-5.617zm-1.52 4.131c-.69.69-1.776.69-2.5 0-.688-.688-.688-1.775 0-2.5.688-.689 1.775-.689 2.5 0 .651.652.651 1.812 0 2.5z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
         fillOpacity={1}
         strokeWidth={0.30948851}
       />
       <Path
         d="M1531.86 1489.977c-30.2 19.6-62 36.6-95.5 50.4-19.5 8.2-42.878 15.763-62.778 21.863-.3.3 1.14 1.559 1.64 3.559.5 1.9.46 4.54.66 4.34 20.4-6.2 43.777-13.862 63.677-22.262 34.1-14.2 66.3-31.3 97-51.2.3-.3-1.6-1.4-2.5-3.2-1.7-1.5-2-3.8-2.2-3.5z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
       />
       <Path
         d="M1536.416 1494.094l-1.753-3.233c-30.6 20.1-63.34 37.702-97.64 52.002-20.6 8.7-42.044 15.277-63.044 21.677l1.015 3.19c21.2-6.3 43.185-13.057 63.785-21.757a584.446 584.446 0 0097.637-51.878z"
@@ -3162,12 +3324,12 @@ class Map extends React.Component {
       />
       <Path
         d="M1376.06 1564.677c-2.3-5.7-8.8-8.2-14.5-6-5.7 2.2-8.2 8.8-6 14.5 2.3 5.7 8.8 8.2 14.5 6 5.8-2.5 8.5-9 6-14.5zm-8.2 8.8c-2.5 1-5.5-.3-6.5-2.5-1-2.5.3-5.5 2.5-6.5 2.5-1 5.5.3 6.5 2.5 1.1 2.6 0 5.4-2.5 6.5z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
         fillOpacity={1}
       />
       <Path
         d="M1629.813 1410.394c-1 1-2.554 2.383-3.454 3.383-24.5 24.2-53.486 48.374-81.386 67.974-.3.3 1.4 1.3 2.5 3 1.1 1.6 1.6 4.1 1.9 3.8 28.4-19.7 57.686-44.274 82.686-69.074l3.796-3.71c.304-.297-3.987.76-5.087-.84-1.5-1.5-.855-4.733-.955-4.533z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
       />
       <Path
         d="M1633.926 1414.361l-2.235-2.496-3.438 3.351c-25.1 25-52.69 47.726-81.59 67.626l1.714 3.253c29.1-20.1 56.414-42.873 81.914-67.873 1.9-2 1.635-1.96 3.635-3.86z"
@@ -3175,18 +3337,18 @@ class Map extends React.Component {
       />
       <Path
         d="M1549.211 1486.676c-2.3-5.7-8.8-8.2-14.5-6-5.7 2.2-8.2 8.8-6 14.5 2.3 5.7 8.8 8.2 14.5 6 5.8-2.5 8.5-9 6-14.5zm-8.2 8.8c-2.5 1-5.5-.3-6.5-2.5-1-2.5.3-5.5 2.5-6.5 2.5-1 5.5.3 6.5 2.5 1.1 2.6 0 5.4-2.5 6.5z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
         fillOpacity={1}
       />
       <Path
         d="M1635.448 1410.23a3.956 3.956 0 00-5.615 0 3.96 3.96 0 000 5.617 3.956 3.956 0 005.615 0c1.593-1.486 1.593-3.986 0-5.617zm-1.522 4.131c-.688.69-1.775.69-2.5 0-.687-.688-.687-1.775 0-2.5.69-.689 1.776-.689 2.5 0 .652.652.652 1.812 0 2.5z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
         fillOpacity={1}
         strokeWidth={0.30948851}
       />
       <Path
         d="M1758.908 1212.645c-4.915 12.827-4.644 11.266-10.422 23.578a564.065 564.065 0 01-10.515 21.186c2.325 1.682 4.403 2.968 6.508 4.628 4.038-6.677 8.309-15.698 11.385-22.236 5.905-12.584 5.275-11.139 10.408-24.195-2.667-.643-5.397-1.817-7.364-2.961z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
       />
       <Path
         d="M1760.323 1214.944c-5.249 13.775-3.616 9.261-9.903 22.66a591.376 591.376 0 01-10.18 20.605c.968.617 2.018 1.199 2.783 1.799v-.01l.01.01a557.66 557.66 0 0010.426-21.006c6.68-13.766 4.943-9.14 9.969-22.91z"
@@ -3194,12 +3356,12 @@ class Map extends React.Component {
       />
       <Path
         d="M1748.666 1263.03c-2.3-5.7-8.8-8.2-14.5-6-5.7 2.2-8.2 8.8-6 14.5 2.3 5.7 8.8 8.2 14.5 6 5.8-2.5 8.5-9 6-14.5zm-8.2 8.8c-2.5 1-5.5-.3-6.5-2.5-1-2.5.3-5.5 2.5-6.5 2.5-1 5.5.3 6.5 2.5 1.1 2.6 0 5.4-2.5 6.5z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
         fillOpacity={1}
       />
       <Path
         d="M1784.526 1142.09c-4.75 15.243-13.768 41.212-19.805 56.242-.343.471 2.098.01 3.74.755 2.021.98 3.442 3.188 3.694 2.607 6.046-15.129 14.513-42.12 19.2-57.77.343-.472-2.566 1.892-4.315 1.237-1.74-.755-2.262-3.65-2.514-3.07z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
       />
       <Path
         d="M1785.928 1144.304c-5.403 18.097-13.396 40.333-20.349 57.792l2.767 1.314c7.252-17.433 15.044-39.72 20.465-58.016z"
@@ -3207,12 +3369,12 @@ class Map extends React.Component {
       />
       <Path
         d="M1774.888 1203.926c-2.3-5.7-8.8-8.2-14.5-6-5.7 2.2-8.2 8.8-6 14.5 2.3 5.7 8.8 8.2 14.5 6 5.8-2.5 8.5-9 6-14.5zm-8.2 8.8c-2.5 1-5.5-.3-6.5-2.5-1-2.5.3-5.5 2.5-6.5 2.5-1 5.5.3 6.5 2.5 1.1 2.6 0 5.4-2.5 6.5z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
         fillOpacity={1}
       />
       <Path
         d="M1794.964 1101.524c-3.428 15.594-5.175 23.345-9.903 38.837 2.798-.302 4.891 1.325 6.634 2.272 4.729-15.592 7.306-23.554 10.635-39.548.301-.5-2.1-.304-3.898-.807-1.8-.603-3.267-1.353-3.468-.754z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
       />
       <Path
         d="M1797.823 1097.957c-3.834 18.493-5.18 24.113-10.612 42.104l2.957.983c5.733-17.99 6.704-23.046 10.538-41.739z"
@@ -3220,13 +3382,13 @@ class Map extends React.Component {
       />
       <Path
         d="M1790.698 1139.948a3.956 3.956 0 00-5.614 0 3.96 3.96 0 000 5.618 3.956 3.956 0 005.614 0c1.594-1.486 1.594-3.987 0-5.618zm-1.521 4.132c-.688.689-1.775.689-2.5 0-.688-.689-.688-1.776 0-2.5.689-.69 1.776-.69 2.5 0 .652.652.652 1.811 0 2.5z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
         fillOpacity={1}
         strokeWidth={0.30948851}
       />
       <Path
         d="M1800.26 974.277c1 13.7 1.4 27.6 1.4 41.2 0 23.9-1.4 47.5-4.3 70.7-.3.5 2.1.3 4.1.5 2.1.3 4.1.8 4.1.3 2.8-23.5 4.3-47.5 4.3-71.4 0-13.9-.5-27.8-1.4-41.8 0-.5-2.1.8-4.1 1-2 0-4.1-1.1-4.1-.5z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
       />
       <Path
         d="M1805.907 972.3l-3.454.357c1.1 14.7 1.544 28.447 1.544 43.247 0 25.3-1.6 50.087-4.7 74.887l3.112.386c3.2-25 4.927-50 4.927-75.3.2-15.3-.13-28.977-1.43-43.577z"
@@ -3234,12 +3396,12 @@ class Map extends React.Component {
       />
       <Path
         d="M1809.407 1090.505c-2.3-5.7-8.8-8.2-14.5-6-5.7 2.2-8.2 8.8-6 14.5 2.3 5.7 8.8 8.2 14.5 6 5.8-2.5 8.5-9 6-14.5zm-8.2 8.8c-2.5 1-5.5-.3-6.5-2.5-1-2.5.3-5.5 2.5-6.5 2.5-1 5.5.3 6.5 2.5 1.1 2.6 0 5.4-2.5 6.5z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
         fillOpacity={1}
       />
       <Path
         d="M1790.922 888.763c1.117 7.908.226.588 2.35 14.02 3.734 23.607 6.228 48.126 6.987 71.494-.218.54 1.818.343 3.824.228 2.121-.031 4.454-.234 4.376-.728-.905-23.649-3.338-48.569-7.072-72.175-2.17-13.73-.896-5.349-2.444-14.614-.078-.494-1.95 1.118-3.894 1.628-1.975.313-4.221-.446-4.127.147z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
       />
       <Path
         d="M1796.673 888.984l-3.355.892c.97 6.226.018-1.654 2.33 12.965 3.952 24.99 6.243 49.721 7.056 74.701l3.133-.105c-.744-25.193-2.943-50.156-6.895-75.145-2.193-15.143-.953-6.086-2.269-13.308z"
@@ -3247,13 +3409,13 @@ class Map extends React.Component {
       />
       <Path
         d="M1806.98 970.246a3.956 3.956 0 00-5.614 0 3.961 3.961 0 000 5.617 3.956 3.956 0 005.615 0c1.593-1.486 1.593-3.986 0-5.617zm-1.52 4.131c-.69.69-1.776.69-2.5 0-.688-.688-.688-1.775 0-2.5.688-.689 1.775-.689 2.5 0 .651.652.651 1.812 0 2.5z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
         fillOpacity={1}
         strokeWidth={0.30948851}
       />
       <Path
         d="M1695.507 659.654c53.14 93.483 67.935 120.719 92.742 215.334.3.5 2.1-.8 4.1-1 2.1-.3 4.3.8 4.3.3-18.197-82.51-41.347-124.257-93.442-217.534-.3-.5-1.8.8-3.6 1.6-1.9.8-4.3.7-4.1 1.3z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
       />
       <Path
         d="M1697.678 659.172c53.14 93.483 68.152 120.518 92.96 215.133.3.5-1.028-.174.972-.374 2.1-.3 2.14.288 2.14-.212-18.198-82.51-40.538-123.126-92.634-216.402-.3-.5.29.237-1.51 1.037-1.9.8-2.128.218-1.928.818z"
@@ -3262,12 +3424,12 @@ class Map extends React.Component {
       />
       <Path
         d="M1804.395 878.744c-2.3-5.7-8.8-8.2-14.5-6-5.7 2.2-8.2 8.8-6 14.5 2.3 5.7 8.8 8.2 14.5 6 5.8-2.5 8.5-9 6-14.5zm-8.2 8.8c-2.5 1-5.5-.3-6.5-2.5-1-2.5.3-5.5 2.5-6.5 2.5-1 5.5.3 6.5 2.5 1.1 2.6 0 5.4-2.5 6.5z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
         fillOpacity={1}
       />
       <Path
         d="M1677.52 621.923c-5.861-7.539-11.806-15.19-17.993-22.574-.252-.341-1.267 1.733-2.772 3.027-1.49 1.195-3.73 1.976-3.575 2.302a629.556 629.556 0 0117.626 22.317c5.255 6.842 9.987 13.81 15.002 20.92.252.34 1.267-1.734 2.955-2.9 1.788-1.15 4.334-1.28 4.067-1.521-5.04-7.62-10.154-14.744-15.31-21.571z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
       />
       <Path
         d="M1675.746 623.577c-6.239-8.403-13.4-17.107-20.122-24.974l-2.492 2.25c6.51 7.937 11.972 14.935 19.374 24.448 5.564 7.494 11.7 16.097 16.978 24.155 1.112-1.28.676-1.226 2.767-3.159-5.535-7.692-10.773-15-16.505-22.72z"
@@ -3275,12 +3437,12 @@ class Map extends React.Component {
       />
       <Path
         d="M1705.275 646.17c-2.3-5.7-8.8-8.2-14.5-6-5.7 2.2-8.2 8.8-6 14.5 2.3 5.7 8.8 8.2 14.5 6 5.8-2.5 8.5-9 6-14.5zm-8.2 8.8c-2.5 1-5.5-.3-6.5-2.5-1-2.5.3-5.5 2.5-6.5 2.5-1 5.5.3 6.5 2.5 1.1 2.6 0 5.4-2.5 6.5z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
         fillOpacity={1}
       />
       <Path
         d="M1631.899 569.322c-6.957-6.6-13.7-13.38-20.9-19.78-.3-.3-.94 2.235-2.24 3.735-1.3 1.4-4.125 1.335-3.925 1.635 7 6.3 14.739 13.68 21.539 20.38 6.2 6 11.786 12.485 17.786 18.785.3.3 1-1.9 2.5-3.3 1.6-1.4 4.1-1.9 3.8-2.1-6.1-6.8-12.621-13.355-18.56-19.355z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
       />
       <Path
         d="M1629.761 570.155c-7.771-7.6-15.01-14.335-22.582-21.249l-2.435 3.332c7.6 6.9 15.37 14.07 22.97 21.47 6.6 6.6 11.992 11.865 18.392 19.065l2.379-2.906c-6.6-6.8-11.792-12.933-18.724-19.712z"
@@ -3288,12 +3450,12 @@ class Map extends React.Component {
       />
       <Path
         d="M1661.332 592.052c-2.3-5.7-8.8-8.2-14.5-6-5.7 2.2-8.2 8.8-6 14.5 2.3 5.7 8.8 8.2 14.5 6 5.8-2.5 8.5-9 6-14.5zm-8.2 8.8c-2.5 1-5.5-.3-6.5-2.5-1-2.5.3-5.5 2.5-6.5 2.5-1 5.5.3 6.5 2.5 1.1 2.6 0 5.4-2.5 6.5z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
         fillOpacity={1}
       />
       <Path
         d="M1501.699 483.989c33.57 19.727 71.332 47.485 103.135 70.923 4.8-2.333-2.418-1.353-.651-4.673.892-2.072 6.336-1.167 5.629-1.558-32.333-23.828-71.407-53.05-105.86-72.778-.884-.586 2.38 1.255.968 4.575-1.767 3.906-4.281 3.12-3.221 3.51z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
         strokeWidth={1.85767126}
       />
       <Path
@@ -3303,13 +3465,13 @@ class Map extends React.Component {
       />
       <Path
         d="M1611.016 549.5a4.03 4.03 0 00-5.724 0 4.048 4.048 0 000 5.736 4.03 4.03 0 005.724 0c1.625-1.518 1.625-4.07 0-5.736zm-1.55 4.218c-.703.704-1.81.704-2.55 0-.7-.703-.7-1.813 0-2.553.703-.703 1.81-.703 2.55 0 .664.666.664 1.85 0 2.553z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
         fillOpacity={1}
         strokeWidth={0.31577167}
       />
       <Path
         d="M1442.357 453.79c19.592 8.9 38.615 18.335 57.327 29.192.318.28 1.678-2.008 2.57-3.767.899-1.659 2.11-3.137 1.698-3.312-19.024-11.038-38.583-21.042-58.674-29.91-.517-.268-.68 1.947-1.373 3.693-.873 2.058-2.159 3.942-1.548 4.104z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
       />
       <Path
         d="M1441.369 446.312l-2.418 3.681c21.942 9.654 41.668 19.834 62.456 31.864l1.992-3.639c-21.007-12.317-39.788-22.27-62.03-31.906z"
@@ -3317,13 +3479,13 @@ class Map extends React.Component {
       />
       <Path
         d="M1505.24 476.873a4.028 4.028 0 00-5.805 0 4.251 4.251 0 000 5.936 4.028 4.028 0 005.805 0c1.648-1.57 1.648-4.213 0-5.936zm-1.573 4.366c-.711.728-1.835.728-2.584 0-.711-.728-.711-1.877 0-2.643.712-.727 1.835-.727 2.584 0 .674.69.674 1.915 0 2.643z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
         fillOpacity={1}
         strokeWidth={0.32348824}
       />
       <Path
         d="M1275.661 401.368c48.653 2.009 102.729 20.698 157.329 40.684m0 0l-1.36 6.079c-51.04-17.974-99.53-34.925-155.618-40.75l.13-6.302"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
         fillOpacity={1}
         stroke="none"
         strokeWidth="1.01229548px"
@@ -3338,90 +3500,90 @@ class Map extends React.Component {
       />
       <Path
         d="M1476.36 559.177v6.2c0 5.2-1.6 6.8-6 6.8h-26v8h26c8 0 14-5.6 14-14.9v-6.2z"
-        fill="#bac8e8"
+        fill = {this.state.Branch12} onPress = {this.Handler12}
       />
       <Path
         d="M1478.36 559.177v6.2c0 6.2-2.1 8.8-7 8.8h-27v4h27c6.3 0 11-4.6 11-12.8v-6.2z"
-        fill="#0572b9"
+        fill = {this.state.Branch3} onPress = {this.Handler3}
       />
       <Path
         d="M1318.3594 572.177H1435.75989V580.177H1318.3594z"
-        fill="#bac8e8"
+        fill = {this.state.Branch12} onPress = {this.Handler12}
         strokeWidth={1.22683918}
       />
       <Path
         d="M1318.3594 574.177H1433.99088V577.177H1318.3594z"
-        fill="#0572b9"
+        fill = {this.state.Branch3} onPress = {this.Handler3}
         strokeWidth={1.21756113}
       />
       <G transform="translate(215.06 226.377)">
-        <Path d="M1028.3 345.79999H1103.3V353.79999H1028.3z" fill="#bac8e8" />
-        <Path d="M1028.3 347.79999H1103.3V350.79999H1028.3z" fill="#0572b9" />
+        <Path d="M1028.3 345.79999H1103.3V353.79999H1028.3z" fill = {this.state.Branch12} onPress = {this.Handler12} />
+        <Path d="M1028.3 347.79999H1103.3V350.79999H1028.3z" fill = {this.state.Branch3} onPress = {this.Handler3} />
       </G>
       <G transform="translate(215.06 226.377)">
         <Path
           d="M951.29999 345.79999H1028.29999V353.79999H951.29999z"
-          fill="#bac8e8"
+          fill = {this.state.Branch12} onPress = {this.Handler12}
         />
         <Path
           d="M951.29999 347.79999H1028.29999V350.79999H951.29999z"
-          fill="#0572b9"
+          fill = {this.state.Branch3} onPress = {this.Handler3}
         />
       </G>
       <G transform="matrix(.75858 0 0 1 442.551 226.377)">
         <Path
           d="M855.29999 345.79999H942.29999V353.79999H855.29999z"
-          fill="#bac8e8"
+          fill = {this.state.Branch12} onPress = {this.Handler12}
         />
         <Path
           d="M855.29999 347.79999H942.29999V350.79999H855.29999z"
-          fill="#0572b9"
+          fill = {this.state.Branch3} onPress = {this.Handler3}
         />
       </G>
       <Path
         d="M1085.705 846.586c-.9-.5-51.846-44.4-51.846-62.9 0 0 0-3.398.193-11.306l7.807.193v11.113c0 13.8 48.346 56.6 48.546 56.7z"
-        fill="#adacac"
+        fill = {this.state.Branch9} onPress = {this.Handler9}
         fillOpacity={1}
       />
       <Path
         d="M1085.06 819.777c-3.3 1.3-6.6 2.5-10.1 4.1-41.8 17.8-79.3 43-111.8 75.3-12.8 12.8-24.7 26.8-35.4 41.2l6 4.4c10.4-14.3 21.9-27.8 34.7-40.4 31.5-31.5 68.4-56.5 109.4-73.8 3.2-1.3 6.3-2.5 9.3-3.8l-2.1-7zM888.16 1010.977c-8.2 19-14.5 38.9-19 59.2l7 1.9c4.6-19.9 10.6-39.3 18.6-58 8.5-20.1 18.9-39.1 30.8-57l-5.7-4.7c-12.3 18.2-22.9 37.8-31.7 58.6zM866.16 1084.177c-3.8 20.7-5.7 42-5.7 63.3 0 14.3.8 28.4 2.5 42.5l7.4-.8c-1.6-13.7-2.5-27.6-2.5-41.8 0-20.7 1.9-41.4 5.5-61.6l-7.2-1.6zM894.96 1281.677c-10.6-25.4-18.5-51.5-22.6-78.5l-7.4.3c4.4 27.8 12.2 54.9 23.2 81.2 8 19 17.8 37.1 28.7 54.2l6.5-3.4c-11-17.2-20.7-35-28.4-53.8zM968.56 1391.077c-13.4-13.4-25.8-28.1-36.7-43.4l-6.3 3.8c11.2 15.9 24 31 37.8 44.8 12.1 12.1 24.7 23.2 38.4 33.2l4.3-6c-13.1-9.7-25.5-20.6-37.5-32.4z"
-        fill="#925233"
+        fill = {this.state.Branch5} onPress = {this.Handler5}
       />
       <Path
         d="M1314.16 1346.877l-5.2-5.2-34.7 34.6c-10.4 10.3-16.3 12.9-31.7 12.9h-148.9c-16.9 0-24.7 3.8-36.3 15.1l-44.8 44.9 5.2 5.2 44.5-44.2c10.4-10.4 16.4-12.9 31.9-12.9h148.9c16.9 0 25-3.8 36.6-15.2l.3-.4c.3-.3.3-.4.3-.4l33.9-34.4z"
-        fill="#ef7e24"
+        fill = {this.state.Branch6} onPress = {this.Handler6}
       />
       <Path
         d="M1078.26 1464.877c-21.1-9-40.7-19.6-59.4-32.4l-4.6 6c19 13.1 39.6 24.2 61.3 33.2 17.9 7.5 36.2 13.7 54.9 18l2.1-7c-18.6-4.3-36.9-10.1-54.3-17.8z"
-        fill="#925233"
+        fill = {this.state.Branch5} onPress = {this.Handler5}
       />
       <Path
         d="M1553.76 1306.077l-35 35c-10.4 10.4-16.3 12.8-31.7 13.1h-144.7v7h145c17.1 0 25-3.4 36.7-15l34.9-34.8-5.2-5.3z"
-        fill="#ffcd1e"
+        fill = {this.state.Branch8} onPress = {this.Handler8}
       />
       <Path
         d="M1529.86 1298.877l-6.6-3.2c-16.9 35.5-39.5 67.4-67.4 95.5-25.8 25.8-54.9 46.9-86.9 63.3l2.8 6.6c32.7-16.7 62.7-38.4 89.2-64.9 28.5-28.5 51.7-61 68.9-97.3z"
-        fill="#925233"
+        fill = {this.state.Branch5} onPress = {this.Handler5}
       />
       <Path
         d="M1519.821 1088.702l5.138-5.325 117.26 103.673-5.138 5.326z"
-        fill="#bed12e"
+        fill = {this.state.limeBranch} onPress = {this.limeHandler}
       />
       <Path
         d="M1354.26 1461.177c-2.5 1.3-5.5 2.3-8.2 3.6-42.5 17.9-87.3 27.2-134 27.2-22.4 0-44.4-2.1-65.7-6.3l-2.2 7c22.1 4.3 44.8 6.5 67.9 6.5 47.6 0 93.5-9.3 136.9-27.6 2.5-1.1 5.2-2.3 7.7-3.4l-2.4-7zM1531.777 1027.47c-8.275-40.452-17.84-54.59-39.902-91.25l-6.71 3.019c21.93 36.325 32.273 49.944 39.772 89.501 1.775 9.74.828 5.754 2.395 14.17l7.361-.623c-2.154-9.214-1.008-4.743-2.916-14.817zM1563.76 1147.777c0-30.4-17.434-61.57-25.034-90.67l-6.356 1.6c7.5 28.4 24.19 58.87 24.19 89.07 0 46.4-9.1 91.4-27.2 134-.3.5-.3 1-.5 1.3l6.9 2.5c.3-.3.3-.6.5-1 18.1-43.3 27.5-89.3 27.5-136.8zM1460.86 899.077c-30.4-30.4-65.7-54.9-104.7-72.5l-3.8 6.3c38.7 17.4 73.6 41.2 103.4 71.1 7 7 13.9 14.5 20.2 22.1l5.7-4.7c-6.6-7.5-13.5-15.1-20.8-22.3z"
-        fill="#925233"
+        fill = {this.state.Branch5} onPress = {this.Handler5}
       />
       <Path
         d="M1210.3594 775.177H1217.3594V926.177H1210.3594z"
-        fill="#bed12e"
+        fill = {this.state.limeBranch} onPress = {this.limeHandler}
       />
       <Path
         d="M1321.56 828.577l21.3-21.3-5.2-5.2-21.3 21.5c-11.9 12.2-15 20.2-15 36.6v38h8l-.2-37.7c-.1-14.9 1.6-20.9 12.4-31.9z"
-        fill="#ef7e24"
+        fill = {this.state.Branch6} onPress = {this.Handler6}
       />
       <Path
         d="M1212.16 796.077c-39.1 0-77.2 6.3-113.7 18.9l2.8 6.6c35.5-12.1 72.9-18.3 110.8-18.3 43.6 0 85.9 8 125.9 23.9l3.2-6.5c-40.9-16.5-84.4-24.6-129-24.6z"
-        fill="#925233"
+        fill = {this.state.Branch5} onPress = {this.Handler5}
       />
       <Path
         d="M1343.3594 1888.177H1351.3594V1944.648863H1343.3594z"
@@ -3431,356 +3593,356 @@ class Map extends React.Component {
       />
       <Path
         d="M1555.56 1264.177c-4.4-4.1-11.2-3.9-15.5.5-4.1 4.4-3.9 11.2.5 15.5 4.4 4.1 11.2 3.9 15.5-.5 4-4.3 3.9-11.3-.5-15.5zm-3.9 11.3c-1.9 2.1-4.9 2.1-6.9.3-2.1-1.9-2.1-4.9-.3-6.9 1.9-2.1 4.9-2.1 6.9-.3 2 2 2.2 5 .3 6.9z"
-        fill="#943f90"
+        fill = {this.state.Branch7} onPress = {this.Handler7}
       />
       <Path
         d="M1359.26 1902.677l-20.4 20.4c-10.4 10.4-16.3 12.7-31.7 13.1h-58.8v7h59.3c16.9 0 25-3.4 36.7-15l20.2-20.1-5.3-5.4z"
-        fill="#67c7c3"
+        fill = {this.state.Branch11} onPress = {this.Handler11}
         fillOpacity={1}
       />
       <Path
         d="M1115.3594 1852.177H1123.3594V1952.177H1115.3594z"
-        fill="#adacac"
+        fill = {this.state.Branch9} onPress = {this.Handler9}
       />
       <Path
         d="M1107.3594 1936.177H1248.3594V1943.177H1107.3594z"
-        fill="#67c7c3"
+        fill = {this.state.Branch11} onPress = {this.Handler11}
         fillOpacity={1}
       />
       <Path
         d="M1917.677 956.4l-.854 6.848 6.946.867.743-5.954c1.833-14.686 1.141-25.661 10.631-38.295l24.852-20.264-4.51-4.995-24.422 20.313c-10.875 14.027-11.392 25.504-13.386 41.48z"
-        fill="#ffcd1e"
+        fill = {this.state.Branch8} onPress = {this.Handler8}
         fillOpacity={1}
       />
       <Path
         transform="rotate(179.932) skewX(-.02)"
         d="M-1923.1769 -1025.8936H-1915.7769695V-971.9426380000001H-1923.1769z"
-        fill="#ffcd1e"
+        fill = {this.state.Branch8} onPress = {this.Handler8}
         strokeWidth={1.09132123}
       />
       <Path
         d="M1852.57 1064.861h43c13.7-.011 21.03-7.03 21.03-21.03l-.03-12.87 8 .1-.01 12.845c0 18-9.59 27.955-26.99 28.955h-45z"
-        fill="#ffcd1e"
+        fill = {this.state.Branch8} onPress = {this.Handler8}
         fillOpacity={1}
       />
       <Path
         d="M1836.012 1366.633l-21.682.023c-16.334.07-24.467 3.254-36.558 15.346l-32.385 32.386c1.508 1.858 2.942 3.728 4.545 5.322l32.57-32.57c10.82-10.82 16.829-13.293 31.395-13.293h22.383c.01-2.422-.153-5.026-.267-7.207z"
         transform="translate(0 -300)"
-        fill="#ffcd1e"
+        fill = {this.state.Branch8} onPress = {this.Handler8}
         fillOpacity={1}
       />
       <Path
         d="M1673.06 1239.777c-.3-16.9-3.6-25-15-36.6l-6.5-6.5-5.2 5.2 6 6.3c10.4 10.6 13 16.4 13 31.9v80.5c0 14.8-2.2 20.7-13.1 31.9l-20.1 20.2 5.3 5.2 20.6-20.6c11.4-11.9 14.8-19.9 14.8-36.1l.2-81.4z"
-        fill="#bed12e"
+        fill = {this.state.limeBranch} onPress = {this.limeHandler}
       />
       <Path
         transform="rotate(-135)"
         d="M-2029.8429 189.73352H-2022.4429710000002V330.93216H-2029.8429z"
-        fill="#ffcd1e"
+        fill = {this.state.Branch8} onPress = {this.Handler8}
       />
       <Path
         d="M684.35931 1877.177H692.35931V1921.177H684.35931z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
       />
       <Path
         d="M684.35931 1816.177H692.35931V1877.177H684.35931z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
       />
       <Path
         d="M684.35931 1756.177H692.35931V1816.177H684.35931z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
       />
       <Path
         d="M684.35931 1558.177H692.35931V1619.177H684.35931z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
       />
       <Path
         d="M705.69 1472.455l41.183-37.705-5.092-5.306-41.188 37.906c-12.147 11.954-15.41 19.89-15.745 36.286l-.489 55.14 7.999.164.282-54.845c.205-14.899 2.027-20.863 13.05-31.64z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
       />
       <Path
         transform="rotate(-135.016)"
         d="M-1542.5414 -468.69635H-1535.5843506V-422.415367H-1542.5414z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
       />
       <Path
         d="M872.36 1320.377c-16.4.3-24.2 3.6-35.5 14.7l-49.8 49.8 5.2 5.2 48.9-48.8c10.4-10.4 16.4-13.1 31.9-13.1h27v-7.8h-27.7z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
       />
       <Path
         d="M913.55933 1320.177H980.3593330000001V1328.177H913.55933z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
       />
       <Path
         d="M1389.46 1047.977c-.3-16.9-3.6-24.8-15.2-36.7l-.5.5.5-.5-11-11-5.2 5.2 11.1 11c10.4 10.4 12.2 16.4 13.2 31.9v81.9h7.3l-.2-82.3z"
-        fill="#ef7e24"
+        fill = {this.state.Branch6} onPress = {this.Handler6}
       />
       <Path
         transform="rotate(-45)"
         d="M36.932304 1682.9736H148.03123399999998V1690.373529H36.932304z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
       />
       <Path
         d="M1352.36 1071.377c-12.2-11.9-19.9-15.2-36.1-15.2h-20.9v7h20.2c14.8 0 20.7 2.7 31.7 13.3l59 59.1 5.2-5.2-59.1-59z"
-        fill="#943f90"
+        fill = {this.state.Branch7} onPress = {this.Handler7}
       />
       <Path
         transform="rotate(-45)"
         d="M162.99603 1683.3721H267.99502V1690.772029H162.99603z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
       />
       <Path
         d="M1434.554 984.385c-12.2-11.7-18.295-18.208-34.295-18.208h-21.9v8h21.2c14.8 0 18.895 5.408 30.095 16.208l78.91 84.825 5.2-5.3z"
-        fill="#bed12e"
+        fill = {this.state.limeBranch} onPress = {this.limeHandler}
       />
       <Path
         transform="rotate(-45)"
         d="M283.16187 1683.4973H340.36132100000003V1690.897229H283.16187z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
       />
       <Path
         transform="rotate(-45)"
         d="M340.20892 1683.2512H403.508313V1690.6511289999999H340.20892z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
       />
       <Path
         transform="rotate(-45)"
         d="M419.35468 1683.3796H479.15410699999995V1690.779529H419.35468z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
       />
       <Path
         transform="translate(0 -300)"
         d="M1582.957 1092.668l-48.615 53.549 5.096 6.379 49.607-55.373c-1.967-1.725-4.258-3.143-6.088-4.555z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
       />
       <Path
         d="M1664.973 1005.57l-77.116 82.098c1.71 1.83 3.362 6.136 4.785 4.64l77.418-81.93z"
         transform="translate(0 -300)"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
         fillOpacity={1}
         strokeWidth={1.35350394}
       />
       <Path
         transform="rotate(-45)"
         d="M681.422 1676.4149H707.8561550000001V1683.3323743H681.422z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
       />
       <Path
         d="M1723.564 552.61h-7.3v82.3c0 13.9-2.3 20.1-11.8 30.2l5.2 5.1c10.6-11.2 13.7-19.2 13.7-35.2h.3z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
       />
       <Path
         d="M681.35931 2242.177H798.35931V2250.177H681.35931z"
-        fill="#bac8e8"
+        fill = {this.state.Branch12} onPress = {this.Handler12}
       />
       <Path
         d="M1123.06 1378.177c-.3 0 2.9-22.7-15.2-37l-42.3-42.4c-10.4-10.4-12.8-16.5-13.2-32v-6.6h-7v8.2c0 16.3 3.6 24 14.8 35.5l42.3 42.5c10.4 10.4 12.9 16.3 12.9 31.9v53.9h8v-54h-.3z"
-        fill="#adacac"
+        fill = {this.state.Branch9} onPress = {this.Handler9}
       />
       <Path
         d="M1094.36 1286.277l-21.1 20.9c-10.4 10.4-16.4 13-31.9 13h-61v8h61.5c16.4 0 24.5-3.5 35.5-14.4l22.1-22.1-5.1-5.4z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
       />
       <Path
         d="M798.35931 2242.177H914.35931V2250.177H798.35931z"
-        fill="#bac8e8"
+        fill = {this.state.Branch12} onPress = {this.Handler12}
       />
       <Path
         d="M1002.76 2242.177H914.36v8h109v-8h-20.6zM1088.36 2208.277v13.9c0 13.7-7 20-21 20h-43v8h43c18 0 28-10.2 29-27.6v-14.2l-8-.1zM1095.86 2161.277c-.5-16.7-10.8-27.1-27.8-27.1h-.5H1010.36v7h56.9c13.7 0 21.1 7.3 21.1 21v31h7.1l.4-31.9z"
-        fill="#bac8e8"
+        fill = {this.state.Branch12} onPress = {this.Handler12}
       />
       <Path
         d="M920.35931 2134.177H1010.35931V2141.177H920.35931z"
-        fill="#bac8e8"
+        fill = {this.state.Branch12} onPress = {this.Handler12}
       />
       <Path
         d="M902.66 2103.077c-11.7-11.7-15-19.6-15.2-36.8l7.4-.3c.3 15.5 2.5 21.3 13.2 31.9l1.9 1.6-4.9 5.7-2.4-2.1z"
-        fill="#ef7e24"
+        fill = {this.state.Branch6} onPress = {this.Handler6}
       />
       <Path
         d="M887.35931 2021.177H894.35931V2066.1769999999997H887.35931z"
-        fill="#ef7e24"
+        fill = {this.state.Branch6} onPress = {this.Handler6}
       />
       <Path
         d="M887.35931 1976.177H894.35931V2022.177H887.35931z"
-        fill="#ef7e24"
+        fill = {this.state.Branch6} onPress = {this.Handler6}
       />
       <Path
         d="M887.35931 1931.177H894.35931V1976.177H887.35931z"
-        fill="#ef7e24"
+        fill = {this.state.Branch6} onPress = {this.Handler6}
       />
       <Path
         d="M887.35931 1763.177H894.35931V1807.177H887.35931z"
-        fill="#ef7e24"
+        fill = {this.state.Branch6} onPress = {this.Handler6}
       />
       <Path
         d="M887.35931 1675.177H894.35931V1763.177H887.35931z"
-        fill="#ef7e24"
+        fill = {this.state.Branch6} onPress = {this.Handler6}
         strokeWidth={1.39841175}
       />
       <Path
         d="M906.732 1564.108l8.024-8.547-5.318-5.079-8.02 8.748c-11.616 12.47-14.53 20.54-14.152 36.936l.208 75.813 7.998-.184-.402-75.51c-.443-14.893 1.118-20.93 11.662-32.177z"
-        fill="#ef7e24"
+        fill = {this.state.Branch6} onPress = {this.Handler6}
         strokeWidth={0.78448141}
       />
       <Path
         transform="rotate(-45)"
         d="M-441.78595 1740.506H-395.68773300000004V1747.2626557H-441.78595z"
-        fill="#ef7e24"
+        fill = {this.state.Branch6} onPress = {this.Handler6}
       />
       <Path
         transform="rotate(-45)"
         d="M-393.46555 1740.5608H-323.56622V1747.960729H-393.46555z"
-        fill="#ef7e24"
+        fill = {this.state.Branch6} onPress = {this.Handler6}
       />
       <Path
         d="M1248.46 966.477c-18.5 0-29.1-9-30.6-26.2h-7.4c1.6 21.1 14.8 33 36.7 34h116.2v-8h-115.1l.2.2z"
-        fill="#bed12e"
+        fill = {this.state.limeBranch} onPress = {this.limeHandler}
       />
       <Path
         d="M1322.46 959.677c-10.4-10.4-13.1-16.4-13.1-31.9v-30.6h-8v31.4c0 16.7 3.8 24.7 15.2 36.1l30.7 30.6 5.3-5.2-30.1-30.4zM1409.274 752.058c-.3.3-3.274-2.993-3.274-2.993l-56.14 41.812 5.2 5.2 55.358-40.12s3.984 2.838 4.284 2.338zM1440.913 721.979l-21.79 20.798 5.077 5.32 21.795-20.998c12.181-11.92 15.467-19.845 15.849-36.24l.885-37.99-7.998-.187-.678 37.694c-.247 14.899-2.086 20.858-13.14 31.603z"
-        fill="#ef7e24"
+        fill = {this.state.Branch6} onPress = {this.Handler6}
       />
       <Path
         d="M1462.36 640.436v-35.013h-8v36.074c0 2.88.1 5.457.1 7.882h7.4c.3-3.032.5-6.063.5-8.943z"
-        fill="#ef7e24"
+        fill = {this.state.Branch6} onPress = {this.Handler6}
         strokeWidth={1.23114884}
       />
       <Path
         d="M1455.3594 416.19214H1462.3594V590.22954H1455.3594z"
-        fill="#ef7e24"
+        fill = {this.state.Branch6} onPress = {this.Handler6}
         strokeWidth={1.35350394}
       />
       <Path
         d="M1455.3594 371.177H1462.3594V403.660997H1455.3594z"
-        fill="#ef7e24"
+        fill = {this.state.Branch6} onPress = {this.Handler6}
         strokeWidth={0.70693266}
       />
       <Path
         d="M1455.3594 315.177H1462.3594V371.177H1455.3594z"
-        fill="#ef7e24"
+        fill = {this.state.Branch6} onPress = {this.Handler6}
       />
       <Path
         d="M1455.3594 259.177H1462.3594V315.177H1455.3594z"
-        fill="#ef7e24"
+        fill = {this.state.Branch6} onPress = {this.Handler6}
       />
       <Path
         d="M1614.3594 2102.177H1621.3594V2161.177H1614.3594z"
-        fill="#bed12e"
+        fill = {this.state.limeBranch} onPress = {this.limeHandler}
       />
       <Path
         d="M1614.3594 2042.177H1621.3594V2102.1769999999997H1614.3594z"
-        fill="#bed12e"
+        fill = {this.state.limeBranch} onPress = {this.limeHandler}
       />
       <Path
         d="M1614.3594 1981.177H1621.3594V2042.177H1614.3594z"
-        fill="#bed12e"
+        fill = {this.state.limeBranch} onPress = {this.limeHandler}
       />
       <Path
         d="M1614.3594 1921.177H1621.3594V1981.177H1614.3594z"
-        fill="#bed12e"
+        fill = {this.state.limeBranch} onPress = {this.limeHandler}
       />
       <Path
         d="M1614.3594 1861.177H1621.3594V1921.177H1614.3594z"
-        fill="#bed12e"
+        fill = {this.state.limeBranch} onPress = {this.limeHandler}
       />
       <Path
         d="M1614.3594 1800.177H1621.3594V1861.177H1614.3594z"
-        fill="#bed12e"
+        fill = {this.state.limeBranch} onPress = {this.limeHandler}
       />
       <Path
         d="M1614.3594 1668.01H1621.3594V1801.17675H1614.3594z"
-        fill="#bed12e"
+        fill = {this.state.limeBranch} onPress = {this.limeHandler}
         strokeWidth={1.25910389}
       />
       <Path
         d="M1614.681 1577.962H1621.681V1650.060015H1614.681z"
-        fill="#bed12e"
+        fill = {this.state.limeBranch} onPress = {this.limeHandler}
         strokeWidth={1.16735148}
       />
       <Path
         d="M1614.3594 1495.5371H1621.3594V1562.048536H1614.3594z"
-        fill="#bed12e"
+        fill = {this.state.limeBranch} onPress = {this.limeHandler}
         strokeWidth={0.93510383}
       />
       <Path
         d="M1623.958 1383.455c-12.508 11.66-8.304 79.123-8.948 95.445l-.034.215c2.575-.174 5.04-.303 7.255-.386.51-14.558-4.472-79.926 6.72-90.358z"
-        fill="#bed12e"
+        fill = {this.state.limeBranch} onPress = {this.limeHandler}
       />
       <Path
         d="M1210.3594 724.28467H1217.3594V775.176993H1210.3594z"
-        fill="#bed12e"
+        fill = {this.state.limeBranch} onPress = {this.limeHandler}
         strokeWidth={1.3207401}
       />
       <Path
         d="M1210.3594 608.93524H1217.3594V724.28467H1210.3594z"
-        fill="#bed12e"
+        fill = {this.state.limeBranch} onPress = {this.limeHandler}
         strokeWidth={1.57437122}
       />
       <Path
         d="M1216.643 602.185c-.3-17.4 3.516-23.908-8.084-35.708l-16.2-16.2-5.2 5.2 16.2 16.3c10.4 10.4 6.472 14.796 6.765 30.293 4.08.05.642.19 6.519.115.39-5.64-.57 8.336 0 0z"
-        fill="#bed12e"
+        fill = {this.state.limeBranch} onPress = {this.limeHandler}
         fillOpacity={1}
       />
       <Path
         d="M1182.91 541.233c-12.2-11.7-15.195-10.497-31.695-10.497l-14.856-.259v7l14.356.259c14.797.267 18.046-.436 27.477 7.55 2.061-1.99 2.17 0 4.718-4.053z"
-        fill="#bed12e"
+        fill = {this.state.limeBranch} onPress = {this.limeHandler}
       />
       <Path
         d="M1107.759 510.377c.5 16.7 10.8 27.1 27.8 27.1h.8l.012-1.346-.012-5.461v-.193c-13.695-1.934-21.1-7.3-21.1-21v-16.3h-7.502z"
-        fill="#bed12e"
+        fill = {this.state.limeBranch} onPress = {this.limeHandler}
         fillOpacity={1}
       />
       <Path
         d="M1115.3594 2166.177H1123.3594V2193.177H1115.3594z"
-        fill="#adacac"
+        fill = {this.state.Branch9} onPress = {this.Handler9}
       />
       <Path
         d="M1115.3594 2115.177H1123.3594V2166.177H1115.3594z"
-        fill="#adacac"
+        fill = {this.state.Branch9} onPress = {this.Handler9}
       />
       <Path
         d="M1115.3594 2079.177H1123.3594V2115.177H1115.3594z"
-        fill="#adacac"
+        fill = {this.state.Branch9} onPress = {this.Handler9}
       />
       <Path
         d="M1115.3594 2043.177H1123.3594V2079.1769999999997H1115.3594z"
-        fill="#adacac"
+        fill = {this.state.Branch9} onPress = {this.Handler9}
       />
       <Path
         d="M1115.3594 2007.177H1123.3594V2043.177H1115.3594z"
-        fill="#adacac"
+        fill = {this.state.Branch9} onPress = {this.Handler9}
       />
       <Path
         d="M1115.3594 1967.177H1123.3594V2007.177H1115.3594z"
-        fill="#adacac"
+        fill = {this.state.Branch9} onPress = {this.Handler9}
       />
       <Path
         d="M1115.3594 1815.177H1123.3594V1852.177H1115.3594z"
-        fill="#adacac"
+        fill = {this.state.Branch9} onPress = {this.Handler9}
       />
       <Path
         d="M1115.3594 1626.0399H1123.3594V1814.17695H1115.3594z"
-        fill="#adacac"
+        fill = {this.state.Branch9} onPress = {this.Handler9}
         strokeWidth={2.44389129}
       />
       <Path
         d="M1115.3594 1558.177H1123.3594V1610.975035H1115.3594z"
-        fill="#adacac"
+        fill = {this.state.Branch9} onPress = {this.Handler9}
         strokeWidth={0.5684377}
       />
       <Path
         d="M1115.3594 1515.177H1123.3594V1552.177H1115.3594z"
-        fill="#adacac"
+        fill = {this.state.Branch9} onPress = {this.Handler9}
         strokeWidth={0.64117944}
       />
       <Path
         d="M1115.3594 1432.177H1123.3594V1500.177H1115.3594z"
-        fill="#adacac"
+        fill = {this.state.Branch9} onPress = {this.Handler9}
       />
       <Path
         d="M1065.16 1152.377l57.5-57.5-5.2-5.2-57.1 57.2c-11.7 12.2-15 20.1-15 36.3v62h7v-61.3c0-14.5 2.3-20.6 12.8-31.5z"
-        fill="#adacac"
+        fill = {this.state.Branch9} onPress = {this.Handler9}
       />
       <Path
         d="M1217.06 1192.277c-11.7-.5-17.4-3.4-27.3-13.1l-88.9-88.9-5.2 5.2 88.9 88.7.3.3.3.3c11.2 10.6 18.9 14.5 32.4 15l-.5-7.5z"
@@ -3791,21 +3953,21 @@ class Map extends React.Component {
       <Path
         transform="rotate(-45)"
         d="M-121.1673 1683.2781H23.13131V1690.678029H-121.1673z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
       />
       <Path
         transform="rotate(-45.016)"
         d="M168.85135 1379.38H176.2512795V1499.9788500000002H168.85135z"
-        fill="#adacac"
+        fill = {this.state.Branch9} onPress = {this.Handler9}
       />
       <Path
         d="M1034.3594 695.54443H1041.3594V757.839825H1034.3594z"
-        fill="#adacac"
+        fill = {this.state.Branch9} onPress = {this.Handler9}
         strokeWidth={0.79913545}
       />
       <Path
         d="M1206.96 1010.577c16.9-17.1 16.9-36.7-.3-53.8l-10.5-10.6-5.2 5.2 10.8 10.8c14.2 14.2 13.9 29.1-.3 43.4l-74.9 74.9 5.2 5.2 75.2-75.1z"
-        fill="#adacac"
+        fill = {this.state.Branch9} onPress = {this.Handler9}
       />
       <Path
         d="M1609.1857 2184.177H1700.359429V2191.177H1609.1857z"
@@ -3878,7 +4040,7 @@ class Map extends React.Component {
       />
       <Path
         d="M897.35931 1056.177H1101.35931V1063.177H897.35931z"
-        fill="#943f90"
+        fill = {this.state.Branch7} onPress = {this.Handler7}
       />
       <Path
         transform="translate(209.06 306.377)"
@@ -3937,43 +4099,43 @@ class Map extends React.Component {
       />
       <Path
         d="M1538.76 1081.377l-122.6 122.7c-10.4 10.4-16.3 13.1-31.7 13.1h-142.1v7h142.3c17.1 0 25.1-3.4 36.7-15l122.6-122.4-5.2-5.4z"
-        fill="#0572b9"
+        fill = {this.state.Branch3} onPress = {this.Handler3}
       />
       <Path
         d="M1382.36 1144.177v105.6c0 14.8-2.7 20.7-13.4 31.9l-49.9 49.8 5.2 5.2 49.9-49.9c11.7-12.2 15.2-20.1 15.2-36.3v-106.3h-7z"
-        fill="#ef7e24"
+        fill = {this.state.Branch6} onPress = {this.Handler6}
       />
       <Path
         transform="rotate(-44.984)"
         d="M191.72423 2224.3262H199.1228764V2315.276594H191.72423z"
-        fill="#943f90"
+        fill = {this.state.Branch7} onPress = {this.Handler7}
       />
       <Path
         transform="rotate(-44.984)"
         d="M191.19853 2154.2559H198.59845950000002V2224.2552290000003H191.19853z"
-        fill="#943f90"
+        fill = {this.state.Branch7} onPress = {this.Handler7}
       />
       <Path
         transform="rotate(-44.992)"
         d="M191.03519 2001.6998H198.435119V2141.39845H191.03519z"
-        fill="#943f90"
+        fill = {this.state.Branch7} onPress = {this.Handler7}
       />
       <Path
         transform="rotate(-44.992)"
         d="M191.27829 1810.4177H198.678219V1986.31602H191.27829z"
-        fill="#943f90"
+        fill = {this.state.Branch7} onPress = {this.Handler7}
       />
       <Path
         d="M1115.3594 1056.177H1279.3594V1063.177H1115.3594z"
-        fill="#943f90"
+        fill = {this.state.Branch7} onPress = {this.Handler7}
       />
       <Path
         d="M845.06 1055.977c-14.8 0-20.6-2.5-31.6-13.1l-2.2-2.2-5.1 5.1 2.2 2.2c12.3 11.9 20.1 15.2 36.4 15.2h37.6v-7.5l-37.3.3zM774.399 1013.957l5.251-3.795 29.41 28.115-4.062 4.987z"
-        fill="#943f90"
+        fill = {this.state.Branch7} onPress = {this.Handler7}
       />
       <Path
         d="M766.922 1029L918.28 893.911l6.975 6.425-147.308 129.83z"
-        fill="#f7a600"
+        fill = {this.state.d1} onPress = {this.Handler_d1}
         fillOpacity={1}
         strokeWidth={1.21400297}
       />
@@ -3985,11 +4147,11 @@ class Map extends React.Component {
       />
       <Path
         d="M710.808 948.772l5.251-3.795 52.832 53.021-5.244 5.222zM654.16 883.477c-10.3-10.3-12.8-16.3-12.8-31.6v-176.7h-7v177c0 17.1 3.5 25.1 15 36.7l49.1 49.2 5.1-5.2z"
-        fill="#943f90"
+        fill = {this.state.Branch7} onPress = {this.Handler7}
       />
       <Path
         d="M610.304 925.032c4.278-35.778 28.792-128.935 45.144-166.54.3-.3-2.144.5-4.144-.4-2.1-.8-2.717-3.2-2.817-2.9-17.568 39.776-42.115 131.463-45.328 168.385 0 .3 1.8-.6 3.8-.5 1.9.5 3.345 2.455 3.345 1.955z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
       />
       <Path
         d="M604.744 923.442l3.771.375c4.7-37.9 27.624-128.706 44.67-165.045l-2.973-1.34c-17.224 36.378-40.868 127.91-45.468 166.01z"
@@ -3997,174 +4159,174 @@ class Map extends React.Component {
       />
       <Path
         d="M633.35931 605.64862H641.35931V657.177078H633.35931z"
-        fill="#943f90"
+        fill = {this.state.Branch7} onPress = {this.Handler7}
         strokeWidth={0.57999456}
       />
       <Path
         d="M633.35931 428.177H641.35931V589.9662000000001H633.35931z"
-        fill="#943f90"
+        fill = {this.state.Branch7} onPress = {this.Handler7}
         strokeWidth={1.87540829}
       />
       <Path
         d="M633.35931 395.86121H641.35931V428.177021H633.35931z"
-        fill="#943f90"
+        fill = {this.state.Branch7} onPress = {this.Handler7}
         strokeWidth={0.88780093}
       />
       <Path
         d="M633.35931 343.177H641.35931V378.65362700000003H633.35931z"
-        fill="#943f90"
+        fill = {this.state.Branch7} onPress = {this.Handler7}
         strokeWidth={0.89793485}
       />
       <Path
         d="M633.35931 301.177H641.35931V343.177H633.35931z"
-        fill="#943f90"
+        fill = {this.state.Branch7} onPress = {this.Handler7}
       />
       <Path
         d="M599.35931 1168.177H685.35931V1175.177H599.35931z"
-        fill="#24bcef"
+        fill = {this.state.Branch4} onPress = {this.Handler4}
       />
       <Path
         d="M1020.86 1182.777c-1-1-1.9-1.9-3-2.5l-5.2 5.2c1 1 1.9 1.9 3 2.8l60.9 60.9 5.2-5.2-60.9-61.2z"
-        fill="#24bcef"
+        fill = {this.state.Branch4} onPress = {this.Handler4}
       />
       <Path
         d="M984.56 1168.177h-32.2v7h31.5c13.3 0 19.6 2 28.9 10.4l5.2-5c-10.8-9.6-18.7-12.4-33.4-12.4z"
-        fill="#24bcef"
+        fill = {this.state.Branch4} onPress = {this.Handler4}
       />
       <Path
         d="M832.35931 1168.177H952.35931V1175.177H832.35931z"
-        fill="#24bcef"
+        fill = {this.state.Branch4} onPress = {this.Handler4}
       />
       <Path
         d="M832.35931 1168.177H952.35931V1175.177H832.35931z"
-        fill="#24bcef"
+        fill = {this.state.Branch4} onPress = {this.Handler4}
       />
       <Path
         d="M697.35931 1168.177H818.35931V1175.177H697.35931z"
-        fill="#24bcef"
+        fill = {this.state.Branch4} onPress = {this.Handler4}
       />
       <Path
         d="M697.35931 1168.177H818.35931V1175.177H697.35931z"
-        fill="#24bcef"
+        fill = {this.state.Branch4} onPress = {this.Handler4}
       />
       <Path
         d="M774.96 1186.877l-113.729 112.6 4.897 5.595 113.931-112.795c12.7-12.7 20.4-16.7 38.4-17.4v-7.1c-20.1.8-29.5 5.2-43.5 19.1z"
-        fill="#24bcef"
+        fill = {this.state.Branch4} onPress = {this.Handler4}
       />
       <Path
         d="M774.96 1186.877l-113.729 112.6 4.897 5.595 113.931-112.795c12.7-12.7 20.4-16.7 38.4-17.4v-7.1c-20.1.8-29.5 5.2-43.5 19.1z"
-        fill="#24bcef"
+        fill = {this.state.Branch4} onPress = {this.Handler4}
       />
       <Path
         transform="rotate(-135.008)"
         d="M-1392.4464 -450.87088H-1384.9063977V-411.684055H-1392.4464z"
-        fill="#24bcef"
+        fill = {this.state.Branch4} onPress = {this.Handler4}
       />
       <Path
         d="M649.66 1310.385l-29.8 31.592c-9.6 9.5-15 11.2-29.1 12.2h-126.7c-9.6 0-14.7-5.4-14.7-15.2v-31.472l-6.614-.386-.387 32.458c0 13.1 7.6 20.6 20.7 21.6h128.7c15.2 0 22.4-3.8 33.2-14.4l29.8-31.492z"
-        fill="#24bcef"
+        fill = {this.state.Branch4} onPress = {this.Handler4}
       />
       <Path
         d="M443.881 1244.921v45.084l5.827-.186.521-45.443c-.716-17.099-4.099-25.006-16.13-36.443l-50.963-47.826-4.738 5.153 51.194 47.85c10.506 9.85 13.688 16.477 14.289 31.811z"
-        fill="#24bcef"
+        fill = {this.state.Branch4} onPress = {this.Handler4}
         fillOpacity={1}
       />
       <Path
         d="M346.073 1135.837l4.738-5.152 26.5 24.367-4.739 5.153zM287.138 1081.739l4.738-5.153 26.5 24.367-4.738 5.153z"
-        fill="#24bcef"
+        fill = {this.state.Branch4} onPress = {this.Handler4}
       />
       <Path
         d="M1863.1305 596.02649H1870.1305V644.260316H1863.1305z"
-        fill="#0572b9"
+        fill = {this.state.Branch3} onPress = {this.Handler3}
         strokeWidth={0.78138}
       />
       <Path
         d="M1863.1305 651.26031H1870.1305V784.26031H1863.1305z"
-        fill="#0572b9"
+        fill = {this.state.Branch3} onPress = {this.Handler3}
         strokeWidth={1.29751468}
       />
       <Path
         d="M1863.13 787.26l-.033 41.76c-.01 13.7-7 20-21 20h-7.667l-.08 7.545 7.747.055c18 0 28-9.8 29-27.2l-.321-42.343z"
-        fill="#0572b9"
+        fill = {this.state.Branch3} onPress = {this.Handler3}
         fillOpacity={1}
       />
       <Path
         d="M1755.015 864.263l-4.863 4.895 4.966 4.934 4.228-4.257c10.431-10.5 16.434-12.852 31.99-13.186l26.748-.034 1.576-7.354-28.207.175c-17.182.268-25.091 3.406-36.438 14.827z"
-        fill="#0572b9"
+        fill = {this.state.Branch3} onPress = {this.Handler3}
       />
       <Path
         transform="rotate(-135.008)"
         d="M-1859.5673 336.87234H-1852.167371V418.97155300000003H-1859.5673z"
-        fill="#0572b9"
+        fill = {this.state.Branch3} onPress = {this.Handler3}
       />
       <Path
         d="M1110.3594 1217.177H1227.3594V1224.177H1110.3594z"
-        fill="#0572b9"
+        fill = {this.state.Branch3} onPress = {this.Handler3}
       />
       <Path
-        fill="#0572b9"
+        fill = {this.state.Branch3} onPress = {this.Handler3}
         d="M831.35931 1217.177H1097.15127V1224.177H831.35931z"
       />
       <Path
         d="M788.66 1232.377l-73.1 73.1-73.1 73.1c-13.4 13.4-22 16.6-41.9 17.6h-55.2v7h56.4c21.1 0 31.1-4.8 45.8-19.4l145.9-145.8c8.7-8.7 13.9-11.7 24.9-12.8v-7.4c-13 .9-19.8 4.7-29.7 14.6z"
-        fill="#0572b9"
+        fill = {this.state.Branch3} onPress = {this.Handler3}
       />
       <Path
         d="M529.053 1395.895l-181.814-.193c-9.6-.017-14.7-5.4-14.7-15.2l-.387-148.068-6.613.194v148.474c0 13.1 7.6 20.6 20.7 21.6 16.24-.32 182.92-.325 182.92-.325z"
-        fill="#0572b9"
+        fill = {this.state.Branch3} onPress = {this.Handler3}
         fillOpacity={1}
       />
       <Path
         d="M332.139 1216.165l.22-157.657-8-.052v157.302z"
-        fill="#0572b9"
+        fill = {this.state.Branch3} onPress = {this.Handler3}
         strokeWidth={0.72270149}
       />
       <Path
         d="M324.07236 867.42896H331.07236V1041.65853H324.07236z"
-        fill="#0572b9"
+        fill = {this.state.Branch3} onPress = {this.Handler3}
         strokeWidth={1.12431991}
       />
       <Path
         d="M324.07236 815.42896H331.07236V860.42896H324.07236z"
-        fill="#0572b9"
+        fill = {this.state.Branch3} onPress = {this.Handler3}
       />
       <Path
         d="M344.059 778.577l21.3-21.3-5.077-5.32-21.423 21.62c-11.9 12.2-14.787 18.452-14.787 34.852v.221l6.89.079c-.1-14.9 2.297-19.152 13.097-30.152zm65.197-74.968l-.142.128-49.23 48.604 5.395 5.014 48.917-48.498c12.18-11.92 16.064-14.401 15.99-36.369l-.138-30.598-6.689.287-.167 30.17c-.247 14.899-2.883 20.517-13.936 31.262z"
-        fill="#0572b9"
+        fill = {this.state.Branch3} onPress = {this.Handler3}
         fillOpacity={1}
       />
       <Path
         d="M319.573 1111.47l4.738-5.153 26.5 24.368-4.738 5.152z"
-        fill="#24bcef"
+        fill = {this.state.Branch4} onPress = {this.Handler4}
       />
       <Path
         d="M423.35931 588.64856H430.17181V635.364483H423.35931z"
-        fill="#0572b9"
+        fill = {this.state.Branch3} onPress = {this.Handler3}
       />
       <Path
         d="M423.35931 541.11639H430.35931V583.993187H423.35931z"
-        fill="#0572b9"
+        fill = {this.state.Branch3} onPress = {this.Handler3}
       />
       <Path
         d="M423.35931 395.53946H430.35931V541.11639H423.35931z"
-        fill="#0572b9"
+        fill = {this.state.Branch3} onPress = {this.Handler3}
         strokeWidth={1.19413924}
       />
       <Path
         d="M423.35931 318.177H430.35931V378.177H423.35931z"
-        fill="#0572b9"
+        fill = {this.state.Branch3} onPress = {this.Handler3}
       />
       <Path
         d="M423.35931 253.177H430.35931V313.177H423.35931z"
-        fill="#0572b9"
+        fill = {this.state.Branch3} onPress = {this.Handler3}
       />
       <Path
         d="M666.219 1298.142c-4.3-4.3-11.2-4.3-15.5 0-4.3 4.3-4.3 11.2 0 15.5 4.3 4.3 11.2 4.3 15.5 0 4.1-4.4 4.1-11.2 0-15.5zm-4.3 11.1c-1.9 1.9-4.9 1.9-6.9 0-1.9-1.9-1.9-4.9 0-6.9 1.9-1.9 4.9-1.9 6.9 0 1.8 1.9 1.8 5.2 0 6.9z"
-        fill="#24bcef"
+        fill = {this.state.Branch4} onPress = {this.Handler4}
       />
       <Path
         d="M1587.335 1185.317c-10.4-9.946-12.07-11.635-12.47-26.179l-7.73-.094v.094-.094c0 15.858 3.4 19.987 15 30.871l35.5 33.404 5.2-4.88zm-20.2-135.949h7.73v109.77l-7.73-.094z"
-        fill="#f42a7c"
+        fill = {this.state.d2} onPress = {this.Handler_d2}
         fillOpacity={1}
         strokeWidth={0.96866733}
       />
@@ -4176,7 +4338,7 @@ class Map extends React.Component {
       />
       <Path
         d="M1546.76 1067.677c-6 .3-10.8 5.2-10.8 11.2.3 6 5.2 10.8 11.2 10.8 6-.3 10.8-5.2 10.8-11.2-.2-5.9-5.2-10.9-11.2-10.8zm.1 15.8c-2.5.3-4.9-2.1-4.9-4.9-.3-2.5 2.1-4.9 4.9-4.9 2.5-.3 4.9 2.1 4.9 4.9.2 2.8-2.1 4.9-4.9 4.9z"
-        fill="#0572b9"
+        fill = {this.state.Branch3} onPress = {this.Handler3}
       />
       <Circle cx={1546.8594} cy={1078.777} r={4.9000001} fill="#fff" />
       <Path
@@ -4359,7 +4521,7 @@ class Map extends React.Component {
       </G>
       <Path
         d="M1342.183 1350.522c-4.3-4.3-11.2-4.3-15.5 0-4.3 4.3-4.3 11.2 0 15.5 4.3 4.3 11.2 4.3 15.5 0 4.4-4.1 4.4-11 0-15.5zm-4.2 11.4c-1.9 1.9-4.9 1.9-6.9 0-1.9-1.9-1.9-4.9 0-6.9 1.9-1.9 4.9-1.9 6.9 0 1.8 1.8 1.8 5 0 6.9z"
-        fill="#ffcd1e"
+        fill = {this.state.Branch8} onPress = {this.Handler8}
       />
       <G strokeMiterlimit={10}>
         <Path
@@ -4779,7 +4941,7 @@ class Map extends React.Component {
       </G>
       <Path
         d="M1689.654 672.565l-.189-12.81 10-.039.189 12.81z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
         fillOpacity={1}
       />
       <Path d="M1692.758 680.439l-.109-28 4-.016.109 28z" fill="#fff" />
@@ -4893,11 +5055,11 @@ class Map extends React.Component {
       <Path
         transform="translate(209.06 306.377)"
         d="M1008.6 849L1006.2 842.7 1011.8 838.8 1005.1 838.8 1003 832.4 1000.9 838.8 994.2 838.8 999.7 842.7 997.7 849 1003 844.9z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
       />
       <Path
         d="M1473.3594 555.07703H1488.3594V559.07703H1473.3594z"
-        fill="#0572b9"
+        fill = {this.state.Branch3} onPress = {this.Handler3}
       />
       <Path
         d="M1444.76 571.177c-2.5-2.5-6.6-2.5-9.3 0-2.5 2.5-2.5 6.6 0 9.3 2.5 2.5 6.6 2.5 9.3 0 2.5-2.6 2.5-6.7 0-9.3zm-2.6 6.8c-1.3 1.3-3 1.3-4.3 0-1.3-1.3-1.3-3 0-4.3 1.3-1.3 3-1.3 4.3 0 1.2 1.3 1.2 3 0 4.3zM1167.16 571.177c-2.5-2.5-6.6-2.5-9.3 0-2.5 2.5-2.5 6.6 0 9.3 2.5 2.5 6.6 2.5 9.3 0 2.5-2.5 2.5-6.5 0-9.3zm-2.5 6.8c-1.3 1.3-3 1.3-4.3 0-1.3-1.3-1.3-3 0-4.3 1.3-1.3 3-1.3 4.3 0 1.2 1.3 1.2 3 0 4.3z"
@@ -4907,14 +5069,14 @@ class Map extends React.Component {
         r={2.3}
         cy={485.61462}
         cx={1111.3085}
-        fill="#adacac"
+        fill = {this.state.Branch9} onPress = {this.Handler9}
         fillOpacity={1}
       />
       <Circle
         r={2.3}
         cy={484.51163}
         cx={1149.6122}
-        fill="#bed12e"
+        fill = {this.state.limeBranch} onPress = {this.limeHandler}
         fillOpacity={1}
       />
       <Path
@@ -5363,7 +5525,7 @@ class Map extends React.Component {
         x={792.1582}
         y={1255.8091}
         fontFamily="Moscow Sans"
-        fill="#0572b9"
+        fill = {this.state.Branch3} onPress = {this.Handler3}
       >
         {"\u041A\u0438\u0435\u0432\u0441\u043A\u0430\u044F"}
       </Text>
@@ -5372,7 +5534,7 @@ class Map extends React.Component {
         x={902.57965}
         y={1204.3174}
         fontFamily="Moscow Sans"
-        fill="#adacac"
+        fill = {this.state.Branch9} onPress = {this.Handler9}
       >
         {"\u0421\u043C\u043E\u043B\u0435\u043D\u0441\u043A\u0430\u044F"}
       </Text>
@@ -5381,7 +5543,7 @@ class Map extends React.Component {
         x={1074.5483}
         y={1205.0725}
         fontFamily="Moscow Sans"
-        fill="#0572b9"
+        fill = {this.state.Branch3} onPress = {this.Handler3}
       >
         {"\u0410\u0440\u0431\u0430\u0442\u0441\u043A\u0430\u044F"}
       </Text>
@@ -5541,7 +5703,7 @@ class Map extends React.Component {
         x={897.5459}
         y={1155.4321}
         fontFamily="Moscow Sans"
-        fill="#24bcef"
+        fill = {this.state.Branch4} onPress = {this.Handler4}
       >
         {"\u0421\u043C\u043E\u043B\u0435\u043D\u0441\u043A\u0430\u044F"}
       </Text>
@@ -5550,7 +5712,7 @@ class Map extends React.Component {
         x={1024.1536}
         y={1171.272}
         fontFamily="Moscow Sans"
-        fill="#24bcef"
+        fill = {this.state.Branch4} onPress = {this.Handler4}
       >
         {"\u0410\u0440\u0431\u0430\u0442\u0441\u043A\u0430\u044F"}
       </Text>
@@ -6690,7 +6852,7 @@ class Map extends React.Component {
         x={775.1062}
         y={1200.6123}
         fontFamily="Moscow Sans"
-        fill="#925233"
+        fill = {this.state.Branch5} onPress = {this.Handler5}
       >
         {"\u041A\u0438\u0435\u0432\u0441\u043A\u0430\u044F"}
       </Text>
@@ -6728,7 +6890,7 @@ class Map extends React.Component {
       </Text>
       <Path
         d="M1531.752 1969.7l-7.37.089-.359-94.785 7.37-.088z"
-        fill="#f42a7c"
+        fill = {this.state.d2} onPress = {this.Handler_d2}
         fillOpacity={1}
         strokeWidth={0.77542698}
       />
@@ -7288,22 +7450,22 @@ class Map extends React.Component {
       >
         {"\u041C\u0435\u0434\u0432\u0435\u0434\u043A\u043E\u0432\u043E"}
       </Text>
-      <Circle cx={1385.6593} cy={1137.4771} r={2.3} fill="#943f90" />
-      <Circle cx={1413.1593} cy={1137.4771} r={2.3} fill="#ef7e24" />
-      <Circle cx={518.45935} cy={1418.5769} r={2.3} fill="#0572b9" />
-      <Circle cx={537.85931} cy={1399.2769} r={2.3} fill="#ffcd1e" />
+      <Circle cx={1385.6593} cy={1137.4771} r={2.3} fill = {this.state.Branch7} onPress = {this.Handler7} />
+      <Circle cx={1413.1593} cy={1137.4771} r={2.3} fill = {this.state.Branch6} onPress = {this.Handler6} />
+      <Circle cx={518.45935} cy={1418.5769} r={2.3} fill = {this.state.Branch3} onPress = {this.Handler3} />
+      <Circle cx={537.85931} cy={1399.2769} r={2.3} fill = {this.state.Branch8} onPress = {this.Handler8} />
       <Circle cx={1347.4594} cy={1880.877} r={2.3} fill="#89cdcf" />
       <Circle cx={1366.8594} cy={1900.377} r={2.3} fill={this.state.greenBranch}
         onPress={this.greenHandler} id = "green-branch"/>
-      <Circle cx={1316.0593} cy={1339.177} r={2.3} fill="#ffcd1e" />
-      <Circle cx={1334.5593} cy={1357.7769} r={2.3} fill="#ef7e24" />
+      <Circle cx={1316.0593} cy={1339.177} r={2.3} fill = {this.state.Branch8} onPress = {this.Handler8} />
+      <Circle cx={1334.5593} cy={1357.7769} r={2.3} fill = {this.state.Branch6} onPress = {this.Handler6} />
       <Path
         d="M1316.3594 568.177H1320.3594V575.177H1316.3594z"
-        fill="#0572b9"
+        fill = {this.state.Branch3} onPress = {this.Handler3}
       />
       <Path
         d="M1241.3594 568.177H1245.3594V575.177H1241.3594z"
-        fill="#0572b9"
+        fill = {this.state.Branch3} onPress = {this.Handler3}
       />
       <G transform="translate(256.894 305.991)">
         <Path
@@ -7395,35 +7557,35 @@ class Map extends React.Component {
         />
       </G>
       <G transform="translate(209.06 306.377)">
-        <Circle cx={448.29999} cy={1939.8} r={11.7} fill="#bac8e8" />
+        <Circle cx={448.29999} cy={1939.8} r={11.7} fill = {this.state.Branch12} onPress = {this.Handler12} />
         <Path
           d="M440.1 1944.2h2.4v-8h-2.2v-2h4.4v9.9h2.7l-.7 2h-6.6v-1.9zM448.7 1946.2v-1.7l3-3c2.2-2.2 2.7-2.8 2.7-3.7 0-1.1-.9-1.7-2-1.7-1 0-2 .5-2.8 1.2l-1.4-1.4c1.1-1.1 2.7-1.8 4.3-1.8 2.7 0 4.1 1.6 4.1 3.5 0 1.6-.8 2.7-2.9 4.7l-2.1 2h5.5l-.7 2-7.7-.1z"
           fill="#fff"
         />
       </G>
       <G transform="translate(251.06 306.377)">
-        <Circle cx={1342.3} cy={1844.2} r={11.7} fill="#bed12e" />
+        <Circle cx={1342.3} cy={1844.2} r={11.7} fill = {this.state.limeBranch} onPress = {this.limeHandler} />
         <Path
           d="M1333.8 1847.6h2.4v-8h-2.2v-2h4.4v9.9h2.7l-.7 2h-6.6v-1.9zM1341.6 1843.6c0-3.8 1.7-6.2 4.6-6.2 2.9 0 4.6 2.3 4.6 6.2 0 3.8-1.7 6.2-4.6 6.2-2.9 0-4.6-2.4-4.6-6.2zm7 0c0-2.5-.8-4.1-2.4-4.1-1.6 0-2.4 1.6-2.4 4.1 0 2.5.8 4.1 2.4 4.1 1.7.1 2.4-1.5 2.4-4.1z"
           fill="#fff"
         />
       </G>
       <G transform="translate(298.239 159.503)">
-        <Circle cx={813.29999} cy={77.199997} r={11.7} fill="#bed12e" />
+        <Circle cx={813.29999} cy={77.199997} r={11.7} fill = {this.state.limeBranch} onPress = {this.limeHandler} />
         <Path
           d="M804.8 80.6h2.4v-8H805v-2h4.4v9.9h2.7l-.7 2h-6.6zM812.6 76.6c0-3.8 1.7-6.2 4.6-6.2 2.9 0 4.6 2.3 4.6 6.2 0 3.8-1.7 6.2-4.6 6.2-2.9 0-4.6-2.4-4.6-6.2zm7 0c0-2.5-.8-4.1-2.4-4.1-1.6 0-2.4 1.6-2.4 4.1 0 2.5.8 4.1 2.4 4.1 1.7.1 2.4-1.5 2.4-4.1z"
           fill="#fff"
         />
       </G>
       <G transform="matrix(1 0 0 1 335.383 112.009)">
-        <Circle r={11.7} cy={64.599998} cx={958.79999} fill="#adacac" />
+        <Circle r={11.7} cy={64.599998} cx={958.79999} fill = {this.state.Branch9} onPress = {this.Handler9} />
         <Path
           d="M963.5 62.4c0 1.8-.7 3.2-2.6 5.6l-1.7 2.2-2.5-.2 3.6-4.2c-.6.3-1.2.4-1.8.4-1.9 0-3.9-1.5-3.9-4 0-2.4 1.8-4.3 4.5-4.3 2.8 0 4.4 2.2 4.4 4.5zm-6.7-.4c0 1.2.9 2.2 2.1 2.2 1.2 0 2.1-1 2.1-2.2 0-1.2-.9-2.2-2.1-2.2-1.2 0-2.1 1-2.1 2.2z"
           fill="#fff"
         />
       </G>
       <G transform="translate(209.06 306.377)">
-        <Circle cx={911.79999} cy={1922.6} r={11.7} fill="#adacac" />
+        <Circle cx={911.79999} cy={1922.6} r={11.7} fill = {this.state.Branch9} onPress = {this.Handler9} />
         <Path
           d="M916.5 1920.4c0 1.8-.7 3.2-2.6 5.6l-1.7 2.2-2.5-.2 3.6-4.2c-.6.3-1.2.4-1.8.4-1.9 0-3.9-1.5-3.9-4 0-2.4 1.8-4.3 4.5-4.3 2.8 0 4.4 2.2 4.4 4.5zm-6.7-.4c0 1.2.9 2.2 2.1 2.2 1.2 0 2.1-1 2.1-2.2 0-1.2-.9-2.2-2.1-2.2-1.2 0-2.1 1-2.1 2.2z"
           fill="#fff"
@@ -7503,7 +7665,7 @@ class Map extends React.Component {
       </G>
       <Path
         d="M1119.316 1606.597c-6 0-11 5-11 11s5 11 11 11 11-5 11-11c-.3-6-5-11-11-11zm0 16c-2.3 0-5-2.3-5-5 0-2.3 2.3-5 5-5 2.3 0 5 2.3 5 5s-2.6 5-5 5z"
-        fill="#adacac"
+        fill = {this.state.Branch9} onPress = {this.Handler9}
       />
       <Path
         d="M1188.691 1599.644a2 2 0 01-2.57 1.181 2 2 0 01-1.18-2.57 2 2 0 012.57-1.18 2 2 0 011.18 2.57zm-5.81 1.608a2 2 0 01-2.57 1.181 2 2 0 01-1.18-2.57 2 2 0 012.57-1.181 2 2 0 011.18 2.57zm-5.995 1.782a2 2 0 01-2.57 1.18 2 2 0 01-1.18-2.57 2 2 0 012.57-1.18 2 2 0 011.18 2.57zm-6.208 1.702a2 2 0 01-2.57 1.181 2 2 0 01-1.181-2.57 2 2 0 012.57-1.181 2 2 0 011.18 2.57zm-5.85 1.714a2 2 0 01-2.57 1.182 2 2 0 01-1.18-2.57 2 2 0 012.57-1.181 2 2 0 011.18 2.57zm-5.51 1.764a2 2 0 01-2.57 1.18 2 2 0 01-1.18-2.57 2 2 0 012.57-1.18 2 2 0 011.18 2.57zm-5.574 1.623a2 2 0 01-2.57 1.18 2 2 0 01-1.18-2.57 2 2 0 012.57-1.18 2 2 0 011.18 2.57zm-5.76 1.896a2 2 0 01-2.57 1.181 2 2 0 01-1.182-2.57 2 2 0 012.57-1.18 2 2 0 011.181 2.57zm-5.513 1.717a2 2 0 01-2.57 1.181 2 2 0 01-1.181-2.57 2 2 0 012.57-1.18 2 2 0 011.18 2.57zm-5.336 1.965a2 2 0 01-2.57 1.181 2 2 0 01-1.18-2.57 2 2 0 012.57-1.18 2 2 0 011.18 2.57z"
@@ -7603,11 +7765,11 @@ class Map extends React.Component {
       </Text>
       <Path
         d="M515.85931 1540.877H529.75931V1548.877H515.85931z"
-        fill="#ffcd1e"
+        fill = {this.state.Branch8} onPress = {this.Handler8}
       />
-      <Path d="M515.56 1612.372h15v7h-15z" fill="#ffcd1e" fillOpacity={1} />
+      <Path d="M515.56 1612.372h15v7h-15z" fill = {this.state.Branch8} onPress = {this.Handler8} fillOpacity={1} />
       <G transform="translate(209.06 306.377)">
-        <Circle cx={608.20001} cy={521.79999} r={11.4} fill="#67c7c3" />
+        <Circle cx={608.20001} cy={521.79999} r={11.4} fill = {this.state.Branch11} onPress = {this.Handler11} />
         <Text
           transform="translate(602.551 525.516)"
           fontSize="11.69989967px"
@@ -7634,12 +7796,12 @@ class Map extends React.Component {
       </G>
       <Path
         d="M515.55933 1606.377H522.55933V1677.094514H515.55933z"
-        fill="#ffcd1e"
+        fill = {this.state.Branch8} onPress = {this.Handler8}
         strokeWidth={1.0511713}
       />
       <Path
         d="M515.55933 1677.0945H522.55933V1733.376971H515.55933z"
-        fill="#ffcd1e"
+        fill = {this.state.Branch8} onPress = {this.Handler8}
         strokeWidth={1.10613382}
       />
       <G fontSize={18.2193}>
@@ -7664,7 +7826,7 @@ class Map extends React.Component {
       </G>
       <Path
         d="M515.85931 1725.377H529.75931V1733.377H515.85931z"
-        fill="#ffcd1e"
+        fill = {this.state.Branch8} onPress = {this.Handler8}
       />
       <Text
         fontSize="18.3083992px"
@@ -7677,12 +7839,12 @@ class Map extends React.Component {
       </Text>
       <Path
         d="M515.55933 1731.377H522.55933V1789.6842279999998H515.55933z"
-        fill="#ffcd1e"
+        fill = {this.state.Branch8} onPress = {this.Handler8}
         strokeWidth={0.86879253}
       />
       <Path
         d="M515.85901 1786.1489H529.75901V1794.1489H515.85901z"
-        fill="#ffcd1e"
+        fill = {this.state.Branch8} onPress = {this.Handler8}
       />
       <Text
         fontSize="18.3083992px"
@@ -7695,12 +7857,12 @@ class Map extends React.Component {
       </Text>
       <Path
         d="M515.55933 1789.6842H522.55933V1857.3769029999999H515.55933z"
-        fill="#ffcd1e"
+        fill = {this.state.Branch8} onPress = {this.Handler8}
         strokeWidth={0.96380895}
       />
       <Path
         d="M515.85931 1849.377H529.75931V1857.377H515.85931z"
-        fill="#ffcd1e"
+        fill = {this.state.Branch8} onPress = {this.Handler8}
       />
       <Text
         transform="translate(209.06 306.377) translate(324.08 1551.81)"
@@ -7712,11 +7874,11 @@ class Map extends React.Component {
       </Text>
       <Path
         d="M515.55933 1850.377H522.55933V1914.377H515.55933z"
-        fill="#ffcd1e"
+        fill = {this.state.Branch8} onPress = {this.Handler8}
       />
       <Path
         d="M515.85931 1907.377H529.75931V1915.377H515.85931z"
-        fill="#ffcd1e"
+        fill = {this.state.Branch8} onPress = {this.Handler8}
       />
       <G fontSize={18.2193}>
         <Text
@@ -7738,11 +7900,11 @@ class Map extends React.Component {
       </G>
       <Path
         d="M515.55933 1914.377H522.55933V1978.377H515.55933z"
-        fill="#ffcd1e"
+        fill = {this.state.Branch8} onPress = {this.Handler8}
       />
       <Path
         d="M515.55933 1971.377H530.55933V1978.377H515.55933z"
-        fill="#ffcd1e"
+        fill = {this.state.Branch8} onPress = {this.Handler8}
         fillOpacity={1}
       />
       <Text
@@ -7758,11 +7920,11 @@ class Map extends React.Component {
       </Text>
       <Path
         d="M515.55933 1971.377H522.55933V2035.377H515.55933z"
-        fill="#ffcd1e"
+        fill = {this.state.Branch8} onPress = {this.Handler8}
       />
       <Path
         d="M508.05899 2035.377H530.05899V2042.377H508.05899z"
-        fill="#ffcd1e"
+        fill = {this.state.Branch8} onPress = {this.Handler8}
         fillOpacity={1}
       />
       <Text
@@ -7776,11 +7938,11 @@ class Map extends React.Component {
       </Text>
       <Path
         d="M684.35931 1919.177H692.35931V1957.177H684.35931z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
       />
       <Path
         d="M684.35931 1955.177H699.35931V1963.177H684.35931z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
       />
       <Text
         fontSize="18.3083992px"
@@ -7793,11 +7955,11 @@ class Map extends React.Component {
       </Text>
       <Path
         d="M684.35931 1962.177H692.35931V2000.177H684.35931z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
       />
       <Path
         d="M684.35931 1999.177H699.35931V2007.177H684.35931z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
       />
       <Text
         fontSize="18.3083992px"
@@ -7810,11 +7972,11 @@ class Map extends React.Component {
       </Text>
       <Path
         d="M684.35931 2006.177H692.35931V2044.177H684.35931z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
       />
       <Path
         d="M684.35931 2043.177H699.35931V2051.1769999999997H684.35931z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
       />
       <Text
         fontSize="18.3083992px"
@@ -7827,11 +7989,11 @@ class Map extends React.Component {
       </Text>
       <Path
         d="M684.35931 2048.377H692.35931V2090.377H684.35931z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
       />
       <Path
         d="M677.35931 2090.177H699.35931V2097.177H677.35931z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
       />
       <Text
         fontSize="18.3083992px"
@@ -7844,16 +8006,16 @@ class Map extends React.Component {
       </Text>
       <Path
         d="M872.468 794.234l-9.078 10.463 7.17 1.499 6.277-7.45c9.526-11.326 17.576-14.426 32.232-19.592l96.041-23.896-1.404-5.963-95.888 23.047c-16.419 5.372-24.987 9.57-35.35 21.892z"
-        fill="#ffcd1e"
+        fill = {this.state.Branch8} onPress = {this.Handler8}
         fillOpacity={1}
       />
       <Path
         d="M868.06 809.677c.1 0 .1.1.2.1 2.1 1.8 2.5 4.7.8 6.8-1.5 2-4.6 2.6-6.8.8l-.1-.1-3.6 4.7c4.7 3.5 11.3 2.7 15-2 3.6-4.6 2.7-11.3-2-15z"
-        fill="#67c7c3"
+        fill = {this.state.Branch11} onPress = {this.Handler11}
       />
       <Path
         d="M862.36 817.377c-.1 0-.1-.1-.2-.1-2.1-1.8-2.5-4.7-.9-6.7 1.5-2 4.6-2.6 6.7-.9l.1.1 3.6-4.7c-4.7-3.5-11.3-2.7-15 2-3.5 4.7-2.7 11.3 2 15z"
-        fill="#ffcd1e"
+        fill = {this.state.Branch8} onPress = {this.Handler8}
       />
       <Text
         transform="rotate(-.008)"
@@ -7885,7 +8047,7 @@ class Map extends React.Component {
         }
       </Text>
       <Path
-        fill="#d68ab1"
+        fill = {this.state.Branch15} onPress = {this.Handler15}
         d="M1809.222 1177.67c-2.294 2.231-1.766 2.858-4.566 5.332 47.404 47.404 94.82 94.798 142.2 142.213.984-.87 2-1.713 2.872-2.7a44.794 44.794 0 011.803-1.751c.273-.25.334-.292.422-.363z"
       />
       <Path
@@ -7947,12 +8109,12 @@ class Map extends React.Component {
       />
       <Path
         d="M336.439 1215.03c-4.3-4.3-11.2-4.3-15.5 0-4.3 4.3-4.3 11.2 0 15.5 4.3 4.3 11.2 4.3 15.5 0 4.3-4.2 4.3-11.1 0-15.5zm-4.2 11.3c-1.9 1.9-4.9 1.9-6.9 0s-1.9-4.9 0-6.9c1.9-1.9 4.9-1.9 6.9 0 1.8 1.7 1.8 4.8 0 6.9z"
-        fill="#0572b9"
+        fill = {this.state.Branch3} onPress = {this.Handler3}
         fillOpacity={1}
       />
       <Path
         d="M137.45 1070.603c0 16.6 3.4 24.5 15.3 36.8l7.322 7.122 64.473 62.373 61.174 59.02h-.002l78.564 75.902 39.973 38.893.008-.01c.049.048 7.173 7.13 18.633 18.557 9.895 9.918 20.894 7.695 30.127-1.534l.015.016 28.985-28.05-5.399-5.53-28.986 28.051c-6.917 6.943-13.568 7.024-19.332 1.319l-18.66-18.36-39.973-38.894-75.203-72.657h.002l-64.475-62.373-64.474-62.373-7.172-6.574c-10.7-11-13.272-17.3-13.172-31.7z"
-        fill="#f7a600"
+        fill = {this.state.d1} onPress = {this.Handler_d1}
         fillOpacity={1}
       />
       <Path
@@ -7962,7 +8124,7 @@ class Map extends React.Component {
       />
       <Path
         d="M136.59966 1000.3399H144.3288499V1056.1099H136.59966z"
-        fill="#f7a600"
+        fill = {this.state.d1} onPress = {this.Handler_d1}
         fillOpacity={1}
         strokeWidth={0.60908073}
       />
@@ -7974,12 +8136,12 @@ class Map extends React.Component {
       />
       <Path
         d="M151.127 1061.723c-2.3-5.7-8.8-8.2-14.5-6-5.7 2.2-8.2 8.8-6 14.5 2.3 5.7 8.8 8.2 14.5 6 5.8-2.5 8.5-9 6-14.5zm-8.2 8.8c-2.5 1-5.5-.3-6.5-2.5-1-2.5.3-5.5 2.5-6.5 2.5-1 5.5.3 6.5 2.5 1.1 2.6 0 5.4-2.5 6.5z"
-        fill="#f7a600"
+        fill = {this.state.d1} onPress = {this.Handler_d1}
         fillOpacity={1}
       />
       <Path
         d="M136.58701 884.88H144.3161999V998.86624H136.58701z"
-        fill="#f7a600"
+        fill = {this.state.d1} onPress = {this.Handler_d1}
         fillOpacity={1}
         strokeWidth={0.87076455}
       />
@@ -7991,13 +8153,13 @@ class Map extends React.Component {
       />
       <Path
         d="M143.23 996.45a3.956 3.956 0 00-5.614 0 3.96 3.96 0 000 5.618 3.956 3.956 0 005.615 0c1.593-1.486 1.593-3.987 0-5.617zm-1.52 4.132c-.689.689-1.776.689-2.5 0-.688-.688-.688-1.776 0-2.5.688-.69 1.775-.69 2.5 0 .651.652.651 1.812 0 2.5z"
-        fill="#f7a600"
+        fill = {this.state.d1} onPress = {this.Handler_d1}
         fillOpacity={1}
         strokeWidth={0.30948851}
       />
       <Path
         d="M136.58701 769.02002H144.3161999V883.00626H136.58701z"
-        fill="#f7a600"
+        fill = {this.state.d1} onPress = {this.Handler_d1}
         fillOpacity={1}
         strokeWidth={0.87076455}
       />
@@ -8009,7 +8171,7 @@ class Map extends React.Component {
       />
       <Path
         d="M143.22 881.324a3.956 3.956 0 00-5.615 0 3.96 3.96 0 000 5.617 3.956 3.956 0 005.614 0c1.594-1.485 1.594-3.986 0-5.617zm-1.522 4.132c-.689.688-1.775.688-2.5 0-.688-.69-.688-1.776 0-2.501.689-.689 1.775-.689 2.5 0 .652.652.652 1.812 0 2.5z"
-        fill="#f7a600"
+        fill = {this.state.d1} onPress = {this.Handler_d1}
         fillOpacity={1}
         strokeWidth={0.30948851}
       />
@@ -8055,21 +8217,21 @@ class Map extends React.Component {
       </Text>
       <Path
         d="M494.366 1327.406c-2.3-5.7-8.8-8.2-14.5-6-5.7 2.2-8.2 8.8-6 14.5 2.3 5.7 8.8 8.2 14.5 6 5.8-2.5 8.5-9 6-14.5zm-8.2 8.8c-2.5 1-5.5-.3-6.5-2.5-1-2.5.3-5.5 2.5-6.5 2.5-1 5.5.3 6.5 2.5 1.1 2.6 0 5.4-2.5 6.5z"
-        fill="#f7a600"
+        fill = {this.state.d1} onPress = {this.Handler_d1}
         fillOpacity={1}
       />
       <Path
         d="M453.56 1290.905c-4.3-4.3-11.2-4.3-15.5 0-4.3 4.3-4.3 11.2 0 15.5 4.3 4.3 11.2 4.3 15.5 0 4.3-4.2 4.3-11.1 0-15.5zm-4.2 11.3c-1.9 1.9-4.9 1.9-6.9 0s-1.9-4.9 0-6.9c1.9-1.9 4.9-1.9 6.9 0 1.8 1.7 1.8 4.8 0 6.9z"
-        fill="#24bcef"
+        fill = {this.state.Branch4} onPress = {this.Handler4}
         fillOpacity={1}
       />
       <Path
         d="M1099.7593 255.2605H1121.7593V262.2605H1099.7593z"
-        fill="#bed12e"
+        fill = {this.state.limeBranch} onPress = {this.limeHandler}
       />
       <Path
         d="M1021.188 62.638l-10-10.29c9.767 10.874 21.33 23.004 20.834 37.965l.254 20.6 7.624.053.085-20.59c.257-13.817-7.28-22.693-17.947-36.21l-2.938-3.19-1.65.887-2.848 4.001z"
-        fill="#f7a600"
+        fill = {this.state.d1} onPress = {this.Handler_d1}
         fillOpacity={1}
         strokeWidth={0.98257333}
       />
@@ -8081,7 +8243,7 @@ class Map extends React.Component {
       />
       <Path
         d="M1319.781 2025.461h127.48v7.73h-127.48zm190.382-.215l-.096 7.729-62.903.215.096-7.729zm14.23-38.413l-.676 26.095c-.287 8.106-4.832 12.594-14.627 12.279l1.073.039-.096 7.729c13.093.42 21.105-5.548 21.514-19.584.515-16.231.06-26.238.06-26.238zm.012-14.727s4.995-.68 7.234-.387v15.434l-7.249-.32c.03-.597.012-3.264.012-14.727z"
-        fill="#f42a7c"
+        fill = {this.state.d2} onPress = {this.Handler_d2}
         fillOpacity={1}
         strokeWidth={1.31880975}
       />
@@ -8095,13 +8257,13 @@ class Map extends React.Component {
         cx={1414.6719}
         cy={750.94623}
         r={11.3}
-        fill="#ef7e24"
+        fill = {this.state.Branch6} onPress = {this.Handler6}
         fillOpacity={1}
       />
       <Circle cx={1414.6719} cy={750.94623} r={5} fill="#fff" />
       <Path
         d="M884.478 577.64c-10.412-10.188-16.439-12.622-31.738-12.454l-95.888 1.114-.282-7.397 96.393-.72c19.603.16 24.374 1.983 36.862 14.597l20.491 18.596-4.668 6.057z"
-        fill="#f42a7c"
+        fill = {this.state.d2} onPress = {this.Handler_d2}
         fillOpacity={1}
       />
       <Path
@@ -8111,7 +8273,7 @@ class Map extends React.Component {
       />
       <Path
         d="M974.502 649.883c10.656 9.932 16.74 12.22 32.03 11.683l55.833.57.46 7.39-56.347-.954c-19.601.314-24.414-1.394-37.204-13.702l-22.128-19.008 5.083-5.972z"
-        fill="#f42a7c"
+        fill = {this.state.d2} onPress = {this.Handler_d2}
         fillOpacity={1}
       />
       <Path
@@ -8121,7 +8283,7 @@ class Map extends React.Component {
       />
       <Path
         d="M605.128 496.613l.187 41.869c.061 13.7 1.044 13.79 6.394 19.179v8c-7.365-2.411-14.103-8.812-14.394-26.779l.063-42.263zm-7.493-91.835l7.23-1 .25 93.304h-7.73z"
-        fill="#f42a7c"
+        fill = {this.state.d2} onPress = {this.Handler_d2}
         fillOpacity={1}
       />
       <Path
@@ -8131,7 +8293,7 @@ class Map extends React.Component {
       />
       <Path
         d="M627.66302 558.49823H738.97326V566.2274199000001H627.66302z"
-        fill="#f42a7c"
+        fill = {this.state.d2} onPress = {this.Handler_d2}
         fillOpacity={1}
         strokeWidth={0.86046088}
       />
@@ -8143,12 +8305,12 @@ class Map extends React.Component {
       />
       <Path
         d="M647.46 383.377c-2.3-5.7-8.8-8.2-14.5-6-5.7 2.2-8.2 8.8-6 14.5 2.3 5.7 8.8 8.2 14.5 6 5.8-2.5 8.5-9 6-14.5zm-8.2 8.8c-2.5 1-5.5-.3-6.5-2.5-1-2.5.3-5.5 2.5-6.5 2.5-1 5.5.3 6.5 2.5 1.1 2.6 0 5.4-2.5 6.5z"
-        fill="#943f90"
+        fill = {this.state.Branch7} onPress = {this.Handler7}
         fillOpacity={1}
       />
       <Path
         d="M609.076 388.318c-4.3-4.3-11.2-4.3-15.5 0-4.3 4.3-4.3 11.2 0 15.5 4.3 4.3 11.2 4.3 15.5 0 4.4-4.1 4.4-11 0-15.5zm-4.2 11.4c-1.9 1.9-4.9 1.9-6.9 0-1.9-1.9-1.9-4.9 0-6.9 1.9-1.9 4.9-1.9 6.9 0 1.8 1.8 1.8 5 0 6.9z"
-        fill="#f42a7c"
+        fill = {this.state.d2} onPress = {this.Handler_d2}
         fillOpacity={1}
       />
       <G fontSize={18.3108}>
@@ -8173,7 +8335,7 @@ class Map extends React.Component {
       </G>
       <Path
         d="M294.87915 366.74756H466.73743V374.4767499H294.87915z"
-        fill="#f42a7c"
+        fill = {this.state.d2} onPress = {this.Handler_d2}
         fillOpacity={1}
         strokeWidth={1.31880975}
       />
@@ -8194,7 +8356,7 @@ class Map extends React.Component {
       </Text>
       <Path
         d="M559.973 367.78a3.956 3.956 0 00-5.615 0 3.96 3.96 0 000 5.617 3.956 3.956 0 005.615 0c1.594-1.486 1.594-3.986 0-5.617zm-1.521 4.131c-.689.689-1.775.689-2.5 0-.688-.688-.688-1.776 0-2.5.689-.689 1.775-.689 2.5 0 .652.652.652 1.812 0 2.5z"
-        fill="#f42a7c"
+        fill = {this.state.d2} onPress = {this.Handler_d2}
         fillOpacity={1}
         strokeWidth={0.30948851}
       />
@@ -8210,7 +8372,7 @@ class Map extends React.Component {
       <Circle r={5} cy={519.74109} cx={390.01593} fill="#fff" />
       <Path
         d="M246.431 296.547h7.73l-.023 55.795-7.707-.025zm46.627 70.182l-26.177-.162c-8.11-.026-12.743-4.425-12.743-14.225l-7.707-.025c0 13.1 6.199 22.168 20.24 22.125 16.24-.008 26.387.005 26.387.005z"
-        fill="#f42a7c"
+        fill = {this.state.d2} onPress = {this.Handler_d2}
         fillOpacity={1}
         strokeWidth={0.60908073}
       />
@@ -8231,7 +8393,7 @@ class Map extends React.Component {
       </Text>
       <Path
         d="M246.431 238.768h7.73v55.77h-7.73z"
-        fill="#f42a7c"
+        fill = {this.state.d2} onPress = {this.Handler_d2}
         fillOpacity={1}
         strokeWidth={0.60908073}
       />
@@ -8252,7 +8414,7 @@ class Map extends React.Component {
       </Text>
       <Path
         d="M246.431 180.99h7.73v55.77h-7.73z"
-        fill="#f42a7c"
+        fill = {this.state.d2} onPress = {this.Handler_d2}
         fillOpacity={1}
         strokeWidth={0.60908073}
       />
@@ -8275,7 +8437,7 @@ class Map extends React.Component {
       </Text>
       <Path
         d="M246.431 123.21h7.73v55.77h-7.73z"
-        fill="#f42a7c"
+        fill = {this.state.d2} onPress = {this.Handler_d2}
         fillOpacity={1}
         strokeWidth={0.60908073}
       />
@@ -8296,7 +8458,7 @@ class Map extends React.Component {
       </Text>
       <Path
         d="M246.431 65.432h7.73v55.77h-7.73z"
-        fill="#f42a7c"
+        fill = {this.state.d2} onPress = {this.Handler_d2}
         fillOpacity={1}
         strokeWidth={0.60908073}
       />
@@ -8326,7 +8488,7 @@ class Map extends React.Component {
       </Text>
       <Path
         d="M296.808 367.838a3.956 3.956 0 00-5.615 0 3.96 3.96 0 000 5.618 3.956 3.956 0 005.615 0c1.593-1.486 1.593-3.987 0-5.618zm-1.522 4.132c-.688.688-1.775.688-2.499 0-.688-.689-.688-1.776 0-2.5.688-.69 1.775-.69 2.5 0 .651.651.651 1.811 0 2.5zM253.014 292.668a3.956 3.956 0 00-5.615 0 3.96 3.96 0 000 5.617 3.956 3.956 0 005.615 0c1.593-1.486 1.593-3.987 0-5.617zm-1.522 4.131c-.688.689-1.775.689-2.5 0-.687-.688-.687-1.776 0-2.5.69-.69 1.776-.69 2.5 0 .652.652.652 1.812 0 2.5zM253.044 235.316a3.956 3.956 0 00-5.615 0 3.96 3.96 0 000 5.618 3.956 3.956 0 005.615 0c1.593-1.486 1.593-3.987 0-5.618zm-1.522 4.132c-.688.688-1.775.688-2.499 0-.688-.689-.688-1.776 0-2.5.688-.69 1.775-.69 2.5 0 .651.652.651 1.811 0 2.5zM253.074 177.2a3.956 3.956 0 00-5.615 0 3.96 3.96 0 000 5.618 3.956 3.956 0 005.615 0c1.593-1.486 1.593-3.986 0-5.617zm-1.522 4.132c-.688.689-1.775.689-2.499 0-.688-.688-.688-1.775 0-2.5.688-.689 1.775-.689 2.5 0 .651.652.651 1.812 0 2.5zM253.162 119.297a3.956 3.956 0 00-5.615 0 3.96 3.96 0 000 5.617 3.956 3.956 0 005.615 0c1.593-1.485 1.593-3.986 0-5.617zm-1.522 4.132c-.688.688-1.775.688-2.499 0-.688-.69-.688-1.776 0-2.501.688-.689 1.775-.689 2.5 0 .651.652.651 1.812 0 2.5z"
-        fill="#f42a7c"
+        fill = {this.state.d2} onPress = {this.Handler_d2}
         fillOpacity={1}
         strokeWidth={0.30948851}
       />
@@ -8350,13 +8512,13 @@ class Map extends React.Component {
       </G>
       <Path
         d="M253.1 61.543a3.956 3.956 0 00-5.615 0 3.96 3.96 0 000 5.617 3.956 3.956 0 005.614 0c1.594-1.485 1.594-3.986 0-5.617zm-1.522 4.132c-.688.688-1.775.688-2.5 0-.688-.689-.688-1.776 0-2.501.689-.689 1.776-.689 2.5 0 .652.652.652 1.812 0 2.5z"
-        fill="#f42a7c"
+        fill = {this.state.d2} onPress = {this.Handler_d2}
         fillOpacity={1}
         strokeWidth={0.30948851}
       />
       <Path
         d="M1631.411 1235.393l5.25-5.672 22.928 19.885-5.25 5.673z"
-        fill="#f42a7c"
+        fill = {this.state.d2} onPress = {this.Handler_d2}
         fillOpacity={1}
         strokeWidth={0.60908073}
       />
@@ -8368,7 +8530,7 @@ class Map extends React.Component {
       />
       <Path
         d="M1654.928 1255.92l5.25-5.673 61.527 53.885-5.25 5.672z"
-        fill="#f42a7c"
+        fill = {this.state.d2} onPress = {this.Handler_d2}
         fillOpacity={1}
         strokeWidth={0.60908073}
       />
@@ -8380,7 +8542,7 @@ class Map extends React.Component {
       />
       <Path
         d="M1731.098 1312.322c-1.706 1.478-5.088 5.816-5.088 5.816 7.165 8.808 104.424 90.108 104.424 90.108l18.773 18.158c5.868 5.599 6.205 11.977-.537 19.09l.742-.776-33.226 37.649-.055-.05-53.885 61.528 5.672 5.25 45.564-52.027.021.02 41.621-47.164c9.012-9.508 9.873-19.463-.347-29.092-11.791-11.166-19.145-18.041-19.145-18.041z"
-        fill="#f42a7c"
+        fill = {this.state.d2} onPress = {this.Handler_d2}
         fillOpacity={1}
         strokeWidth={0.60908073}
       />
@@ -8404,13 +8566,13 @@ class Map extends React.Component {
       />
       <Path
         d="M1607.476 1660.952c1.132 5.892 6.888 9.878 12.878 8.727 5.892-1.132 9.878-6.888 8.727-12.878-1.132-5.892-6.887-9.878-12.878-8.727-5.831.917-9.915 6.69-8.727 12.878zm15.811-3.038c.472 2.455-1.236 5.227-3.887 5.737-2.455.471-5.228-1.236-5.737-3.888-.472-2.455 1.236-5.227 3.888-5.736 2.595-.804 5.189 1.04 5.736 3.887z"
-        fill="#bed12e"
+        fill = {this.state.limeBranch} onPress = {this.limeHandler}
         fillOpacity={1}
       />
       <Path
         d="M1631.411 1235.393l5.25-5.672 22.928 19.885-5.25 5.673z"
         transform="scale(-1 1) rotate(5.085 -5465.377 -34926.072)"
-        fill="#f42a7c"
+        fill = {this.state.d2} onPress = {this.Handler_d2}
         fillOpacity={1}
         strokeWidth={0.60908073}
       />
@@ -8423,7 +8585,7 @@ class Map extends React.Component {
       />
       <Path
         d="M1544.223 1776.71c-10.4 9.946-12.07 11.635-12.47 26.179l-7.73.094v-.094.094c0-15.858 3.4-19.986 15-30.87l35.5-33.405 5.732 5.185zm-20.2 95.949h7.73v-69.77l-7.73.094z"
-        fill="#f42a7c"
+        fill = {this.state.d2} onPress = {this.Handler_d2}
         fillOpacity={1}
         strokeWidth={0.96866733}
       />
@@ -8435,13 +8597,13 @@ class Map extends React.Component {
       />
       <Path
         d="M1530.648 1967.94a3.956 3.956 0 00-5.614 0 3.96 3.96 0 000 5.617 3.956 3.956 0 005.614 0c1.594-1.486 1.594-3.987 0-5.618zm-1.521 4.131c-.688.689-1.775.689-2.5 0-.688-.689-.688-1.776 0-2.5.689-.69 1.776-.69 2.5 0 .652.652.652 1.811 0 2.5z"
-        fill="#f42a7c"
+        fill = {this.state.d2} onPress = {this.Handler_d2}
         fillOpacity={1}
         strokeWidth={0.30948851}
       />
       <Path
         d="M1265.074 2281.261l-7.675.04-.373-118.552 7.675-.04z"
-        fill="#f42a7c"
+        fill = {this.state.d2} onPress = {this.Handler_d2}
         fillOpacity={1}
         strokeWidth={0.52612519}
       />
@@ -8453,7 +8615,7 @@ class Map extends React.Component {
       />
       <Path
         d="M1264.729 2160.75l-7.675.052-.373-55.769 7.675-.052z"
-        fill="#f42a7c"
+        fill = {this.state.d2} onPress = {this.Handler_d2}
         fillOpacity={1}
         strokeWidth={0.60694051}
       />
@@ -8466,13 +8628,13 @@ class Map extends React.Component {
       />
       <Path
         d="M1263.676 2158.96a3.956 3.956 0 00-5.615 0 3.96 3.96 0 000 5.617 3.956 3.956 0 005.615 0c1.594-1.486 1.594-3.987 0-5.618zm-1.521 4.131c-.689.689-1.775.689-2.5 0-.688-.689-.688-1.776 0-2.5.689-.69 1.775-.69 2.5 0 .652.652.652 1.811 0 2.5z"
-        fill="#f42a7c"
+        fill = {this.state.d2} onPress = {this.Handler_d2}
         fillOpacity={1}
         strokeWidth={0.30948851}
       />
       <Path
         d="M1265.445 2338.794l-7.675.052-.373-55.769 7.675-.052z"
-        fill="#f42a7c"
+        fill = {this.state.d2} onPress = {this.Handler_d2}
         fillOpacity={1}
         strokeWidth={0.60694051}
       />
@@ -8485,7 +8647,7 @@ class Map extends React.Component {
       />
       <Path
         d="M1263.994 2279.285a3.956 3.956 0 00-5.615 0 3.96 3.96 0 000 5.617 3.956 3.956 0 005.615 0c1.594-1.486 1.594-3.986 0-5.617zm-1.521 4.131c-.689.69-1.776.69-2.5 0-.688-.688-.688-1.775 0-2.5.688-.689 1.775-.689 2.5 0 .651.652.651 1.812 0 2.5z"
-        fill="#f42a7c"
+        fill = {this.state.d2} onPress = {this.Handler_d2}
         fillOpacity={1}
         strokeWidth={0.30948851}
       />
@@ -8511,7 +8673,7 @@ class Map extends React.Component {
       </Text>
       <Path
         d="M1265.776 2395.967l-7.675.052-.373-55.769 7.675-.052z"
-        fill="#f42a7c"
+        fill = {this.state.d2} onPress = {this.Handler_d2}
         fillOpacity={1}
         strokeWidth={0.60694051}
       />
@@ -8524,7 +8686,7 @@ class Map extends React.Component {
       />
       <Path
         d="M1264.414 2336.56a3.956 3.956 0 00-5.615 0 3.96 3.96 0 000 5.617 3.956 3.956 0 005.615 0c1.593-1.486 1.593-3.987 0-5.618zm-1.522 4.13c-.688.69-1.775.69-2.5 0-.687-.688-.687-1.775 0-2.5.69-.689 1.776-.689 2.5 0 .652.652.652 1.812 0 2.5z"
-        fill="#f42a7c"
+        fill = {this.state.d2} onPress = {this.Handler_d2}
         fillOpacity={1}
         strokeWidth={0.30948851}
       />
@@ -8548,7 +8710,7 @@ class Map extends React.Component {
       </Text>
       <Path
         d="M1266.164 2452.962l-7.675.052-.373-55.769 7.675-.052z"
-        fill="#f42a7c"
+        fill = {this.state.d2} onPress = {this.Handler_d2}
         fillOpacity={1}
         strokeWidth={0.60694051}
       />
@@ -8570,7 +8732,7 @@ class Map extends React.Component {
       </Text>
       <Path
         d="M1266.495 2510.135l-7.675.052-.373-55.769 7.675-.052z"
-        fill="#f42a7c"
+        fill = {this.state.d2} onPress = {this.Handler_d2}
         fillOpacity={1}
         strokeWidth={0.60694051}
       />
@@ -8592,7 +8754,7 @@ class Map extends React.Component {
       </Text>
       <Path
         d="M1266.86 2567.424l-7.675.052-.373-55.768 7.675-.052z"
-        fill="#f42a7c"
+        fill = {this.state.d2} onPress = {this.Handler_d2}
         fillOpacity={1}
         strokeWidth={0.60694051}
       />
@@ -8671,7 +8833,7 @@ class Map extends React.Component {
       </Text>
       <Path
         d="M906.052 597.677l5.25-5.672 40.927 37.885-5.25 5.672z"
-        fill="#f42a7c"
+        fill = {this.state.d2} onPress = {this.Handler_d2}
         fillOpacity={1}
         strokeWidth={0.60908073}
       />
@@ -8683,7 +8845,7 @@ class Map extends React.Component {
       />
       <Path
         d="M911.574 592.195a3.956 3.956 0 00-5.615 0 3.96 3.96 0 000 5.617 3.956 3.956 0 005.615 0c1.593-1.486 1.593-3.986 0-5.617zm-1.522 4.131c-.688.689-1.775.689-2.499 0-.688-.688-.688-1.775 0-2.5.688-.689 1.775-.689 2.5 0 .651.652.651 1.812 0 2.5zM953.014 630.526a3.956 3.956 0 00-5.614 0 3.96 3.96 0 000 5.618 3.956 3.956 0 005.614 0c1.594-1.486 1.594-3.987 0-5.618zm-1.52 4.132c-.69.688-1.776.688-2.5 0-.689-.689-.689-1.776 0-2.501.688-.689 1.775-.689 2.5 0 .651.652.651 1.812 0 2.5z"
-        fill="#f42a7c"
+        fill = {this.state.d2} onPress = {this.Handler_d2}
         fillOpacity={1}
         strokeWidth={0.30948851}
       />
@@ -8726,7 +8888,7 @@ class Map extends React.Component {
       />
       <Path
         d="M778.51 998.383c-4.3-4.3-11.2-4.3-15.5 0-4.3 4.3-4.3 11.2 0 15.5 4.3 4.3 11.2 4.3 15.5 0 4.3-4.2 4.3-11.1 0-15.5zm-4.2 11.3c-1.9 1.9-4.9 1.9-6.9 0s-1.9-4.9 0-6.9c1.9-1.9 4.9-1.9 6.9 0 1.8 1.7 1.8 4.8 0 6.9z"
-        fill="#943f90"
+        fill = {this.state.Branch7} onPress = {this.Handler7}
         fillOpacity={1}
       />
       <Path
@@ -8742,7 +8904,7 @@ class Map extends React.Component {
       />
       <Path
         d="M948.86 861.408c10.3-10.3 12.8-16.3 12.8-31.6l-.065-95.895 7.4-.201-.335 96.396c-.375 19.6-2.25 24.35-15 36.7l-19.652 21.534-5.91-5.377z"
-        fill="#f7a600"
+        fill = {this.state.d1} onPress = {this.Handler_d1}
         fillOpacity={1}
       />
       <Path
@@ -8752,17 +8914,17 @@ class Map extends React.Component {
       />
       <Path
         d="M937.035 889.307c-2.3-5.7-8.8-8.2-14.5-6-5.7 2.2-8.2 8.8-6 14.5 2.3 5.7 8.8 8.2 14.5 6 5.8-2.5 8.5-9 6-14.5zm-8.2 8.8c-2.5 1-5.5-.3-6.5-2.5-1-2.5.3-5.5 2.5-6.5 2.5-1 5.5.3 6.5 2.5 1.1 2.6 0 5.4-2.5 6.5zM777.947 1030.167c-2.3-5.7-8.8-8.2-14.5-6-5.7 2.2-8.2 8.8-6 14.5 2.3 5.7 8.8 8.2 14.5 6 5.8-2.5 8.5-9 6-14.5zm-8.2 8.8c-2.5 1-5.5-.3-6.5-2.5-1-2.5.3-5.5 2.5-6.5 2.5-1 5.5.3 6.5 2.5 1.1 2.6 0 5.4-2.5 6.5z"
-        fill="#f7a600"
+        fill = {this.state.d1} onPress = {this.Handler_d1}
         fillOpacity={1}
       />
       <Path
         d="M1034.3594 611.81653H1041.3594V681.5432679999999H1034.3594z"
-        fill="#adacac"
+        fill = {this.state.Branch9} onPress = {this.Handler9}
         strokeWidth={1.75225675}
       />
       <Path
         d="M1032.275 402.295v94.225h.1l.01 20.474c.028 8.11-4.34 12.77-14.14 12.836l-35.448.582c-13.098.175-22.083 6.495-21.853 20.535.225 16.238.146 40.485.146 40.485l7.72-.104.01-40.277c-.081-8.11 4.256-12.801 14.056-12.932l35.396-.38c13.1-.088 22.127-6.547 21.99-20.589-.116-16.238-.17-26.386-.17-26.386h-.088v-88.47z"
-        fill="#f7a600"
+        fill = {this.state.d1} onPress = {this.Handler_d1}
         fillOpacity={1}
         strokeWidth={0.79169375}
       />
@@ -8774,12 +8936,12 @@ class Map extends React.Component {
       />
       <Path
         d="M975.626 597.436c-2.3-5.7-8.8-8.2-14.5-6-5.7 2.2-8.2 8.8-6 14.5 2.3 5.7 8.8 8.2 14.5 6 5.8-2.5 8.5-9 6-14.5zm-8.2 8.8c-2.5 1-5.5-.3-6.5-2.5-1-2.5.3-5.5 2.5-6.5 2.5-1 5.5.3 6.5 2.5 1.1 2.6 0 5.4-2.5 6.5z"
-        fill="#f7a600"
+        fill = {this.state.d1} onPress = {this.Handler_d1}
         fillOpacity={1}
       />
       <Path
         d="M961.66 609.078v86.762h-.1v21.533h7.73V697.39h.099v-88.31z"
-        fill="#f7a600"
+        fill = {this.state.d1} onPress = {this.Handler_d1}
         fillOpacity={1}
         strokeWidth={0.76644027}
       />
@@ -8791,12 +8953,12 @@ class Map extends React.Component {
       />
       <Path
         d="M975.588 721.259c-2.3-5.7-8.8-8.2-14.5-6-5.7 2.2-8.2 8.8-6 14.5 2.3 5.7 8.8 8.2 14.5 6 5.8-2.5 8.5-9 6-14.5zm-8.2 8.8c-2.5 1-5.5-.3-6.5-2.5-1-2.5.3-5.5 2.5-6.5 2.5-1 5.5.3 6.5 2.5 1.1 2.6 0 5.4-2.5 6.5z"
-        fill="#f7a600"
+        fill = {this.state.d1} onPress = {this.Handler_d1}
         fillOpacity={1}
       />
       <Path
         d="M1032.275 283.90814H1040.0041899V386.29537H1032.275z"
-        fill="#f7a600"
+        fill = {this.state.d1} onPress = {this.Handler_d1}
         fillOpacity={1}
         strokeWidth={0.82527262}
       />
@@ -8808,12 +8970,12 @@ class Map extends React.Component {
       />
       <Path
         d="M1046.18 388.75c-2.3-5.7-8.8-8.2-14.5-6-5.7 2.2-8.2 8.8-6 14.5 2.3 5.7 8.8 8.2 14.5 6 5.8-2.5 8.5-9 6-14.5zm-8.2 8.8c-2.5 1-5.5-.3-6.5-2.5-1-2.5.3-5.5 2.5-6.5 2.5-1 5.5.3 6.5 2.5 1.1 2.6 0 5.4-2.5 6.5z"
-        fill="#f7a600"
+        fill = {this.state.d1} onPress = {this.Handler_d1}
         fillOpacity={1}
       />
       <Path
         d="M1259.909 406.77c-32-5.2-118.805-2.826-171.614 7.973l-4.673.08c-.6.01 1.406-.494 1.406-2.694.3-1.9-1.806-5.293-1.106-5.306l4.373-.08c51.162-9.253 139.725-12.217 172.125-7.017.6.3.452 1.458.252 3.658-.2 1.8-.163 3.587-.763 3.387z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
       />
       <Path
         d="M1262.39 401.51l-.068 3.17c-35.33-5.86-123.712-1.223-170.365 6.327l-6.929 1.122 2.395-3.327 3.982-.453c36.888-6.837 130.376-12.128 169.578-6.517z"
@@ -8821,16 +8983,16 @@ class Map extends React.Component {
       />
       <Path
         d="M1121.261 379.922c-2.3-5.7-8.8-8.2-14.5-6-5.7 2.2-8.2 8.8-6 14.5 2.3 5.7 8.8 8.2 14.5 6 5.8-2.5 8.5-9 6-14.5zm-8.2 8.8c-2.5 1-5.5-.3-6.5-2.5-1-2.5.3-5.5 2.5-6.5 2.5-1 5.5.3 6.5 2.5 1.1 2.6 0 5.4-2.5 6.5z"
-        fill="#bed12e"
+        fill = {this.state.limeBranch} onPress = {this.limeHandler}
       />
       <Path
         d="M1088.989 407.723c-2.3-5.7-8.8-8.2-14.5-6-5.7 2.2-8.2 8.8-6 14.5 2.3 5.7 8.8 8.2 14.5 6 5.8-2.5 8.5-9 6-14.5zm-8.2 8.8c-2.5 1-5.5-.3-6.5-2.5-1-2.5.3-5.5 2.5-6.5 2.5-1 5.5.3 6.5 2.5 1.1 2.6 0 5.4-2.5 6.5z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
         fillOpacity={1}
       />
       <Path
         d="M1032.1639 112.80457H1039.8930899V227.21017H1032.1639z"
-        fill="#f7a600"
+        fill = {this.state.d1} onPress = {this.Handler_d1}
         fillOpacity={1}
         strokeWidth={0.87236488}
       />
@@ -8842,7 +9004,7 @@ class Map extends React.Component {
       />
       <Path
         d="M1032.275 228.13812H1040.0041899V283.90812H1032.275z"
-        fill="#f7a600"
+        fill = {this.state.d1} onPress = {this.Handler_d1}
         fillOpacity={1}
         strokeWidth={0.60908073}
       />
@@ -8854,13 +9016,13 @@ class Map extends React.Component {
       />
       <Path
         d="M1039 223.853a3.956 3.956 0 00-5.615 0 3.96 3.96 0 000 5.617 3.956 3.956 0 005.614 0c1.594-1.486 1.594-3.986 0-5.617zm-1.522 4.131c-.689.689-1.775.689-2.5 0-.688-.688-.688-1.775 0-2.5.689-.689 1.775-.689 2.5 0 .652.652.652 1.812 0 2.5zM1038.955 281.128a3.956 3.956 0 00-5.615 0 3.96 3.96 0 000 5.617 3.956 3.956 0 005.615 0c1.593-1.486 1.593-3.987 0-5.617zm-1.522 4.131c-.688.689-1.775.689-2.499 0-.688-.689-.688-1.776 0-2.5.688-.69 1.775-.69 2.5 0 .651.652.651 1.811 0 2.5z"
-        fill="#f7a600"
+        fill = {this.state.d1} onPress = {this.Handler_d1}
         fillOpacity={1}
         strokeWidth={0.30948851}
       />
       <Path
         d="M1245.425 382.592l4.934 4.965-93.551 93.855-4.935-4.965zM1277.628 349.72l-21.385 21.214 5.179 5.22 21.386-21.414c11.949-12.152 15.08-20.14 15.146-36.54l.153-20-8-.031.049 19.7c.04 14.9-1.684 20.894-12.528 31.85z"
-        fill="#adacac"
+        fill = {this.state.Branch9} onPress = {this.Handler9}
         fillOpacity={1}
       />
       <Text
@@ -8888,7 +9050,7 @@ class Map extends React.Component {
       </Text>
       <Path
         d="M902.196 31.152h89.774v7.729h-89.774z"
-        fill="#f7a600"
+        fill = {this.state.d1} onPress = {this.Handler_d1}
         fillOpacity={1}
         strokeWidth={0.77274734}
       />
@@ -8900,13 +9062,13 @@ class Map extends React.Component {
       />
       <Path
         d="M970.042 32.206a3.956 3.956 0 00-5.615 0 3.96 3.96 0 000 5.617 3.956 3.956 0 005.615 0c1.593-1.486 1.593-3.986 0-5.617zm-1.522 4.131c-.688.689-1.775.689-2.499 0-.688-.688-.688-1.775 0-2.5.688-.689 1.775-.689 2.5 0 .651.652.651 1.812 0 2.5z"
-        fill="#f7a600"
+        fill = {this.state.d1} onPress = {this.Handler_d1}
         fillOpacity={1}
         strokeWidth={0.30948851}
       />
       <Path
         d="M811.86047 31.183064H900.707401V38.9122539H811.86047z"
-        fill="#f7a600"
+        fill = {this.state.d1} onPress = {this.Handler_d1}
         fillOpacity={1}
         strokeWidth={0.76874942}
       />
@@ -8918,13 +9080,13 @@ class Map extends React.Component {
       />
       <Path
         d="M904.28 32.243a3.956 3.956 0 00-5.615 0 3.96 3.96 0 000 5.617 3.956 3.956 0 005.615 0c1.593-1.486 1.593-3.987 0-5.617zm-1.522 4.131c-.688.689-1.775.689-2.5 0-.688-.688-.688-1.776 0-2.5.689-.69 1.776-.69 2.5 0 .652.652.652 1.812 0 2.5z"
-        fill="#f7a600"
+        fill = {this.state.d1} onPress = {this.Handler_d1}
         fillOpacity={1}
         strokeWidth={0.30948851}
       />
       <Path
         d="M720.86212 31.183064H809.709051V38.9122539H720.86212z"
-        fill="#f7a600"
+        fill = {this.state.d1} onPress = {this.Handler_d1}
         fillOpacity={1}
         strokeWidth={0.76874942}
       />
@@ -8936,13 +9098,13 @@ class Map extends React.Component {
       />
       <Path
         d="M813.36 32.226a3.956 3.956 0 00-5.615 0 3.96 3.96 0 000 5.617 3.956 3.956 0 005.615 0c1.594-1.486 1.594-3.986 0-5.617zm-1.521 4.131c-.689.689-1.775.689-2.5 0-.688-.688-.688-1.775 0-2.5.689-.689 1.775-.689 2.5 0 .652.652.652 1.812 0 2.5z"
-        fill="#f7a600"
+        fill = {this.state.d1} onPress = {this.Handler_d1}
         fillOpacity={1}
         strokeWidth={0.30948851}
       />
       <Path
         d="M629.86377 31.183064H718.7107010000001V38.9122539H629.86377z"
-        fill="#f7a600"
+        fill = {this.state.d1} onPress = {this.Handler_d1}
         fillOpacity={1}
         strokeWidth={0.76874942}
       />
@@ -8954,13 +9116,13 @@ class Map extends React.Component {
       />
       <Path
         d="M722.32 32.314a3.956 3.956 0 00-5.615 0 3.96 3.96 0 000 5.618 3.956 3.956 0 005.615 0c1.594-1.486 1.594-3.987 0-5.618zm-1.521 4.132c-.689.688-1.775.688-2.5 0-.688-.689-.688-1.776 0-2.5.689-.69 1.775-.69 2.5 0 .652.651.652 1.811 0 2.5z"
-        fill="#f7a600"
+        fill = {this.state.d1} onPress = {this.Handler_d1}
         fillOpacity={1}
         strokeWidth={0.30948851}
       />
       <Path
         d="M538.86542 31.183064H627.712351V38.9122539H538.86542z"
-        fill="#f7a600"
+        fill = {this.state.d1} onPress = {this.Handler_d1}
         fillOpacity={1}
         strokeWidth={0.76874942}
       />
@@ -8972,7 +9134,7 @@ class Map extends React.Component {
       />
       <Path
         d="M631.626 32.252a3.956 3.956 0 00-5.615 0 3.96 3.96 0 000 5.617 3.956 3.956 0 005.615 0c1.594-1.486 1.594-3.986 0-5.617zm-1.521 4.131c-.689.689-1.775.689-2.5 0-.688-.688-.688-1.776 0-2.5.689-.689 1.775-.689 2.5 0 .652.652.652 1.812 0 2.5z"
-        fill="#f7a600"
+        fill = {this.state.d1} onPress = {this.Handler_d1}
         fillOpacity={1}
         strokeWidth={0.30948851}
       />
@@ -9119,7 +9281,7 @@ class Map extends React.Component {
       </Text>
       <Path
         d="M136.58701 711.24139H144.3161999V767.01139H136.58701z"
-        fill="#f7a600"
+        fill = {this.state.d1} onPress = {this.Handler_d1}
         fillOpacity={1}
         strokeWidth={0.60908073}
       />
@@ -9131,13 +9293,13 @@ class Map extends React.Component {
       />
       <Path
         d="M143.203 765.356a3.956 3.956 0 00-5.615 0 3.96 3.96 0 000 5.617 3.956 3.956 0 005.615 0c1.593-1.485 1.593-3.986 0-5.617zm-1.522 4.132c-.688.688-1.775.688-2.5 0-.687-.689-.687-1.776 0-2.501.69-.689 1.776-.689 2.5 0 .652.652.652 1.812 0 2.5z"
-        fill="#f7a600"
+        fill = {this.state.d1} onPress = {this.Handler_d1}
         fillOpacity={1}
         strokeWidth={0.30948851}
       />
       <Path
         d="M136.58701 653.46283H144.3161999V709.23283H136.58701z"
-        fill="#f7a600"
+        fill = {this.state.d1} onPress = {this.Handler_d1}
         fillOpacity={1}
         strokeWidth={0.60908073}
       />
@@ -9149,7 +9311,7 @@ class Map extends React.Component {
       />
       <Path
         d="M136.58701 595.68427H144.3161999V651.45427H136.58701z"
-        fill="#f7a600"
+        fill = {this.state.d1} onPress = {this.Handler_d1}
         fillOpacity={1}
         strokeWidth={0.60908073}
       />
@@ -9161,7 +9323,7 @@ class Map extends React.Component {
       />
       <Path
         d="M143.26 649.507a3.956 3.956 0 00-5.615 0 3.96 3.96 0 000 5.618 3.956 3.956 0 005.615 0c1.593-1.486 1.593-3.987 0-5.618zm-1.522 4.132c-.688.688-1.775.688-2.499 0-.688-.689-.688-1.776 0-2.501.688-.689 1.775-.689 2.5 0 .651.652.651 1.812 0 2.5z"
-        fill="#f7a600"
+        fill = {this.state.d1} onPress = {this.Handler_d1}
         fillOpacity={1}
         strokeWidth={0.30948851}
       />
@@ -9185,7 +9347,7 @@ class Map extends React.Component {
       </G>
       <Path
         d="M143.188 591.828a3.956 3.956 0 00-5.614 0 3.96 3.96 0 000 5.617 3.956 3.956 0 005.614 0c1.594-1.486 1.594-3.986 0-5.617zm-1.52 4.131c-.69.689-1.776.689-2.5 0-.689-.688-.689-1.775 0-2.5.688-.689 1.775-.689 2.499 0 .652.652.652 1.812 0 2.5z"
-        fill="#f7a600"
+        fill = {this.state.d1} onPress = {this.Handler_d1}
         fillOpacity={1}
         strokeWidth={0.30948851}
       />
@@ -9375,7 +9537,7 @@ class Map extends React.Component {
       />
       <Path
         d="M700.102 1100.218c-2.3-5.7-8.8-8.2-14.5-6-5.7 2.2-8.2 8.8-6 14.5 2.3 5.7 8.8 8.2 14.5 6 5.8-2.5 8.5-9 6-14.5zm-8.2 8.8c-2.5 1-5.5-.3-6.5-2.5-1-2.5.3-5.5 2.5-6.5 2.5-1 5.5.3 6.5 2.5 1.1 2.6 0 5.4-2.5 6.5z"
-        fill="#f7a600"
+        fill = {this.state.d1} onPress = {this.Handler_d1}
         fillOpacity={1}
       />
       <Path
@@ -9437,13 +9599,13 @@ class Map extends React.Component {
       </Text>
       <Path
         d="M1263.337 2100.917a3.956 3.956 0 00-5.615 0 3.96 3.96 0 000 5.617 3.956 3.956 0 005.615 0c1.593-1.485 1.593-3.986 0-5.617zm-1.522 4.132c-.688.688-1.775.688-2.499 0-.688-.689-.688-1.776 0-2.501.688-.689 1.775-.689 2.5 0 .651.652.651 1.812 0 2.5zM1530.645 1871.017a3.956 3.956 0 00-5.615 0 3.96 3.96 0 000 5.617 3.956 3.956 0 005.615 0c1.593-1.485 1.593-3.986 0-5.617zm-1.522 4.131c-.688.69-1.775.69-2.499 0-.688-.688-.688-1.775 0-2.5.688-.689 1.775-.689 2.5 0 .651.652.651 1.812 0 2.5z"
-        fill="#f42a7c"
+        fill = {this.state.d2} onPress = {this.Handler_d2}
         fillOpacity={1}
         strokeWidth={0.30948851}
       />
       <Path
         d="M1751.73 1559.086l-41.73 43.33-.035-.027-51.19 50.938c-.01-.01-.01-.01-.017-.013v-.01l-.91.946-.725.72.016.017-12.03 12.488-.034-.025-34.74 35.219c.407.501.655.85 1.025 1.47 1.592 1.844 1.342 1.431 1.896 2.772l.06.086 1.437 1.861-.061-.107.07.119c0 .012.092.147.138.228-.04-.07-.084-.141-.125-.212l.104.134.033.062 30.865-31.263.05.047 3.741-3.887 1.584-1.604-.023-.018 13.77-14.296-.08-.066 45.853-45.23.047.046 3.744-3.887 1.582-1.603-.022-.02 41.555-43.15c-1.959-1.97-3.445-3.606-5.848-5.065zm-138.343 148.123l.125.289c-.033-.086-.063-.172-.1-.256-.01-.01-.02-.025-.025-.033zm1.217 1.814c.01.031.06.127.128.245l.05-.05c-.1-.124-.193-.249-.176-.195z"
-        fill="#f42a7c"
+        fill = {this.state.d2} onPress = {this.Handler_d2}
         fillOpacity={1}
         strokeWidth={0.60908073}
       />
@@ -9457,19 +9619,19 @@ class Map extends React.Component {
         r={11.3}
         cy={1712.5909}
         cx={1604.7563}
-        fill="#f42a7c"
+        fill = {this.state.d2} onPress = {this.Handler_d2}
         fillOpacity={1}
       />
       <Circle r={5} cy={1712.5909} cx={1604.7563} fill="#fff" />
       <Path
         d="M1659.589 1249.607a3.956 3.956 0 00-5.615 0 3.96 3.96 0 000 5.617 3.956 3.956 0 005.615 0c1.593-1.486 1.593-3.987 0-5.617zm-1.522 4.131c-.688.689-1.775.689-2.499 0-.688-.689-.688-1.776 0-2.5.688-.69 1.775-.69 2.5 0 .651.652.651 1.811 0 2.5z"
-        fill="#f42a7c"
+        fill = {this.state.d2} onPress = {this.Handler_d2}
         fillOpacity={1}
         strokeWidth={0.30948851}
       />
       <Path
         d="M1749.205 1114.962c-4.3-4.3-11.2-4.3-15.5 0-4.3 4.3-4.3 11.2 0 15.5 4.3 4.3 11.2 4.3 15.5 0 4.3-4.2 4.3-11.1 0-15.5zm-4.4 11.3c-1.9 1.9-4.9 1.9-6.9 0-2.1-1.9-1.9-4.9 0-6.9s4.9-1.9 6.9 0c2.1 1.9 2.1 5.2 0 6.9z"
-        fill="#ffcd1e"
+        fill = {this.state.Branch8} onPress = {this.Handler8}
       />
       <G transform="rotate(-89.851 350.335 -65.422)">
         <LinearGradient>
@@ -9491,13 +9653,13 @@ class Map extends React.Component {
       </G>
       <Path
         d="M540.087 32.236a3.956 3.956 0 00-5.615 0 3.96 3.96 0 000 5.617 3.956 3.956 0 005.615 0c1.593-1.486 1.593-3.987 0-5.617zm-1.522 4.131c-.688.689-1.775.689-2.5 0-.687-.688-.687-1.776 0-2.5.69-.69 1.776-.69 2.5 0 .652.652.652 1.812 0 2.5z"
-        fill="#f7a600"
+        fill = {this.state.d1} onPress = {this.Handler_d1}
         fillOpacity={1}
         strokeWidth={0.30948851}
       />
       <Path
         d="M1725.354 1301.116c-6 .3-10.8 5.2-10.8 11.2.3 6.2 5.2 10.8 11.2 10.8 6-.3 10.8-5.2 10.8-11.2-.2-6-5.1-10.9-11.2-10.8zm.3 16.1c-2.5.3-4.9-2.1-4.9-4.9-.3-2.5 2.1-4.9 4.9-4.9 2.5-.3 4.9 2.1 4.9 4.9 0 2.5-2.3 4.8-4.9 4.9z"
-        fill="#f42a7c"
+        fill = {this.state.d2} onPress = {this.Handler_d2}
         fillOpacity={1}
       />
       <LinearGradient
@@ -9523,7 +9685,7 @@ class Map extends React.Component {
       />
       <Path
         d="M1775.502 1515.549c4.166 4.519 11.13 4.56 15.685.487 4.554-4.072 4.56-11.13.487-15.685-4.166-4.518-11.13-4.56-15.685-.487-4.542 4.389-4.77 11.424-.487 15.685zm4.56-11.13c1.985-1.82 5.251-1.664 6.964.04 1.82 1.985 1.663 5.251-.04 6.964-1.986 1.82-5.252 1.664-6.965-.04-1.948-2.044-1.909-5.052.041-6.965z"
-        fill="#943f90"
+        fill = {this.state.Branch7} onPress = {this.Handler7}
         fillOpacity={1}
       />
       <Path id = "green-branch"
@@ -9531,19 +9693,19 @@ class Map extends React.Component {
         fill={this.state.greenBranch}
         onPress={this.greenHandler}
       />
-      <Path d="M515.559 1673.994h15v7h-15z" fill="#ffcd1e" fillOpacity={1} />
+      <Path d="M515.559 1673.994h15v7h-15z" fill = {this.state.Branch8} onPress = {this.Handler8} fillOpacity={1} />
       <Path
         d="M684.35931 1675.3933H699.35931V1682.3933H684.35931z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
       />
       <Path
         d="M1626.179 1215.83c-6 .3-10.8 5.2-10.8 11.2.3 6.2 5.2 10.8 11.2 10.8 6-.3 10.8-5.2 10.8-11.2-.2-6-5.1-10.9-11.2-10.8zm.3 16.1c-2.5.3-4.9-2.1-4.9-4.9-.3-2.5 2.1-4.9 4.9-4.9 2.5-.3 4.9 2.1 4.9 4.9 0 2.5-2.3 4.8-4.9 4.9z"
-        fill="#f42a7c"
+        fill = {this.state.d2} onPress = {this.Handler_d2}
         fillOpacity={1}
       />
       <Path
         d="M1380.594 764.238l5.437-5.493 93.64 97.23-5.437 5.493z"
-        fill="#f42a7c"
+        fill = {this.state.d2} onPress = {this.Handler_d2}
         fillOpacity={1}
         strokeWidth={0.60908073}
       />
@@ -9555,16 +9717,16 @@ class Map extends React.Component {
       />
       <Path
         d="M1487.713 854c-4.3-4.3-11.2-4.3-15.5 0-4.3 4.3-4.3 11.2 0 15.5 4.3 4.3 11.2 4.3 15.5 0 4.4-4.1 4.4-11 0-15.5zm-4.2 11.4c-1.9 1.9-4.9 1.9-6.9 0-1.9-1.9-1.9-4.9 0-6.9 1.9-1.9 4.9-1.9 6.9 0 1.8 1.8 1.8 5 0 6.9z"
-        fill="#f42a7c"
+        fill = {this.state.d2} onPress = {this.Handler_d2}
         fillOpacity={1}
       />
       <Path
         d="M1202.3594 720.83844H1217.3594V728.83844H1202.3594z"
-        fill="#bed12e"
+        fill = {this.state.limeBranch} onPress = {this.limeHandler}
       />
       <Path
         d="M1075.83 662.158v7.362h97.436v-.01l95.83.5c14.705.271 20.812 2.718 31.568 13.878l18.736 19.442 26.174 27.201v.002l21.883 21.883c1.258-1.733 4.056-3.676 5.557-5.365l-21.866-21.864.01-.004-26.138-27.265-19.221-19.946c-11.596-11.6-19.385-14.927-35.219-15.36l-97.31-.454z"
-        fill="#f42a7c"
+        fill = {this.state.d2} onPress = {this.Handler_d2}
         fillOpacity={1}
         strokeWidth={0.60908073}
       />
@@ -9576,7 +9738,7 @@ class Map extends React.Component {
       />
       <Path
         d="M1384.463 748c-4.3-4.3-11.2-4.3-15.5 0-4.3 4.3-4.3 11.2 0 15.5 4.3 4.3 11.2 4.3 15.5 0 4.4-4.1 4.4-11 0-15.5zm-4.2 11.4c-1.9 1.9-4.9 1.9-6.9 0-1.9-1.9-1.9-4.9 0-6.9 1.9-1.9 4.9-1.9 6.9 0 1.8 1.8 1.8 5 0 6.9z"
-        fill="#f42a7c"
+        fill = {this.state.d2} onPress = {this.Handler_d2}
         fillOpacity={1}
       />
       <Path
@@ -9592,20 +9754,20 @@ class Map extends React.Component {
       />
       <Path
         d="M1076.227 658.036c-4.3-4.3-11.2-4.3-15.5 0-4.3 4.3-4.3 11.2 0 15.5 4.3 4.3 11.2 4.3 15.5 0 4.4-4.1 4.4-11 0-15.5zm-4.2 11.4c-1.9 1.9-4.9 1.9-6.9 0-1.9-1.9-1.9-4.9 0-6.9 1.9-1.9 4.9-1.9 6.9 0 1.8 1.8 1.8 5 0 6.9z"
-        fill="#f42a7c"
+        fill = {this.state.d2} onPress = {this.Handler_d2}
         fillOpacity={1}
       />
       <Path
         d="M1016.812 752.309c.078.063.015.14.093.203.51 2.719-.994 5.23-3.635 5.803-2.422.62-5.214-.854-5.802-3.635l-.015-.141-5.75 1.41c1.472 5.672 7.119 9.181 12.946 7.834 5.688-1.331 9.182-7.118 7.835-12.946z"
-        fill="#67c7c3"
+        fill = {this.state.Branch11} onPress = {this.Handler11}
       />
       <Path
         d="M1007.546 754.742c-.078-.062-.015-.14-.093-.203-.51-2.718.995-5.23 3.494-5.787 2.422-.62 5.215.854 5.787 3.494l.015.14 5.75-1.409c-1.472-5.672-7.118-9.181-12.946-7.834-5.672 1.472-9.182 7.118-7.835 12.946z"
-        fill="#ffcd1e"
+        fill = {this.state.Branch8} onPress = {this.Handler8}
       />
       <Path
         d="M1044.794 758.595c-4.3-4.3-11.2-4.3-15.5 0-4.3 4.3-4.3 11.2 0 15.5 4.3 4.3 11.2 4.3 15.5 0 4.3-4.2 4.3-11.1 0-15.5zm-4.2 11.3c-1.9 1.9-4.9 1.9-6.9 0s-1.9-4.9 0-6.9c1.9-1.9 4.9-1.9 6.9 0 1.8 1.7 1.8 4.8 0 6.9zM1045.671 681.517c-4.3-4.3-11.2-4.3-15.5 0-4.3 4.3-4.3 11.2 0 15.5 4.3 4.3 11.2 4.3 15.5 0 4.3-4.2 4.3-11.1 0-15.5zm-4.2 11.3c-1.9 1.9-4.9 1.9-6.9 0s-1.9-4.9 0-6.9c1.9-1.9 4.9-1.9 6.9 0 1.8 1.7 1.8 4.8 0 6.9z"
-        fill="#adacac"
+        fill = {this.state.Branch9} onPress = {this.Handler9}
       />
       <Path
         d="M1058.694 675.762a2 2 0 11-3.993-.224 2 2 0 013.993.224zm-5.448 3.825a2 2 0 11-3.994-.224 2 2 0 013.994.224z"
@@ -9620,24 +9782,24 @@ class Map extends React.Component {
       />
       <Path
         d="M755.478 554.135c-4.3-4.3-11.2-4.3-15.5 0-4.3 4.3-4.3 11.2 0 15.5 4.3 4.3 11.2 4.3 15.5 0 4.4-4.1 4.4-11 0-15.5zm-4.2 11.4c-1.9 1.9-4.9 1.9-6.9 0-1.9-1.9-1.9-4.9 0-6.9 1.9-1.9 4.9-1.9 6.9 0 1.8 1.8 1.8 5 0 6.9z"
-        fill="#f42a7c"
+        fill = {this.state.d2} onPress = {this.Handler_d2}
         fillOpacity={1}
       />
       <Path
         d="M644.547 589.705c-4.3-4.3-11.2-4.3-15.5 0-4.3 4.3-4.3 11.2 0 15.5 4.3 4.3 11.2 4.3 15.5 0 4.3-4.2 4.3-11.1 0-15.5zm-4.2 11.3c-1.9 1.9-4.9 1.9-6.9 0s-1.9-4.9 0-6.9c1.9-1.9 4.9-1.9 6.9 0 1.8 1.7 1.8 4.8 0 6.9z"
-        fill="#943f90"
+        fill = {this.state.Branch7} onPress = {this.Handler7}
       />
       <Path
         d="M434.617 378.796c-4.3-4.3-11.2-4.3-15.5 0-4.3 4.3-4.3 11.2 0 15.5 4.3 4.3 11.2 4.3 15.5 0 4.4-4.1 4.4-11 0-15.5zm-4.2 11.4c-1.9 1.9-4.9 1.9-6.9 0-1.9-1.9-1.9-4.9 0-6.9 1.9-1.9 4.9-1.9 6.9 0 1.8 1.8 1.8 5 0 6.9z"
-        fill="#0572b9"
+        fill = {this.state.Branch3} onPress = {this.Handler3}
       />
       <Path
         d="M912.836 1318.036c-4.3-4.3-11.2-4.3-15.5 0-4.3 4.3-4.3 11.2 0 15.5 4.3 4.3 11.2 4.3 15.5 0 4.3-4.2 4.3-11.1 0-15.5zm-4.2 11.3c-1.9 1.9-4.9 1.9-6.9 0s-1.9-4.9 0-6.9c1.9-1.9 4.9-1.9 6.9 0 1.8 1.7 1.8 4.8 0 6.9z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
       />
       <Path
         d="M1567.106 996.618l7.8-.02v37.77h-7.729zm7.727-27.72c-.343-16.4-3.664-24.19-14.793-35.461l-69.931-67.669-5.187 5.214 68.93 66.77c10.426 10.373 13.142 16.366 13.183 31.866l.071 27 7.8-.02z"
-        fill="#f42a7c"
+        fill = {this.state.d2} onPress = {this.Handler_d2}
         fillOpacity={1}
         strokeWidth={0.60908073}
       />
@@ -9649,7 +9811,7 @@ class Map extends React.Component {
       />
       <Path
         d="M1570.808 1028.319c-6 .3-10.8 5.2-10.8 11.2.3 6.2 5.2 10.8 11.2 10.8 6-.3 10.8-5.2 10.8-11.2-.2-6-5.1-10.9-11.2-10.8zm.3 16.1c-2.5.3-4.9-2.1-4.9-4.9-.3-2.5 2.1-4.9 4.9-4.9 2.5-.3 4.9 2.1 4.9 4.9 0 2.5-2.3 4.8-4.9 4.9z"
-        fill="#f42a7c"
+        fill = {this.state.d2} onPress = {this.Handler_d2}
         fillOpacity={1}
       />
       <Text
@@ -9686,7 +9848,7 @@ class Map extends React.Component {
       </Text>
       <Path
         d="M1321.219 2021.13c-4.3-4.3-11.2-4.3-15.5 0-4.3 4.3-4.3 11.2 0 15.5 4.3 4.3 11.2 4.3 15.5 0 4.3-4.2 4.3-11.1 0-15.5zm-4.2 11.3c-1.9 1.9-4.9 1.9-6.9 0s-1.9-4.9 0-6.9c1.9-1.9 4.9-1.9 6.9 0 1.8 1.7 1.8 4.8 0 6.9zM1756.46 1562.336c5.368 2.68 12.03.53 14.755-4.928 2.68-5.368.53-12.03-4.929-14.755-5.368-2.68-12.03-.53-14.755 4.928-2.814 5.19-.708 11.941 4.928 14.755zm7.191-14.404c2.237 1.117 3.401 4.157 2.195 6.573-1.116 2.236-4.157 3.401-6.572 2.195-2.237-1.117-3.402-4.157-2.196-6.573.938-2.55 3.979-3.49 6.573-2.195z"
-        fill="#f42a7c"
+        fill = {this.state.d2} onPress = {this.Handler_d2}
         fillOpacity={1}
       />
       <Text
@@ -9701,7 +9863,7 @@ class Map extends React.Component {
       <Path
         transform="rotate(44.881) skewX(-.091)"
         d="M2021.1847 -426.43149H2029.2911224V-342.371042H2021.1847z"
-        fill="#ffcd1e"
+        fill = {this.state.Branch8} onPress = {this.Handler8}
         fillOpacity={1}
         strokeWidth={1.43732834}
       />
@@ -9721,12 +9883,12 @@ class Map extends React.Component {
       </Text>
       <Path
         d="M1703.0267 1001.4671H1725.0267V1009.4671H1703.0267z"
-        fill="#d68ab1"
+        fill = {this.state.Branch15} onPress = {this.Handler15}
         fillOpacity={1}
       />
       <Path
         d="M1709.6121 1007.564H1717.6121V1116.21154H1709.6121z"
-        fill="#d68ab1"
+        fill = {this.state.Branch15} onPress = {this.Handler15}
         fillOpacity={1}
         strokeWidth={1.00251901}
       />
@@ -9980,7 +10142,7 @@ class Map extends React.Component {
           "\u041F\u0440\u0435\u043E\u0431\u0440\u0430\u0436\u0435\u043D\u0441\u043A\u0430\u044F \u043F\u043B."
         }
       </Text>
-      <Path d="M1664.639 706.104l4.9-5 10.7 10.2-5.2 5.2z" fill="#e42518" />
+      <Path d="M1664.639 706.104l4.9-5 10.7 10.2-5.2 5.2z" fill = {this.state.Branch1} onPress = {this.Handler1} />
       <Text
         fontSize="18.3083992px"
         x={1541.0428}
@@ -10083,12 +10245,12 @@ class Map extends React.Component {
       <Path
         transform="rotate(-44.984)"
         d="M192.8721 2332.7959H199.92722809999998V2450.6530700000003H192.8721z"
-        fill="#943f90"
+        fill = {this.state.Branch7} onPress = {this.Handler7}
         strokeWidth={0.99999046}
       />
       <Path
         d="M1884.292 1591.774l-10.4 10.2-5.2-5.1 10.4-10.5z"
-        fill="#943f90"
+        fill = {this.state.Branch7} onPress = {this.Handler7}
       />
       <Text
         fontSize="18.3083992px"
@@ -10106,21 +10268,21 @@ class Map extends React.Component {
         transform="rotate(-44.984)"
         width={7.0915289}
         height={85.893059}
-        fill="#943f90"
+        fill = {this.state.Branch7} onPress = {this.Handler7}
         strokeWidth={0.99999046}
       />
       <Path
         d="M1975.94 1715.354c-.3-17.4-3.6-25.2-15.2-37l-16.2-16.2-5.266 5.134 16.266 16.366c10.4 10.4 13.1 16.4 13.1 31.9v16.5h7.7z"
-        fill="#943f90"
+        fill = {this.state.Branch7} onPress = {this.Handler7}
         fillOpacity={1}
       />
       <Path
         d="M1949.74 1657.154l-10.4 10.2-5.2-5.1 10.4-10.5z"
-        fill="#943f90"
+        fill = {this.state.Branch7} onPress = {this.Handler7}
       />
       <Path
         d="M1961.3401 1731.954H1976.3401V1739.954H1961.3401z"
-        fill="#943f90"
+        fill = {this.state.Branch7} onPress = {this.Handler7}
       />
       <Text
         fontSize="18.3083992px"
@@ -10133,16 +10295,16 @@ class Map extends React.Component {
       </Text>
       <Path
         d="M1968.5447 1739.854H1976.3401955V1809.854H1968.5447z"
-        fill="#943f90"
+        fill = {this.state.Branch7} onPress = {this.Handler7}
         strokeWidth={1.05529237}
       />
       <Path
         d="M1939.894 1749.52h9.3v9.4h-9.3zm.7 8.5h7.7v-7.9h-7.7zm5.3-4.9c0 1-.8 1.9-2.2 1.9h-1v2h-1v-5.7h2.2c1.4 0 2 1 2 1.8zm-.9 0c0-.5-.5-1-1.1-1h-1v1.9h1c.6 0 1.1-.3 1.1-.9z"
-        fill="#0572b9"
+        fill = {this.state.Branch3} onPress = {this.Handler3}
       />
       <Path
         d="M1980.239 1809.966c-4.3-4.3-11.2-4.3-15.5 0-4.3 4.3-4.3 11.2 0 15.5 4.3 4.3 11.2 4.3 15.5 0 4.3-4.1 4.3-11.3 0-15.5zm-4.3 11.4c-1.9 1.9-4.9 1.9-6.9 0s-1.9-4.9 0-6.9c1.9-1.9 4.9-1.9 6.9 0 1.9 1.8 1.9 4.9 0 6.9z"
-        fill="#943f90"
+        fill = {this.state.Branch7} onPress = {this.Handler7}
       />
       <G fontSize={18.3084}>
         <Text
@@ -10170,7 +10332,7 @@ class Map extends React.Component {
       </G>
       <Path
         d="M2007.907 1809.939c-4.3-4.3-11.2-4.3-15.5 0-4.3 4.3-4.3 11.2 0 15.5 4.3 4.3 11.2 4.3 15.5 0 4.3-4.1 4.3-11.3 0-15.5zm-4.3 11.4c-1.9 1.9-4.9 1.9-6.9 0s-1.9-4.9 0-6.9c1.9-1.9 4.9-1.9 6.9 0 1.9 1.8 1.9 4.9 0 6.9z"
-        fill="#d68ab1"
+        fill = {this.state.Branch15} onPress = {this.Handler15}
         fillOpacity={1}
       />
       <G>
@@ -10185,30 +10347,30 @@ class Map extends React.Component {
       </G>
       <Path
         d="M1997 1826.5013H2004V1950.4986099999999H1997z"
-        fill="#d68ab1"
+        fill = {this.state.Branch15} onPress = {this.Handler15}
         fillOpacity={1}
         strokeWidth={1.33093584}
       />
       <Path
         d="M1997 1957.5986H2004V2044.8790410000001H1997z"
-        fill="#d68ab1"
+        fill = {this.state.Branch15} onPress = {this.Handler15}
         fillOpacity={1}
         strokeWidth={1.11663055}
       />
       <Path
         d="M1997 2043.5792H2012V2051.5792H1997z"
-        fill="#d68ab1"
+        fill = {this.state.Branch15} onPress = {this.Handler15}
         fillOpacity={1}
       />
       <Path
         d="M1997 2051.5791H2004V2136.274779H1997z"
-        fill="#d68ab1"
+        fill = {this.state.Branch15} onPress = {this.Handler15}
         fillOpacity={1}
         strokeWidth={1.09997201}
       />
       <Path
         d="M1997 1950.299H2012V1958.299H1997z"
-        fill="#d68ab1"
+        fill = {this.state.Branch15} onPress = {this.Handler15}
         fillOpacity={1}
       />
       <Text
@@ -10264,7 +10426,7 @@ class Map extends React.Component {
       </Text>
       <Path
         d="M1989.528 2136.2241H2011.528V2144.2241H1989.528z"
-        fill="#d68ab1"
+        fill = {this.state.Branch15} onPress = {this.Handler15}
         fillOpacity={1}
       />
       <G>
@@ -10280,7 +10442,7 @@ class Map extends React.Component {
           cx={2000.345}
           cy={2161.8181}
           r={11.7}
-          fill="#d68ab1"
+          fill = {this.state.Branch15} onPress = {this.Handler15}
           fillOpacity={1}
         />
         <Path
@@ -10290,12 +10452,12 @@ class Map extends React.Component {
       </G>
       <Path
         d="M1721.198 1127.787c-1.89 1.858-3.627 3.274-5.018 4.88l29.98 29.981c12.092 12.092 20.223 15.273 36.557 15.344l10.594.012v-7.223h-11.018c-14.566 0-20.577-2.476-31.396-13.295z"
-        fill="#d68ab1"
+        fill = {this.state.Branch15} onPress = {this.Handler15}
         fillOpacity={1}
       />
       <Path
         d="M1721.805 1114.962c-4.3-4.3-11.2-4.3-15.5 0-4.3 4.3-4.3 11.2 0 15.5 4.3 4.3 11.2 4.3 15.5 0 4.2-4.2 4.2-11.1 0-15.5zm-4.4 11.3c-1.9 1.9-4.9 1.9-6.9 0s-1.9-4.9 0-6.9 4.9-1.9 6.9 0c1.9 2 1.9 5.2 0 6.9z"
-        fill="#d68ab1"
+        fill = {this.state.Branch15} onPress = {this.Handler15}
         fillOpacity={1}
       />
       <Path
@@ -10311,12 +10473,12 @@ class Map extends React.Component {
       />
       <Path
         d="M1957.5 1880.623c-.3.3-.6.8-1 1.1l-119.002 112.695 4.84 5.063 119.262-112.458c.3-.3.8-.8 1.1-1.3zm11.8-24.7c-.8 10.3-3.7 16.1-11.8 24.7l5.2 5.1c9.6-10.3 13.206-17.344 13.906-29.744zm7.258-5.623l-.177-23.188-6.94-.088-.16 23.8v.437c0 1.9.019 3.063.019 4.663l7.306.056c.097-1.97-.085-3.78-.044-5.68zM1816.575 2025.53l21.296-21.3-5.093-5.305-21.3 21.5c-12.147 11.954-14.664 20.203-15 36.6l-.488 41.14 7.998.164.282-40.845c.205-14.899 1.282-21.177 12.305-31.954z"
-        fill="#943f90"
+        fill = {this.state.Branch7} onPress = {this.Handler7}
         fillOpacity={1}
       />
       <Path
         d="M1843.183 2009.06l-10.605-9.935 4.948-4.702 10.82 10.022z"
-        fill="#943f90"
+        fill = {this.state.Branch7} onPress = {this.Handler7}
       />
       <Text
         fontSize="18.3083992px"
@@ -10329,7 +10491,7 @@ class Map extends React.Component {
       </Text>
       <Path
         d="M1789.2841 2094.7332H1811.2841V2101.7332H1789.2841z"
-        fill="#943f90"
+        fill = {this.state.Branch7} onPress = {this.Handler7}
       />
       <Text
         fontSize="18.3083992px"
@@ -10342,13 +10504,13 @@ class Map extends React.Component {
       </Text>
       <Path
         d="M991.898 436.02a3.956 3.956 0 00-5.615 0 3.96 3.96 0 000 5.617 3.956 3.956 0 005.615 0c1.594-1.485 1.594-3.986 0-5.617zm-1.521 4.132c-.689.688-1.775.688-2.5 0-.688-.689-.688-1.776 0-2.501.688-.689 1.775-.689 2.5 0 .652.652.652 1.812 0 2.5zM931.359 462.76a3.956 3.956 0 00-5.615 0 3.96 3.96 0 000 5.618 3.956 3.956 0 005.615 0c1.593-1.486 1.593-3.987 0-5.618zm-1.522 4.132c-.688.689-1.775.689-2.499 0-.688-.689-.688-1.776 0-2.5.688-.69 1.775-.69 2.5 0 .651.652.651 1.811 0 2.5z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
         fillOpacity={1}
         strokeWidth={0.30948851}
       />
       <Path
         d="M878.968 495.676c-2.3-5.7-8.8-8.2-14.5-6-5.7 2.2-8.2 8.8-6 14.5 2.3 5.7 8.8 8.2 14.5 6 5.8-2.5 8.5-9 6-14.5zm-8.2 8.8c-2.5 1-5.5-.3-6.5-2.5-1-2.5.3-5.5 2.5-6.5 2.5-1 5.5.3 6.5 2.5 1.1 2.6 0 5.4-2.5 6.5zM781.203 575.66c-2.3-5.7-8.8-8.2-14.5-6-5.7 2.2-8.2 8.8-6 14.5 2.3 5.7 8.8 8.2 14.5 6 5.8-2.5 8.5-9 6-14.5zm-8.2 8.8c-2.5 1-5.5-.3-6.5-2.5-1-2.5.3-5.5 2.5-6.5 2.5-1 5.5.3 6.5 2.5 1.1 2.6 0 5.4-2.5 6.5zM704.006 675.979c-2.3-5.7-8.8-8.2-14.5-6-5.7 2.2-8.2 8.8-6 14.5 2.3 5.7 8.8 8.2 14.5 6 5.8-2.5 8.5-9 6-14.5zm-8.2 8.8c-2.5 1-5.5-.3-6.5-2.5-1-2.5.3-5.5 2.5-6.5 2.5-1 5.5.3 6.5 2.5 1.1 2.6 0 5.4-2.5 6.5zM664.976 747.481c-2.3-5.7-8.8-8.2-14.5-6-5.7 2.2-8.2 8.8-6 14.5 2.3 5.7 8.8 8.2 14.5 6 5.8-2.5 8.5-9 6-14.5zm-8.2 8.8c-2.5 1-5.5-.3-6.5-2.5-1-2.5.3-5.5 2.5-6.5 2.5-1 5.5.3 6.5 2.5 1.1 2.6 0 5.4-2.5 6.5zM615.96 928.077c-2.3-5.7-8.8-8.2-14.5-6-5.7 2.2-8.2 8.8-6 14.5 2.3 5.7 8.8 8.2 14.5 6 5.8-2.5 8.5-9 6-14.5zm-8.2 8.8c-2.5 1-5.5-.3-6.5-2.5-1-2.5.3-5.5 2.5-6.5 2.5-1 5.5.3 6.5 2.5 1.1 2.6 0 5.4-2.5 6.5zM614.65 1035.77c-2.3-5.7-8.8-8.2-14.5-6-5.7 2.2-8.2 8.8-6 14.5 2.3 5.7 8.8 8.2 14.5 6 5.8-2.5 8.5-9 6-14.5zm-8.2 8.8c-2.5 1-5.5-.3-6.5-2.5-1-2.5.3-5.5 2.5-6.5 2.5-1 5.5.3 6.5 2.5 1.1 2.6 0 5.4-2.5 6.5zM632.293 1142.02c-2.3-5.7-8.8-8.2-14.5-6-5.7 2.2-8.2 8.8-6 14.5 2.3 5.7 8.8 8.2 14.5 6 5.8-2.5 8.5-9 6-14.5zm-8.2 8.8c-2.5 1-5.5-.3-6.5-2.5-1-2.5.3-5.5 2.5-6.5 2.5-1 5.5.3 6.5 2.5 1.1 2.6 0 5.4-2.5 6.5zM699.752 1300.329c-2.3-5.7-8.8-8.2-14.5-6-5.7 2.2-8.2 8.8-6 14.5 2.3 5.7 8.8 8.2 14.5 6 5.8-2.5 8.5-9 6-14.5zm-8.2 8.8c-2.5 1-5.5-.3-6.5-2.5-1-2.5.3-5.5 2.5-6.5 2.5-1 5.5.3 6.5 2.5 1.1 2.6 0 5.4-2.5 6.5zM760.558 1381.682c-2.3-5.7-8.8-8.2-14.5-6-5.7 2.2-8.2 8.8-6 14.5 2.3 5.7 8.8 8.2 14.5 6 5.8-2.5 8.5-9 6-14.5zm-8.2 8.8c-2.5 1-5.5-.3-6.5-2.5-1-2.5.3-5.5 2.5-6.5 2.5-1 5.5.3 6.5 2.5 1.1 2.6 0 5.4-2.5 6.5zM928.548 1515.934c-2.3-5.7-8.8-8.2-14.5-6-5.7 2.2-8.2 8.8-6 14.5 2.3 5.7 8.8 8.2 14.5 6 5.8-2.5 8.5-9 6-14.5zm-8.2 8.8c-2.5 1-5.5-.3-6.5-2.5-1-2.5.3-5.5 2.5-6.5 2.5-1 5.5.3 6.5 2.5 1.1 2.6 0 5.4-2.5 6.5zM1280.966 399.726c-2.3-5.7-8.8-8.2-14.5-6-5.7 2.2-8.2 8.8-6 14.5 2.3 5.7 8.8 8.2 14.5 6 5.8-2.5 8.5-9 6-14.5zm-8.2 8.8c-2.5 1-5.5-.3-6.5-2.5-1-2.5.3-5.5 2.5-6.5 2.5-1 5.5.3 6.5 2.5 1.1 2.6 0 5.4-2.5 6.5z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
         fillOpacity={1}
       />
       <G>
@@ -10363,7 +10525,7 @@ class Map extends React.Component {
       </G>
       <Path
         d="M1447.547 443.14c-2.3-5.7-8.8-8.2-14.5-6-5.7 2.2-8.2 8.8-6 14.5 2.3 5.7 8.8 8.2 14.5 6 5.8-2.5 8.5-9 6-14.5zm-8.2 8.8c-2.5 1-5.5-.3-6.5-2.5-1-2.5.3-5.5 2.5-6.5 2.5-1 5.5.3 6.5 2.5 1.1 2.6 0 5.4-2.5 6.5z"
-        fill="#e42518"
+        fill = {this.state.Branch1} onPress = {this.Handler1}
         fillOpacity={1}
       />
       <G>
@@ -10429,11 +10591,11 @@ class Map extends React.Component {
       <G>
         <Path
           d="M1016.875 752.23c.078.064.015.142.093.204.51 2.719-.995 5.23-3.635 5.803-2.422.62-5.215-.854-5.802-3.635l-.015-.14-5.75 1.409c1.472 5.672 7.118 9.181 12.946 7.834 5.688-1.331 9.182-7.118 7.835-12.946z"
-          fill="#67c7c3"
+          fill = {this.state.Branch11} onPress = {this.Handler11}
         />
         <Path
           d="M1007.609 754.664c-.078-.062-.015-.14-.093-.203-.51-2.718.994-5.23 3.494-5.787 2.422-.62 5.215.854 5.787 3.494l.015.14 5.75-1.409c-1.472-5.672-7.119-9.181-12.947-7.834-5.672 1.472-9.181 7.118-7.834 12.946z"
-          fill="#ffcd1e"
+          fill = {this.state.Branch8} onPress = {this.Handler8}
         />
       </G>
       <G>
@@ -10448,7 +10610,7 @@ class Map extends React.Component {
       </G>
       <Path
         d="M143.213 707.56a3.956 3.956 0 00-5.615 0 3.96 3.96 0 000 5.617 3.956 3.956 0 005.615 0c1.594-1.486 1.594-3.987 0-5.618zm-1.521 4.131c-.689.689-1.775.689-2.5 0-.688-.689-.688-1.776 0-2.5.688-.69 1.775-.69 2.5 0 .651.652.651 1.811 0 2.5z"
-        fill="#f7a600"
+        fill = {this.state.d1} onPress = {this.Handler_d1}
         fillOpacity={1}
         strokeWidth={0.30948851}
       />
@@ -10463,7 +10625,7 @@ class Map extends React.Component {
       </Text>
       <Path
         d="M1018.153 49.115a3.956 3.956 0 00-5.615 0 3.96 3.96 0 000 5.617 3.956 3.956 0 005.615 0c1.594-1.486 1.594-3.987 0-5.617zm-1.521 4.131c-.689.689-1.775.689-2.5 0-.688-.688-.688-1.776 0-2.5.689-.69 1.775-.69 2.5 0 .652.652.652 1.812 0 2.5zM1038.977 108.967a3.956 3.956 0 00-5.615 0 3.96 3.96 0 000 5.618 3.956 3.956 0 005.615 0c1.594-1.486 1.594-3.987 0-5.618zm-1.521 4.132c-.689.688-1.775.688-2.5 0-.688-.689-.688-1.776 0-2.5.689-.69 1.775-.69 2.5 0 .652.652.652 1.811 0 2.5z"
-        fill="#f7a600"
+        fill = {this.state.d1} onPress = {this.Handler_d1}
         fillOpacity={1}
         strokeWidth={0.30948851}
       />
@@ -10499,7 +10661,7 @@ class Map extends React.Component {
         <Path
           d="M861.5 667.2h-309c-6.5 0-11.1 3.4-13.2 9.6-14.2 43.6-42.5 130.9-56.7 174.5-1.7 5.2 1.4 9.4 6.9 9.4h309c6.5 0 11.1-3.4 13.2-9.6 14.2-43.6 42.5-130.9 56.7-174.5 1.6-5.1-1.5-9.4-6.9-9.4"
           transform="matrix(.14918 0 0 .14918 150.285 -83.757)"
-          fill="#f42a7c"
+          fill = {this.state.d2} onPress = {this.Handler_d2}
         />
         <Path
           d="M622.5 705.9h-53.1l-6.3 19.4h19.4V822h40c36.3-.2 59.7-23.9 59.7-58 0-34.4-23.4-58.1-59.7-58.1m-.7 96.9h-17.6v-77.6h17.6c21.4 0 37.5 12.9 37.5 38.8 0 25.7-16.1 38.8-37.5 38.8M705.6 822v-16.2l29.8-29.2c21.7-21.4 25.8-27.5 25.8-36.3 0-10.3-8.4-16.6-19.1-16.6-9.3 0-19.2 5-26.8 12.1l-14.1-14.1c10.3-10.3 26-17.7 41.6-17.7 26 0 40.3 15.9 40.3 34 0 15.6-8.1 26.7-28.2 45.6l-20.1 18.9v.3h53l-6.3 19.2z"
@@ -10509,7 +10671,7 @@ class Map extends React.Component {
       </G>
       <Path
         d="M1265.463 2507.9a3.956 3.956 0 00-5.615 0 3.96 3.96 0 000 5.617 3.956 3.956 0 005.615 0c1.594-1.486 1.594-3.986 0-5.617zm-1.521 4.131c-.689.689-1.775.689-2.5 0-.688-.688-.688-1.775 0-2.5.689-.689 1.775-.689 2.5 0 .652.652.652 1.812 0 2.5z"
-        fill="#f42a7c"
+        fill = {this.state.d2} onPress = {this.Handler_d2}
         fillOpacity={1}
         strokeWidth={0.30948851}
       />
@@ -10533,7 +10695,7 @@ class Map extends React.Component {
       </G>
       <Path
         d="M1265.828 2565.19a3.956 3.956 0 00-5.614 0 3.96 3.96 0 000 5.617 3.956 3.956 0 005.614 0c1.594-1.486 1.594-3.987 0-5.618zm-1.521 4.13c-.688.69-1.775.69-2.5 0-.688-.688-.688-1.775 0-2.5.689-.689 1.776-.689 2.5 0 .652.652.652 1.812 0 2.5zM1264.744 2393.732a3.956 3.956 0 00-5.614 0 3.96 3.96 0 000 5.618 3.956 3.956 0 005.614 0c1.594-1.486 1.594-3.987 0-5.618zm-1.521 4.132c-.688.688-1.775.688-2.5 0-.688-.689-.688-1.776 0-2.5.689-.69 1.776-.69 2.5 0 .652.651.652 1.811 0 2.5zM1265.132 2450.727a3.956 3.956 0 00-5.614 0 3.96 3.96 0 000 5.617 3.956 3.956 0 005.614 0c1.594-1.486 1.594-3.986 0-5.617zm-1.52 4.131c-.69.689-1.776.689-2.5 0-.689-.688-.689-1.776 0-2.5.688-.689 1.775-.689 2.5 0 .651.652.651 1.812 0 2.5z"
-        fill="#f42a7c"
+        fill = {this.state.d2} onPress = {this.Handler_d2}
         fillOpacity={1}
         strokeWidth={0.30948851}
       />
@@ -10624,7 +10786,7 @@ class Map extends React.Component {
       </G>
       <Path
         d="M515.55902 1478.9114H529.45902V1486.9114H515.55902z"
-        fill="#ffcd1e"
+        fill = {this.state.Branch8} onPress = {this.Handler8}
       />
       <G>
         <LinearGradient
@@ -10673,7 +10835,7 @@ class Map extends React.Component {
         <Path
           d="M861.5 667.2h-309c-6.5 0-11.1 3.4-13.2 9.6-14.2 43.6-42.5 130.9-56.7 174.5-1.7 5.2 1.4 9.4 6.9 9.4h309c6.5 0 11.1-3.4 13.2-9.6 14.2-43.6 42.5-130.9 56.7-174.5 1.6-5.1-1.5-9.4-6.9-9.4"
           transform="matrix(.14918 0 0 .14918 1161.98 2482.342)"
-          fill="#f42a7c"
+          fill = {this.state.d2} onPress = {this.Handler_d2}
         />
         <Path
           d="M622.5 705.9h-53.1l-6.3 19.4h19.4V822h40c36.3-.2 59.7-23.9 59.7-58 0-34.4-23.4-58.1-59.7-58.1m-.7 96.9h-17.6v-77.6h17.6c21.4 0 37.5 12.9 37.5 38.8 0 25.7-16.1 38.8-37.5 38.8M705.6 822v-16.2l29.8-29.2c21.7-21.4 25.8-27.5 25.8-36.3 0-10.3-8.4-16.6-19.1-16.6-9.3 0-19.2 5-26.8 12.1l-14.1-14.1c10.3-10.3 26-17.7 41.6-17.7 26 0 40.3 15.9 40.3 34 0 15.6-8.1 26.7-28.2 45.6l-20.1 18.9v.3h53l-6.3 19.2z"
@@ -10683,7 +10845,7 @@ class Map extends React.Component {
       </G>
       <Path
         d="M813.36 32.226a3.956 3.956 0 00-5.615 0 3.96 3.96 0 000 5.617 3.956 3.956 0 005.615 0c1.594-1.486 1.594-3.986 0-5.617zm-1.521 4.131c-.689.689-1.775.689-2.5 0-.688-.688-.688-1.775 0-2.5.689-.689 1.775-.689 2.5 0 .652.652.652 1.812 0 2.5z"
-        fill="#f7a600"
+        fill = {this.state.d1} onPress = {this.Handler_d1}
         fillOpacity={1}
         strokeWidth={0.30948851}
       />
@@ -10731,7 +10893,7 @@ class Map extends React.Component {
       </Text>
       <Path
         d="M479.733 362.576c-4.3-4.3-11.2-4.3-15.5 0-4.3 4.3-4.3 11.2 0 15.5 4.3 4.3 11.2 4.3 15.5 0 4.4-4.1 4.4-11 0-15.5zm-4.2 11.4c-1.9 1.9-4.9 1.9-6.9 0-1.9-1.9-1.9-4.9 0-6.9 1.9-1.9 4.9-1.9 6.9 0 1.8 1.8 1.8 5 0 6.9zM626.131 553.365c-4.3-4.3-11.2-4.3-15.5 0-4.3 4.3-4.3 11.2 0 15.5 4.3 4.3 11.2 4.3 15.5 0 4.4-4.1 4.4-11 0-15.5zm-4.2 11.4c-1.9 1.9-4.9 1.9-6.9 0-1.9-1.9-1.9-4.9 0-6.9 1.9-1.9 4.9-1.9 6.9 0 1.8 1.8 1.8 5 0 6.9z"
-        fill="#f42a7c"
+        fill = {this.state.d2} onPress = {this.Handler_d2}
         fillOpacity={1}
       />
       <G>
@@ -10895,10 +11057,10 @@ class Map extends React.Component {
       </G>
       <Path
         d="M1809.239 1166.89c-4.075-4.404-11.067-4.747-15.545-.605-4.405 4.074-4.748 11.067-.605 15.544 4.074 4.405 11.066 4.748 15.544.606 4.467-3.86 4.884-10.92.606-15.545zm-11.82 10.933c-1.697-1.835-1.712-5.091.27-6.924 1.836-1.698 5.091-1.713 6.925.27 1.698 1.834 1.712 5.09-.27 6.924-1.778 2.053-4.955 1.859-6.924-.27z"
-        fill="#d68ab1"
+        fill = {this.state.Branch15} onPress = {this.Handler15}
         fillOpacity={1}
       />
-      <Path d="M1949.891 1328.143l-5.3-5.2 10.5-10.3 5 5.3z" fill="#d68ab1" />
+      <Path d="M1949.891 1328.143l-5.3-5.2 10.5-10.3 5 5.3z" fill = {this.state.Branch15} onPress = {this.Handler15} />
       <Text
         y={1313.9437}
         x={1957.4519}
@@ -10911,11 +11073,11 @@ class Map extends React.Component {
         }
       </Text>
       <Path
-        fill="#d68ab1"
+        fill = {this.state.Branch15} onPress = {this.Handler15}
         d="M1952.7 1321c-1.78 1.483-3.227 3.516-4.9 5l35.53 35.532c10.82 10.819 13.294 16.828 13.294 31.394v69.862l7.283.072-.07-69.51c-.07-16.334-3.252-24.465-15.344-36.557z"
       />
       <Path
-        fill="#d68ab1"
+        fill = {this.state.Branch15} onPress = {this.Handler15}
         d="M1996.6238 1462.6873H2011.6238V1470.6873H1996.6238z"
       />
       <Text
@@ -10928,7 +11090,7 @@ class Map extends React.Component {
         {"\u041E\u043A\u0441\u043A\u0430\u044F"}
       </Text>
       <Path
-        fill="#d68ab1"
+        fill = {this.state.Branch15} onPress = {this.Handler15}
         d="M1996.6603 1470.0201H2003.9996264V1704.6406299999999H1996.6603z"
       />
       <Path
@@ -11059,7 +11221,7 @@ class Map extends React.Component {
       </G>
       <Path
         d="M1579.977 1738.472a3.956 3.956 0 00-5.615 0 3.96 3.96 0 000 5.617 3.956 3.956 0 005.615 0c1.593-1.486 1.593-3.987 0-5.617zm-1.522 4.131c-.688.689-1.775.689-2.499 0-.688-.689-.688-1.776 0-2.5.688-.69 1.775-.69 2.5 0 .651.652.651 1.811 0 2.5z"
-        fill="#f42a7c"
+        fill = {this.state.d2} onPress = {this.Handler_d2}
         fillOpacity={1}
         strokeWidth={0.30948851}
       />
@@ -11090,11 +11252,11 @@ class Map extends React.Component {
         </Text>
       </G>
       <Path
-        fill="#d68ab1"
+        fill = {this.state.Branch15} onPress = {this.Handler15}
         d="M1996.6606 1711.1185H2003.9999263999998V1808.3119510000001H1996.6606z"
       />
       <Path
-        fill="#d68ab1"
+        fill = {this.state.Branch15} onPress = {this.Handler15}
         d="M1996.6237 1703.5765H2011.6237V1711.5765H1996.6237z"
       />
       <Text
@@ -11979,6 +12141,9 @@ class Map extends React.Component {
         />
       </G>
        </Svg>
+       </View>
+       </View>
+       </TouchableWithoutFeedback>
   
     }
 }

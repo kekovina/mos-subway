@@ -1,26 +1,14 @@
-import React, { Component } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  TextInput,
-  Dimensions,
-  Image,
-  Animated,
-} from "react-native";
-
-import { pathfinder } from "../utils/functions";
-import ListPath from "./ListPath";
-import { getStation } from "../utils/functions";
+import React, { Component } from 'react';
+import { View, Text, StyleSheet,TextInput, Dimensions, Image, Animated,TouchableWithoutFeedback,Keyboard} from 'react-native';
 import Svg, { Rect, Path } from "react-native-svg";
 import {
-  PanGestureHandler,
-  PinchGestureHandler,
-  RotationGestureHandler,
-} from "react-native-gesture-handler";
-import GestureRecognizer, {
-  swipeDirections,
-} from "react-native-swipe-gestures";
+    PanGestureHandler,
+    PinchGestureHandler,
+    RotationGestureHandler,
+    State,
+  } from 'react-native-gesture-handler';
+  import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
+  
 
 const screen = Dimensions.get("window");
 const styles = StyleSheet.create({
@@ -85,6 +73,44 @@ class Menu extends Component {
         this.setState({ path: result });
       }
     }
+  _onPanEvent = (e)=>{
+    Keyboard.dismiss()
+  }
+  onFocusInput = (e)=>{
+    this.setState({focused: true, id: e.nativeEvent.target})
+    Animated.timing(
+        this.translateY,
+        {
+          toValue: -screen.height*0.85,
+          duration: 500,
+          useNativeDriver: true
+        },
+      ).start(({finished})=>{
+        if(finished){
+            this.translateY.setValue(-screen.height*0.85);
+        }
+      });
+      
+      
+  }
+
+  swipedDown = (e)=>{
+    Animated.timing(
+        this.translateY,
+        {
+          toValue: 2020,
+          duration: 500,
+          useNativeDriver: true
+        }
+      ).start(({finished})=>{
+        if(finished){
+            console.log('А Я ФСЕ!')
+            this.translateY.setValue(0);
+        }
+      });
+      setTimeout(()=>{
+        Keyboard.dismiss()
+      },400)
   }
   swipedDown = (e) => {
     Animated.timing(this.translateY, {
